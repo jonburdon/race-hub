@@ -17,5 +17,6 @@
       "**/.theia": true,
       "**/core.Microsoft*": true,
    },
-   "emmet.extensionsPath": ".theia"
+"emmet.extensionsPath": ".theia",
+"python.pythonPath": "/home/gitpod/.pyenv/versions/3.8.5/bin/python"
 }
