@@ -105,3 +105,19 @@ body h1, body h2, body h3, body .btn {
         padding-top: 164px;
     }
 }
+
+/*** Classes for Main Nav ***/
+
+.megamenu-li {
+	position: static;
+}
+
+.megamenu {
+	position: absolute;
+	width: 100%;
+	left: 0;
+	right: 0;
+	padding: 15px;
+}
+
+/*** End of Main Nav ***/
