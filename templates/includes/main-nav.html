@@ -134,9 +134,9 @@
          </div>
          <div class="col-sm-6 col-lg-3">
           <h5>Event Formats</h5>
-                <a href="" class="dropdown-item">Mass Start</a>
-                <a href="" class="dropdown-item">Split or Ind Start</a>
-                <a href="" class="dropdown-item">Virtual</a>
+                <a href="{% url 'events' %}?event_format=traditional_mass_start" class="dropdown-item">Mass Start</a>
+                <a href="{% url 'events' %}?event_format=separate_waves" class="dropdown-item">Split or Ind Start</a>
+                <a href="{% url 'events' %}?event_format=virtual" class="dropdown-item">Virtual</a>
                 <a href="{% url 'events' %}" class="dropdown-item">All Formats</a>
          </div>
          <div class="col-sm-6 col-lg-5">

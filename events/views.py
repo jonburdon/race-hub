@@ -25,9 +25,9 @@ def all_events(request):
             events = events.filter(distance__name__in=distance)
             distances = Distance.objects.filter(name__in=distance)
 
-        if 'format' in request.GET:
-            event_format = request.GET['format'].split(',')
-            events = events.filter(discipline__name__in=event_format)
+        if 'event_format' in request.GET:
+            event_format = request.GET['event_format'].split(',')
+            events = events.filter(event_format__name__in=event_format)
             formats = Format.objects.filter(name__in=event_format)
 
         if 'q' in request.GET:
