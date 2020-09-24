@@ -57,7 +57,7 @@ class EventInstance(models.Model):
 class Event(models.Model):
     discipline = models.ForeignKey('Discipline', null=True, blank=True, on_delete=models.SET_NULL)
     distance = models.ForeignKey('Distance', null=True, blank=True, on_delete=models.SET_NULL)
-    exact_distance_km = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
+    exactdistancekm = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
     event_format = models.ForeignKey('Format', null=True, blank=True, on_delete=models.SET_NULL)
     organiser = models.ForeignKey('Organiser', null=True, blank=True, on_delete=models.SET_NULL)
     sku = models.CharField(max_length=254, null=True, blank=True)

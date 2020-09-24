@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_js %}
+<script>
+// Make a variable of an empty array and loop through the data to make a javascript object of event name, event discipline, event latitude, event longitude
+
+$( document ).ready(function() {
+    console.log( "ready!" );
+var events = [ {% for event in events %}  {{ event.latitude }}, {% endfor %}];
+console.log (events)
+});
+</script>
+{% endblock %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                {{ events }}
+            </div>
+        </div>
+    </div>
+
+
+<div class="row">
+                    {% for event in events %}
+                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
+
+                            <div class="card">
+                                <div class="card-img-top">                               
+                               
+                                </div>
+                                <div class="card-block">
+                                    <h4 class="card-title">{{ event.name }}</h4>
+                                    
+                                    {% if event.latitude %}
+                                    <p>
+                                        {{ event.latitude }}
+                                    </p>
+                                        
+                                    {% endif %}
+                                    {% if event.longitude %}
+                                    <p>
+                                        {{ event.longitude }}
+                                    </p>
+                                        
+                                    {% endif %}
+                                    
+                                   
+                                
+                                
+                    
+
+                            </div>
+                          </div>
+
+
+                        </div>
+                     
+                    {% endfor %}
+                </div>
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 ">
+             <h1>Map View</h1>
+             <div id="mapid"></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+<!-- References:
+
+https://codepen.io/bbrook154/pen/RRQQyG
+
+https://leafletjs.com/examples/quick-start/
+-->
+{% block postloadjs %}
+    {{ block.super }}
+<script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="https://d3js.org/topojson.v0.min.js"></script>
+	<link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.2/dist/leaflet.css" />
+	 <script src="https://npmcdn.com/leaflet@1.0.0-rc.2/dist/leaflet.js"></script>
+
+
+<script>
+navigator.geolocation.getCurrentPosition(function(location) {
+  var latlng = new L.LatLng(location.coords.latitude, location.coords.longitude);
+
+  var mymap = L.map('mapid').setView(latlng, 8)
+  L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://mapbox.com">Mapbox</a>',
+    maxZoom: 18,
+    id: 'mapbox.streets',
+    accessToken: 'pk.eyJ1IjoiYmJyb29rMTU0IiwiYSI6ImNpcXN3dnJrdDAwMGNmd250bjhvZXpnbWsifQ.Nf9Zkfchos577IanoKMoYQ'
+  }).addTo(mymap);
+
+var marker = L.marker(latlng).addTo(mymap);
+  
+var marker = L.marker([51.5, -0.09]).addTo(mymap);  
+  
+marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();  
+  
+var marker = L.marker([51.9, -0.12]).addTo(mymap);    
+  
+marker.bindPopup("<b>Hello world!</b><br>I am another popup.").openPopup(); 
+  
+var marker = L.marker([53.56588, -1.69692]).addTo(mymap);   
+
+});
+</script>
+{% endblock %}

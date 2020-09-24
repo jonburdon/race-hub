@@ -10,10 +10,17 @@
         <div class="row">
          <div class="col-sm-6 col-lg-3">
           <h5>View All Events</h5>
-                <a href="" class="dropdown-item">Map View</a>
+                <a href="{% url 'map_view' %}" class="dropdown-item">Map View</a>
                 <a href="{% url 'events' %}?sort=price&direction=asc" class="dropdown-item">By Price</a>
+
                 <a href="{% url 'events' %}?sort=rating&direction=desc" class="dropdown-item ">By Rating</a>
-                <a href="{% url 'events' %}?sort=exact_distance_km&direction=asc" class="dropdown-item ">By Distance</a>
+
+                <a href="{% url 'events' %}?sort=exactdistancekm&direction=asc" class="dropdown-item ">By Distance</a>
+
+                <a href="{% url 'events' %}?sort=name&direction=asc" class="dropdown-item ">By Name</a>
+
+                <a href="{% url 'events' %}?sort=event_format&direction=asc" class="dropdown-item ">By Format</a>
+
                 <a href="{% url 'events' %}?sort=entrycutoff&direction=asc" class="dropdown-item ">By Date</a>
                 <a href="{% url 'events' %}" class="dropdown-item">All Events</a>
          </div>
@@ -43,7 +50,7 @@
                 <a href="{% url 'events' %}?discipline=road" class="dropdown-item">Road</a>
                 <a href="{% url 'events' %}?discipline=fell" class="dropdown-item">Fell</a>
                 <a href="{% url 'events' %}?discipline=trail" class="dropdown-item">Trail</a>
-                <a href="{% url 'events' %}" class="dropdown-item">All</a>
+                <a href="{% url 'events' %}?discipline=road,trail,fell,triathlon,adventure_racing,orienteering" class="dropdown-item">All Disciplines</a>
          </div>
          <div class="col-sm-6 col-lg-3">
           <h5>More Disciplines</h5>
@@ -76,7 +83,7 @@
 
 
 
-          <a class="dropdown-item" href="{% url 'events' %}">All</a>
+          <a class="dropdown-item" href="{% url 'events' %}?distance=5k,10k,6_mile,10_mile,half_marathon,marathon,other_under_10_miles,other_10_to_20_miles,other_over_20_miles,ultra">All Distances</a>
          </div>
           <div class="col-sm-6 col-lg-3">
           <h5>More Distances</h5>
@@ -138,7 +145,7 @@
                 <a href="{% url 'events' %}?event_format=traditional_mass_start" class="dropdown-item">Mass Start</a>
                 <a href="{% url 'events' %}?event_format=separate_waves" class="dropdown-item">Split or Ind Start</a>
                 <a href="{% url 'events' %}?event_format=virtual" class="dropdown-item">Virtual</a>
-                <a href="{% url 'events' %}" class="dropdown-item">All Formats</a>
+                <a href="{% url 'events' %}?event_format=traditional_mass_start,separate_waves,virtual" class="dropdown-item">All Formats</a>
          </div>
          <div class="col-sm-6 col-lg-5">
           <h5>Paragraph</h5>

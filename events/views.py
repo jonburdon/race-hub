@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q
+from django.db.models.functions import Lower
 from .models import Event, Discipline, Distance, Format
 # Create your views here.
 
@@ -15,6 +16,8 @@ def all_events(request):
     event_format = None
     sort = None
     direction = None
+    formats = None
+    
 
     if request.GET:
         if 'sort' in request.GET:
@@ -23,12 +26,20 @@ def all_events(request):
             if sortkey == 'name':
                 sortkey = 'lower_name'
                 events = events.annotate(lower_name=Lower('name'))
+            if sortkey == 'discipline':
+                sortkey = 'discipline__name'
+            if sortkey == 'exactdistancekm':
+                sortkey = 'exactdistancekm'
+            if sortkey == 'format':
+                sortkey = 'format__name'
 
             if 'direction' in request.GET:
                 direction = request.GET['direction']
                 if direction == 'desc':
                     sortkey = f'-{sortkey}'
             events = events.order_by(sortkey)
+
+
 
         if 'discipline' in request.GET:
             discipline = request.GET['discipline'].split(',')
@@ -61,8 +72,9 @@ def all_events(request):
         'search_term': query,
         'current_disciplines': disciplines,
         'current_distance': distances,
-        'current_format': event_format,
+        'current_format': formats,
         'current_sorting': current_sorting,
+ 
     }
 
     return render(request, 'events/events.html', context)
@@ -77,3 +89,16 @@ def event_profile(request, event_id):
     }
 
     return render(request, 'events/event_profile.html', context)
+
+
+
+def map_view(request):
+    """ A view to show all events on a map """
+
+    events = Event.objects.all()
+
+    context = {
+        'events': events,
+    }
+
+    return render(request, 'events/map_view.html', context)

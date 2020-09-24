@@ -24,6 +24,8 @@ hr { display: block; height: 1px;
     border: 0; border-top: 1px solid var(--primary-color);
     margin: auto; padding: 0px 0px 20px 0px; margin-top: 20px; }
 
+
+
 /* hero header */
 
 .hero-header {
@@ -146,7 +148,7 @@ Image Cards
   transform: scale(1.2);
 }
 
-.card img{
+.card .card-img-top{
     width: 110%;
     height: 100%;
 }
@@ -171,7 +173,22 @@ Image Cards
     display: inline-block;
 }
 
+.race-icon {
+    display: inline-block;
+    width: 20px;
+    padding-right: 5px;
+}
 
+
+a.category-badge > span.badge:hover {
+    background: #212529 !important;
+    color: #fff !important;
+}
+
+#mapid { 
+  height: 70vw;
+  width: 100vw;
+}
 
 /* -------------------------------- Media Queries */
 
