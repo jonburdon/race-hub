@@ -46,7 +46,7 @@
                                 <div class="card-block">
                                     <h4 class="card-title">{{ event.name }}</h4>
                                     <p class="card-text">{{ event.key_info }}</p>     
-                                    <a href="" class="action-button skew-style btn btn-lg rounded-0 text-uppercase py-1">
+                                    <a href="{% url 'event_profile' event.id %}" class="action-button skew-style btn btn-lg rounded-0 text-uppercase py-1">
                                     View Event
                                     </a>
                                 
@@ -58,6 +58,7 @@
 
 
                         </div>
+                        <!-- Add div with mb-5 spacing between rows -->
                         {% if forloop.counter|divisibleby:1 %}
                             <div class="col-12 d-sm-none mb-5">
                                 
