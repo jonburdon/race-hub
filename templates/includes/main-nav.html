@@ -67,14 +67,26 @@
         <div class="row">
         <div class="col-sm-6 col-lg-3">
           <h5>Distances</h5>
-          <a class="dropdown-item" href="#">5k</a>
-          <a class="dropdown-item" href="#">10k</a>
-          <a class="dropdown-item" href="#">Half Marathon</a>
-          <a class="dropdown-item" href="#">Marathon</a>
-          <a class="dropdown-item" href="#">Ultra</a>
+          <a class="dropdown-item" href="{% url 'events' %}?distance=5k">5k</a>
+          <a class="dropdown-item" href="{% url 'events' %}?distance=10k">10k</a>
+          <a class="dropdown-item" href="{% url 'events' %}?distance=6_mile">6 Mile</a>
+          <a class="dropdown-item" href="{% url 'events' %}?distance=10_mile">10 Mile</a>
+         <a class="dropdown-item" href="{% url 'events' %}?distance=half_marathon">Half Marathon</a>
+
+
+
           <a class="dropdown-item" href="{% url 'events' %}">All</a>
          </div>
-         <div class="col-sm-6 col-lg-4">
+          <div class="col-sm-6 col-lg-3">
+          <h5>More Distances</h5>
+          <a class="dropdown-item" href="{% url 'events' %}?distance=marathon">Marathon</a>
+          <a class="dropdown-item" href="{% url 'events' %}?distance=other_under_10_miles">Other Under 10 Miles</a>
+          <a class="dropdown-item" href="{% url 'events' %}?distance=other_10_to_20_miles">Other 10 to 20 Miles</a>
+          <a class="dropdown-item" href="{% url 'events' %}?distance=other_over_20_miles">Other Over 20 Miles</a>
+          <a class="dropdown-item" href="{% url 'events' %}?distance=ultra">Ultra</a>
+
+         </div>
+         <div class="col-sm-6 col-lg-3">
           <h5>Image Slider</h5>
           <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
            <div class="carousel-inner">
@@ -91,7 +103,7 @@
           </div>
          </div>
          
-         <div class="col-sm-6 col-lg-5">
+         <div class="col-sm-6 col-lg-3">
           <h5>Paragraph</h5>
           <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam impedit itaque minus distinctio possimus reiciendis et repellat. Voluptate, temporibus veniam et praesentium alias, maxime repudiandae aliquid, natus omnis animi iste!</p>
          </div>
