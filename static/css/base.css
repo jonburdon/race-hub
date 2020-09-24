@@ -3,19 +3,26 @@ html {
 }
 
 body {
+
     
-    background: url('/media/TrailHalf.jpg') no-repeat center center fixed;
-    background-size: cover;
     
-    height: calc(100vh - 164px);
     color: #000;
     font-family: 'Oswald';
+    
     
 }
 body h1, body h2, body h3, body .btn {
     font-family: 'Racing Sans One';
 }
 
+/* hero header */
+
+.hero-header {
+    background: url('/media/TrailHalf.jpg') no-repeat top center fixed;
+    background-size: cover;
+    padding: 10vw 0vw;
+    
+}
 
 
 /* from Bulma */
