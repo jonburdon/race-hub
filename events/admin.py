@@ -7,6 +7,7 @@ class EventAdmin(admin.ModelAdmin):
         'organiser',
         'discipline',
         'distance',
+        'exact_distance_km',
         'event_format',
         'sku',
         'event_instance',

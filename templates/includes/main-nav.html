@@ -11,9 +11,10 @@
          <div class="col-sm-6 col-lg-3">
           <h5>View All Events</h5>
                 <a href="" class="dropdown-item">Map View</a>
-                <a href="" class="dropdown-item">By Price</a>
-                <a href="" class="dropdown-item ">By Rating</a>
-                <a href="" class="dropdown-item ">By Category</a>
+                <a href="{% url 'events' %}?sort=price&direction=asc" class="dropdown-item">By Price</a>
+                <a href="{% url 'events' %}?sort=rating&direction=desc" class="dropdown-item ">By Rating</a>
+                <a href="{% url 'events' %}?sort=exact_distance_km&direction=asc" class="dropdown-item ">By Distance</a>
+                <a href="{% url 'events' %}?sort=entrycutoff&direction=asc" class="dropdown-item ">By Date</a>
                 <a href="{% url 'events' %}" class="dropdown-item">All Events</a>
          </div>
          <div class="col-sm-6 col-lg-3">

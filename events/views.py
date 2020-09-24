@@ -13,8 +13,23 @@ def all_events(request):
     disciplines = None
     distances = None
     event_format = None
+    sort = None
+    direction = None
 
     if request.GET:
+        if 'sort' in request.GET:
+            sortkey = request.GET['sort']
+            sort = sortkey
+            if sortkey == 'name':
+                sortkey = 'lower_name'
+                events = events.annotate(lower_name=Lower('name'))
+
+            if 'direction' in request.GET:
+                direction = request.GET['direction']
+                if direction == 'desc':
+                    sortkey = f'-{sortkey}'
+            events = events.order_by(sortkey)
+
         if 'discipline' in request.GET:
             discipline = request.GET['discipline'].split(',')
             events = events.filter(discipline__name__in=discipline)
@@ -39,6 +54,7 @@ def all_events(request):
             queries = Q(name__icontains=query) | Q(description__icontains=query)
             events = events.filter(queries)
 
+    current_sorting = f'{sort}_{direction}'
 
     context = {
         'events': events,
@@ -46,6 +62,7 @@ def all_events(request):
         'current_disciplines': disciplines,
         'current_distance': distances,
         'current_format': event_format,
+        'current_sorting': current_sorting,
     }
 
     return render(request, 'events/events.html', context)
