@@ -38,10 +38,10 @@
   <body>
   
  <header class="container-fluid fixed-top">
-        <div class="row bg-white">
+        <div class="row bg-white desktop-bar">
             <div class="bg-white col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
                 <a href="{% url 'home' %}" class="nav-link main-logo-link">
-                    <h2 class="logo-font text-black my-0"><strong>Race</strong> Hub</h2>
+                    <h2 id="logo-font-text" class="logo-font text-black my-0"><img src='/media/racehub-logo.svg' width=175px></h2>
                 </a>
             </div>
             <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 d-none d-lg-block">
@@ -49,9 +49,9 @@
                     <div class="input-group w-100 skew-style ">
                         <input class="form-control border border-black rounded-0" type="text" name="q" placeholder="Find Events">
                         <div class="input-group-append">
-                            <button class="form-control btn btn-black border border-black rounded-0" type="submit">
+                            <button class="form-control btn btn-white border border-black rounded-0" type="submit">
                                 <span class="icon">
-                                    <i class="fas fa-search"></i>
+                                    <img src='/media/magnifying-glass.svg' width=25px>
                                 </span>
                             </button>
                         </div>
@@ -63,8 +63,8 @@
                     <li class="list-inline-item dropdown">
                         <a class="text-black nav-link" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <div class="text-center">
-                                <div><i class="fas fa-user fa-lg"></i></div>
-                                <p class="my-0">My Account</p>
+                                <div><img src='/media/running-walk.svg' width=25px></div>
+                                <p class="my-0">My Racehub</p>
                             </div>
                         </a>
                         <div class="dropdown-menu border-0" aria-labelledby="user-options">
@@ -83,7 +83,7 @@
                     <li class="list-inline-item">
                         <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link" href="">
                             <div class="text-center">
-                                <div><i class="fas fa-shopping-bag fa-lg"></i></div>
+                                <div><img src='/media/bag.svg' width=25px></div>
                                 <p class="my-0">
                                     {% if grand_total %}
                                         ${{ grand_total|floatformat:2 }}

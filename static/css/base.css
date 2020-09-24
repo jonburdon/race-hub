@@ -121,5 +121,24 @@ body h1, body h2, body h3, body .btn {
 	right: 0;
 	padding: 15px;
 }
+.dropdown-menu.megamenu {
+height: 60vh;
+  max-height: 60vh;
+  width: 100%;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling:touch; // mobile safari
+
+}
+
+#logo-font-text:{
+    display: inline-block;
+width: 50px;
+} 
+
+@media (max-width: 992px) {
+.desktop-bar {
+    display: none;
+}
+}
 
 /*** End of Main Nav ***/
