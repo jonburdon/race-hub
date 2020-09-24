@@ -7,8 +7,16 @@
 
 $( document ).ready(function() {
     console.log( "ready!" );
-var events = [ {% for event in events %}  {{ event.latitude }}, {% endfor %}];
-console.log (events)
+var mapevents = [
+    {% for event in events %}
+
+{{ event.latitude }},
+{{ event.longitude }},
+
+{% endfor %}
+];
+
+console.log (mapevents)
 });
 </script>
 {% endblock %}
@@ -109,7 +117,11 @@ navigator.geolocation.getCurrentPosition(function(location) {
   }).addTo(mymap);
 
 var marker = L.marker(latlng).addTo(mymap);
-  
+{% for event in events %}
+var marker = L.marker([{{ event.latitude }}, {{ event.longitude }}]).addTo(mymap); 
+
+
+{% endfor %}  
 var marker = L.marker([51.5, -0.09]).addTo(mymap);  
   
 marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();  
