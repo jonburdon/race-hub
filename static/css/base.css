@@ -15,6 +15,8 @@ body h1, body h2, body h3, body .btn {
     font-family: 'Racing Sans One';
 }
 
+
+
 /* hero header */
 
 .hero-header {
@@ -110,12 +112,15 @@ body h1, body h2, body h3, body .btn {
         z-index: 1030;
     }
 
-    .header-container {
-        padding-top: 164px;
-    }
+
 }
 
 /*** Classes for Main Nav ***/
+
+/* Move content to appear below header */
+.header-container {
+        padding-top: 80px;
+    }
 
 .megamenu-li {
 	position: static;
@@ -141,7 +146,12 @@ height: 60vh;
     display: inline-block;
 width: 50px;
 } 
-
+@media (min-width: 992px) {
+.header-container {
+        padding-top: 130px;
+    }
+}
+/* Use max-width as header items will not display properly if d-inline or d-block are used */
 @media (max-width: 992px) {
 .desktop-bar {
     display: none;

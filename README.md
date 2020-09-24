@@ -18,6 +18,11 @@ Code for mobile view buttons refacroted from Code Institute tutorial
 - Pillow installed to handle image field
 
 
+## Events App
+
+
+
+
 ### Testing
 
 Navigation elements from https://codepen.io/skywalkapps/pen/VeNzwG were found to be incompatible with Bootstrap 4.
