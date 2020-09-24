@@ -9,11 +9,77 @@
     </div>
 {% endblock %}
 
+
+
 {% block content %}
-    <div class="container">
+
+
+
+    <div class="overlay"></div>
+    <div class="container-fluid">
         <div class="row">
-            <div class="col">
-                {{ events }}
+            <div class="col text-center mt-3">
+                <h2 class="logo-font">Events</h2>
+                <hr class="w-50 mb-1 brand-hr">
+            </div>
+        </div>
+        <div class="row">
+            <div class="product-container col-10 offset-1">
+                <div class="row mt-1 mb-2"></div>
+                <div class="row">
+                    {% for event in events %}
+                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
+
+                            <div class="card">
+                                <div class="card-img-top">                               
+                                {% if event.image %}
+                                <a href="">
+                                    <img class="card-img-top img-fluid" src="{{ event.image.url }}" alt="{{ product.name }}">
+                                </a>
+
+                                {% else %}
+                                <a href="">
+                                    <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ event.name }}">
+                                </a>
+                                {% endif %}
+                                </div>
+                                <div class="card-block">
+                                    <h4 class="card-title">{{ event.name }}</h4>
+                                    <p class="card-text">{{ event.key_info }}</p>     
+                                    <a href="" class="action-button skew-style btn btn-lg rounded-0 text-uppercase py-1">
+                                    View Event
+                                    </a>
+                                
+                                
+                    
+
+                            </div>
+                          </div>
+
+
+                        </div>
+                        {% if forloop.counter|divisibleby:1 %}
+                            <div class="col-12 d-sm-none mb-5">
+                                
+                            </div>
+                        {% endif %}                        
+                        {% if forloop.counter|divisibleby:2 %}
+                            <div class="col-12 d-none d-sm-block d-md-block d-lg-none mb-5">
+                                
+                            </div>
+                        {% endif %}
+                        {% if forloop.counter|divisibleby:3 %}
+                            <div class="col-12 d-none d-lg-block d-xl-none mb-5">
+                                
+                            </div>
+                        {% endif %}
+                        {% if forloop.counter|divisibleby:4 %}
+                            <div class="col-12 d-none d-xl-block mb-5">
+                                
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </div>

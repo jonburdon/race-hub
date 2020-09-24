@@ -15,7 +15,14 @@ body h1, body h2, body h3, body .btn {
     font-family: 'Racing Sans One';
 }
 
+:root {
+  --primary-color: #31c731;
+  --primary-color-dark: #0e8000;
+}
 
+hr { display: block; height: 1px;
+    border: 0; border-top: 1px solid var(--primary-color);
+    margin: auto; padding: 0px 0px 20px 0px; margin-top: 20px; }
 
 /* hero header */
 
@@ -63,11 +70,16 @@ body h1, body h2, body h3, body .btn {
 }
 
 .shop-now-button {
-    background: black;
+    background: var(--primary-color-dark);
     color: white;
-    min-width: 260px;
+    min-width: 260px;  
+}
 
-    
+.action-button {
+    background: var(--primary-color);
+    color: white;
+    min-width: 130px;
+    margin-bottom: 20px;
 }
 
 .btn-black {
@@ -92,6 +104,74 @@ body h1, body h2, body h3, body .btn {
 .border-black {
     border: 1px solid black !important;
 }
+
+
+
+
+/*-------------------------------------------
+Image Cards
+---------------------------------------------*/
+#our-program {
+    padding: 70px 0;
+    background: #fff;
+}
+
+#our-program .top {
+    margin-bottom: 50px;
+}
+
+.card {
+    overflow: hidden;
+    border-radius:0 0 10px 10px;
+    position: relative;
+    background: #fff;
+    text-align: center;
+    -webkit-box-shadow: -4px 2px 10px 3px rgba(0,0,0,0.50);
+    -moz-box-shadow: -4px 2px 10px 3px rgba(0,0,0,0.50);
+    box-shadow: -4px 2px 10px 3px rgba(0,0,0,0.50);
+    margin-bottom: 30px;
+}
+
+.card-img-top {
+  max-height: 250px;
+  overflow: hidden;
+}
+
+.card-img-top img {
+  width: 100%;
+  transition: .3s all;
+}
+
+.card:hover .card-img-top img {
+  transform: scale(1.2);
+}
+
+.card img{
+    width: 110%;
+    height: 100%;
+}
+
+.card h4 {
+    padding-top: 25px;
+    font-weight: 700;
+}
+
+.card .card-text {
+    width: 80%;
+    margin: 0 auto;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.card-footer {
+    background: var(--primary-color);
+    padding: 10px 30px;
+    font-weight: 700;
+    font-size: 15px;
+    display: inline-block;
+}
+
+
 
 /* -------------------------------- Media Queries */
 
