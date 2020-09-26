@@ -11,6 +11,20 @@
 
 {% block content %}
     <div class="container">
+                <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 d-none d-lg-block">
+                <form method="GET" action="{% url 'results' %}">
+                    <div class="input-group w-100 skew-style ">
+                        <input class="form-control border border-black rounded-0" type="text" name="q" placeholder="Find Athlete or Age Cat">
+                        <div class="input-group-append">
+                            <button class="form-control btn btn-white border border-black rounded-0" type="submit">
+                                <span class="icon">
+                                    <img src='/media/magnifying-glass.svg' width=25px>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         <div class="row">
             <div class="col">
                 {% for r in results %}
