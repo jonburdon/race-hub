@@ -74,12 +74,13 @@ def all_results(request):
 
         if 'agecat' in request.GET:
             agecat = request.GET['agecat'].split(',')
-            print (agecat)
-            print(results)
-            # Problem
             results = results.filter(agecat__in=agecat)
-            print (results)
             agecat = Result.objects.filter(agecat__in=agecat)
+
+        if 'gender' in request.GET:
+            gender = request.GET['gender'].split(',')
+            results = results.filter(gender__in=gender)
+            gender = Result.objects.filter(gender__in=gender)
 
         if 'q' in request.GET:
             query = request.GET['q']
@@ -87,8 +88,8 @@ def all_results(request):
                 messages.error(request, "You didn't enter any search criteria!")
                 return redirect(reverse('results'))
         
-        queries = Q(athlete__icontains=query) | Q(agecat__icontains=query)  | Q(club__friendly_name__icontains=query)
-        results = results.filter(queries)
+            queries = Q(athlete__icontains=query) | Q(agecat__icontains=query)  | Q(club__friendly_name__icontains=query)
+            results = results.filter(queries)
 
     print(results)
 
