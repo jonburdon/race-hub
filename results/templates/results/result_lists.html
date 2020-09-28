@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+                <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 d-none d-lg-block">
+                <form method="GET" action="{% url 'all_result_lists' %}">
+                    <div class="input-group w-100 skew-style ">
+                        <input class="form-control border border-black rounded-0" type="text" name="q" placeholder="Find Results">
+                        <div class="input-group-append">
+                            <button class="form-control btn btn-white border border-black rounded-0" type="submit">
+                                <span class="icon">
+                                    <img src='/media/magnifying-glass.svg' width=25px>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <hr>
+            </div>
+        <div class="row">
+            <div class="col">
+                <h1>Results</h1>
+                <hr>
+                Sort by: Date | Name<br>
+                Filter by: Year | Discipline | Distance<br>
+                <hr>
+                {% for r in resultlists %}
+                    <p>
+
+                        <span>{{ r.friendly_name }} | 
+                        <span>{{ r.event_date }} | 
+                        <A href="{% url 'single_event_result_list' r.id %}">Full Results </a>
+
+                    </p>
+                {% endfor %}
+                
+            </div>
+        </div>
+    </div>
+{% endblock %}

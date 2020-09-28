@@ -1,6 +1,5 @@
 from django.db import models
 from events.models import Event, EventInstance, Organiser, Format, Distance, Discipline
-
 from clubs.models import Club
 # Create your models here.
 
@@ -12,7 +11,7 @@ class Result(models.Model):
     event_format = models.ForeignKey(Format, null=True, blank=True, on_delete=models.SET_NULL)
     athlete = models.CharField(max_length=125, null=True, blank=True)
     M = 'M'
-    F = 'M'
+    F = 'F'
     N = 'N'
     gender_choices = [
         (M, 'M'),

@@ -9,7 +9,6 @@ def all_events(request):
     """ A view to show all events, including sorting and search queries """
 
     events = Event.objects.all()
-
     query = None
     disciplines = None
     distances = None
@@ -17,7 +16,6 @@ def all_events(request):
     sort = None
     direction = None
     formats = None
-    
 
     if request.GET:
         if 'sort' in request.GET:

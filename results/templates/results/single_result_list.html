@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+            
+                <hr>
+        <div class="row">
+            <div class="col">
+                
+                {{ eventinstance.friendly_name }} | 
+                Date: {{ eventinstance.event_date }} | 
+                Year: {{ eventinstance.event_date.year }} | 
+                Month: {{ eventinstance.event_date.month }} | 
+                Day: {{ eventinstance.event_date.day }} | 
+                Time: Year: {{ eventinstance.event_date.time }} | 
+
+                {{ eventinstance.event_date.month }} | 
+                Friendly Date:{{ eventinstance.event_date|date:"j F, Y" }} | 
+                Month:{{ eventinstance.event_date|date:"F" }}<br>
+                <hr>
+                {% for r in resultsforthisevent %}
+                {{ forloop.counter }}
+                {{ r.athlete }} | {{ r.bibnumber }} | {{ r.chiptime }}  |  {{ r.gender }}  | {{ r.agecat }}  | {{ r.club.friendly_name }} <br>
+                {% endfor %}
+                
+                
+            </div>
+        </div>
+    </div>
+{% endblock %}

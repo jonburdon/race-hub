@@ -1,24 +1,96 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q
+from django.db.models.functions import Lower
 from .models import Result
+from events.models import EventInstance
+from clubs.models import Club
 # Create your views here.
+
+def all_result_lists(request):
+    """ A view to show all event_instances including sorting and search queries """
+
+    resultlists = EventInstance.objects.all()
+    print (resultlists)
+    context = {
+        'resultlists': resultlists,
+    }
+    
+    return render(request, 'results/result_lists.html', context)
+
+def single_event_result_list(request, eventinstance_id):
+    """ A view to show result list for one event """
+
+    eventinstance = get_object_or_404(EventInstance, pk=eventinstance_id)
+    
+    results = Result.objects.all()
+    resultsforthisevent = results.filter(eventinstance__in=eventinstance_id)
+   
+    context = {
+        'eventinstance': eventinstance,
+        'resultsforthisevent' : resultsforthisevent,
+    }
+
+    return render(request, 'results/single_result_list.html', context)
 
 def all_results(request):
     """ A view to show all results, including sorting and search queries """
 
     results = Result.objects.all()
     query = None
+    name = None
+    agecat = None
+    chiptime = None
+    club = None
+    athlete = None
+    sort = None
+    direction = None
+    bibnumber = None
+
 
     if request.GET:
+        if 'sort' in request.GET:
+            sortkey = request.GET['sort']
+            sort = sortkey
+            if sortkey == 'name':
+                sortkey = 'lower_name'
+                events = events.annotate(lower_name=Lower('name'))
+            if sortkey == 'agecat':
+                sortkey = 'agecat'
+            if sortkey == 'chiptime':
+                sortkey = 'chiptime'
+            if sortkey == 'club':
+                sortkey = 'club__name'
+            if sortkey == 'athlete':
+                sortkey = 'athlete'
+            if sortkey == 'bibnumber':
+                sortkey = 'bibnumber'
+
+            if 'direction' in request.GET:
+                direction = request.GET['direction']
+                if direction == 'desc':
+                    sortkey = f'-{sortkey}'
+            results = results.order_by(sortkey)
+
+        if 'agecat' in request.GET:
+            agecat = request.GET['agecat'].split(',')
+            print (agecat)
+            print(results)
+            # Problem
+            results = results.filter(agecat__in=agecat)
+            print (results)
+            agecat = Result.objects.filter(agecat__in=agecat)
+
         if 'q' in request.GET:
             query = request.GET['q']
             if not query:
                 messages.error(request, "You didn't enter any search criteria!")
                 return redirect(reverse('results'))
-            
-            queries = Q(athlete__icontains=query) | Q(agecat__icontains=query)
-            results = results.filter(queries)
+        
+        queries = Q(athlete__icontains=query) | Q(agecat__icontains=query)  | Q(club__friendly_name__icontains=query)
+        results = results.filter(queries)
+
+    print(results)
 
     context = {
         'results': results,

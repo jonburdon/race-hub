@@ -14,7 +14,7 @@
                 <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 d-none d-lg-block">
                 <form method="GET" action="{% url 'results' %}">
                     <div class="input-group w-100 skew-style ">
-                        <input class="form-control border border-black rounded-0" type="text" name="q" placeholder="Find Athlete or Age Cat">
+                        <input class="form-control border border-black rounded-0" type="text" name="q" placeholder="Search Athlete, Club or Age Category">
                         <div class="input-group-append">
                             <button class="form-control btn btn-white border border-black rounded-0" type="submit">
                                 <span class="icon">
@@ -24,13 +24,61 @@
                         </div>
                     </div>
                 </form>
+                <hr><div class="row mt-1 mb-2">
+                     <div class="col-12 col-md-6 my-auto order-md-last d-flex justify-content-center justify-content-md-end">
+                        <div class="sort-select-wrapper w-50">
+                            <select id="sort-select" class="custom-select custom-select-sm rounded-0 border border-{% if current_sorting != 'None_None' %}info{% else %}black{% endif %}">
+                                <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
+                                <option value="chiptime_asc" {% if current_sorting == 'chiptime_asc' %}selected{% endif %}>Chiptime (Asc)</option>
+                                <option value="chiptime_desc" {% if current_sorting == 'chiptime_desc' %}selected{% endif %}>Chiptime (Desc)</option>
+                                <option value="athlete_asc" {% if current_sorting == 'athlete_asc' %}selected{% endif %}>Athlete (Asc)</option>
+                                <option value="athlete_desc" {% if current_sorting == 'athlete_desc' %}selected{% endif %}>Athlete (Desc)</option>
+                                <option value="club_asc" {% if current_sorting == 'club_asc' %}selected{% endif %}>Club (Asc)</option>
+                                <option value="club_desc" {% if current_sorting == 'club_desc' %}selected{% endif %}>Club (Desc)</option>
+                                <option value="bibnumber_asc" {% if current_sorting == 'bibnumber_asc' %}selected{% endif %}>Bib (Asc)</option>
+                                <option value="bibnumber_desc" {% if current_sorting == 'bibnumber_desc' %}selected{% endif %}>Bib (Desc)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 order-md-first">
+                        <p class="text-muted mt-3 text-center text-md-left">
+                            {% if search_term or current_disciplines or current_distances or current_format or current_sorting != 'None_None' %}
+                                <span class="small"><a href="{% url 'results' %}">Results Home</a> | </span>
+                            {% endif %}
+                            {{ results|length }} Results{% if search_term %} found for <strong>"{{ search_term }}"</strong>{% endif %}
+                        </p>
+                    </div>               
+                
+                </div>
+                <span>Filter: Age Categories:</span>
+                <A href="{% url 'results' %}?agecat=snr">Senior</a> | 
+                <A href="{% url 'results' %}?agecat=vet">Veteran</a> | 
+                <br>
+                <span>Filter: Gender:</span>
+                <A href="{% url 'results' %}?gender=m">M</a> | 
+                <A href="{% url 'results' %}?gender=f">F</a> | 
+                <br>
+                <hr>
+                <span>Sort By:</span>
+                <A href="{% url 'results' %}?chiptime&direction=asc">Chip Time</a> | 
+                <A href="{% url 'results' %}?agecat&direction=asc">Age Cat</a> | 
+                <A href="{% url 'results' %}?club&direction=asc">Club</a> | 
+                <A href="{% url 'results' %}?athlete&direction=asc">Athlete</a> | 
+                <A href="{% url 'results' %}?bibnumber&direction=asc">Bib</a> | 
+                <br>
+                <hr>
+
+                <hr>
             </div>
         <div class="row">
             <div class="col">
                 {% for r in results %}
                 <p>
                 <span>{{ forloop.counter }}</span> | 
-                <span>{{ r.eventinstance.friendly_name }}</span> | 
+                <span>{{ r.eventinstance.friendly_name }}
+                <A href="{% url 'single_event_result_list' r.eventinstance.id %}">Full Results </a>
+                
+                </span> | 
                 <span>{{ r.athlete }}</span> | 
                 <span>{{ r.chiptime }}</span> |
                 <span>{{ r.gender }}</span> |
@@ -45,4 +93,37 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+
+{% block postloadjs %}
+    {{ block.super }}
+    <script type="text/javascript">
+		$('.btt-link').click(function(e) {
+			window.scrollTo(0,0)
+		})
+	</script>
+    
+    <script type="text/javascript">
+        $('#sort-select').change(function() {
+            var selector = $(this);
+            var currentUrl = new URL(window.location);
+
+            var selectedVal = selector.val();
+            if(selectedVal != "reset"){
+                var sort = selectedVal.split("_")[0];
+                var direction = selectedVal.split("_")[1];
+
+                currentUrl.searchParams.set("sort", sort);
+                currentUrl.searchParams.set("direction", direction);
+
+                window.location.replace(currentUrl);
+            } else {
+                currentUrl.searchParams.delete("sort");
+                currentUrl.searchParams.delete("direction");
+
+                window.location.replace(currentUrl);
+            }
+        })
+    </script>
 {% endblock %}
