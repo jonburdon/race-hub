@@ -11,7 +11,59 @@ def all_result_lists(request):
     """ A view to show all event_instances including sorting and search queries """
 
     resultlists = EventInstance.objects.all()
-    print (resultlists)
+    query = None
+    name = None
+    agecat = None
+    chiptime = None
+    club = None
+    athlete = None
+    sort = None
+    events = None
+    direction = None
+    bibnumber = None
+
+    if request.GET:
+        if 'sort' in request.GET:
+            sortkey = request.GET['sort']
+            sort = sortkey
+            if sortkey == 'name':
+                sortkey = 'lower_name'
+                events = events.annotate(lower_name=Lower('name'))
+            if sortkey == 'agecat':
+                sortkey = 'agecat'
+            if sortkey == 'chiptime':
+                sortkey = 'chiptime'
+            if sortkey == 'club':
+                sortkey = 'club_name'
+            if sortkey == 'athlete':
+                sortkey = 'athlete'
+            if sortkey == 'bibnumber':
+                sortkey = 'bibnumber'
+
+            if 'direction' in request.GET:
+                direction = request.GET['direction']
+                if direction == 'desc':
+                    sortkey = f'-{sortkey}'
+            resultlists = resultlists.order_by(sortkey)
+
+        if 'agecat' in request.GET:
+            agecat = request.GET['agecat'].split(',')
+            resultlists = resultlists.filter(agecat__in=agecat)
+            agecat = Result.objects.filter(agecat__in=agecat)
+
+        if 'gender' in request.GET:
+            gender = request.GET['gender'].split(',')
+            resultlists = resultlists.filter(gender__in=gender)
+            gender = Result.objects.filter(gender__in=gender)
+
+        if 'q' in request.GET:
+            query = request.GET['q']
+            if not query:
+                messages.error(request, "You didn't enter any search criteria!")
+                return redirect(reverse('results'))
+            queries = Q(event__friendly_name__icontains=query)
+            resultlists = resultlists.filter(queries)  
+
     context = {
         'resultlists': resultlists,
     }
@@ -25,7 +77,58 @@ def single_event_result_list(request, eventinstance_id):
     
     results = Result.objects.all()
     resultsforthisevent = results.filter(eventinstance__in=eventinstance_id)
-   
+    query = None
+    name = None
+    agecat = None
+    chiptime = None
+    club = None
+    athlete = None
+    sort = None
+    direction = None
+    bibnumber = None
+
+    if request.GET:
+        if 'sort' in request.GET:
+            sortkey = request.GET['sort']
+            sort = sortkey
+            if sortkey == 'name':
+                sortkey = 'lower_name'
+                events = events.annotate(lower_name=Lower('name'))
+            if sortkey == 'agecat':
+                sortkey = 'agecat'
+            if sortkey == 'chiptime':
+                sortkey = 'chiptime'
+            if sortkey == 'club':
+                sortkey = 'club__name'
+            if sortkey == 'athlete':
+                sortkey = 'athlete'
+            if sortkey == 'bibnumber':
+                sortkey = 'bibnumber'
+
+            if 'direction' in request.GET:
+                direction = request.GET['direction']
+                if direction == 'desc':
+                    sortkey = f'-{sortkey}'
+            resultsforthisevent = resultsforthisevent.order_by(sortkey)
+
+        if 'agecat' in request.GET:
+            agecat = request.GET['agecat'].split(',')
+            resultsforthisevent = resultsforthisevent.filter(agecat__in=agecat)
+            agecat = Result.objects.filter(agecat__in=agecat)
+
+        if 'gender' in request.GET:
+            gender = request.GET['gender'].split(',')
+            resultsforthisevent = resultsforthisevent.filter(gender__in=gender)
+            gender = Result.objects.filter(gender__in=gender)
+
+        if 'q' in request.GET:
+            query = request.GET['q']
+            if not query:
+                messages.error(request, "You didn't enter any search criteria!")
+                return redirect(reverse('results'))
+            queries = Q(athlete__icontains=query) | Q(agecat__icontains=query)  | Q(club__friendly_name__icontains=query)
+            resultsforthisevent = resultsforthisevent.filter(queries)  
+
     context = {
         'eventinstance': eventinstance,
         'resultsforthisevent' : resultsforthisevent,
@@ -87,11 +190,8 @@ def all_results(request):
             if not query:
                 messages.error(request, "You didn't enter any search criteria!")
                 return redirect(reverse('results'))
-        
             queries = Q(athlete__icontains=query) | Q(agecat__icontains=query)  | Q(club__friendly_name__icontains=query)
             results = results.filter(queries)
-
-    print(results)
 
     context = {
         'results': results,

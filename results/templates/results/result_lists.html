@@ -12,6 +12,7 @@
 {% block content %}
     <div class="container">
                 <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 d-none d-lg-block">
+                
                 <form method="GET" action="{% url 'all_result_lists' %}">
                     <div class="input-group w-100 skew-style ">
                         <input class="form-control border border-black rounded-0" type="text" name="q" placeholder="Find Results">
@@ -30,8 +31,22 @@
             <div class="col">
                 <h1>Results</h1>
                 <hr>
+                <span>Filter: Year: 2019 2020 2021</span>
+                
+                Search : Name <br>
                 Sort by: Date | Name<br>
-                Filter by: Year | Discipline | Distance<br>
+                Filter by: Year <br>
+
+                            <div class="sort-select-wrapper w-50">
+                            <select id="sort-select" class="custom-select custom-select-sm rounded-0 border border-{% if current_sorting != 'None_None' %}info{% else %}black{% endif %}">
+                                <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
+                                <option value="date_asc" {% if current_sorting == 'date_asc' %}selected{% endif %}>Date (Asc)</option>
+                                <option value="date_desc" {% if current_sorting == 'date_desc' %}selected{% endif %}>Date (Desc)</option>
+                                <option value="name_asc" {% if current_sorting == 'name_asc' %}selected{% endif %}>Name (Asc)</option>
+                                <option value="name_desc" {% if current_sorting == 'name_desc' %}selected{% endif %}>Name (Desc)</option>
+                                
+                            </select>
+                        </div>
                 <hr>
                 {% for r in resultlists %}
                     <p>
@@ -46,4 +61,36 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+    <script type="text/javascript">
+		$('.btt-link').click(function(e) {
+			window.scrollTo(0,0)
+		})
+	</script>
+    
+    <script type="text/javascript">
+        $('#sort-select').change(function() {
+            var selector = $(this);
+            var currentUrl = new URL(window.location);
+
+            var selectedVal = selector.val();
+            if(selectedVal != "reset"){
+                var sort = selectedVal.split("_")[0];
+                var direction = selectedVal.split("_")[1];
+
+                currentUrl.searchParams.set("sort", sort);
+                currentUrl.searchParams.set("direction", direction);
+
+                window.location.replace(currentUrl);
+            } else {
+                currentUrl.searchParams.delete("sort");
+                currentUrl.searchParams.delete("direction");
+
+                window.location.replace(currentUrl);
+            }
+        })
+    </script>
 {% endblock %}

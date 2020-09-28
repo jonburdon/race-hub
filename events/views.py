@@ -12,6 +12,7 @@ def all_events(request):
     query = None
     disciplines = None
     distances = None
+    exactdistancekm = None
     event_format = None
     sort = None
     direction = None

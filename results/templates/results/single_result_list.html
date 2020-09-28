@@ -11,11 +11,58 @@
 
 {% block content %}
     <div class="container">
-            
+            <form method="GET" action="{% url 'single_event_result_list' eventinstance.id  %}">
+                    <div class="input-group w-100 skew-style ">
+                        <input class="form-control border border-black rounded-0" type="text" name="q" placeholder="Search Athlete, Club or Age Category">
+                        <div class="input-group-append">
+                            <button class="form-control btn btn-white border border-black rounded-0" type="submit">
+                                <span class="icon">
+                                    <img src='/media/magnifying-glass.svg' width=25px>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <hr><div class="row mt-1 mb-2">
+                     <div class="col-12 col-md-6 my-auto order-md-last d-flex justify-content-center justify-content-md-end">
+                        <div class="sort-select-wrapper w-50">
+                            <select id="sort-select" class="custom-select custom-select-sm rounded-0 border border-{% if current_sorting != 'None_None' %}info{% else %}black{% endif %}">
+                                <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
+                                <option value="chiptime_asc" {% if current_sorting == 'chiptime_asc' %}selected{% endif %}>Chiptime (Asc)</option>
+                                <option value="chiptime_desc" {% if current_sorting == 'chiptime_desc' %}selected{% endif %}>Chiptime (Desc)</option>
+                                <option value="athlete_asc" {% if current_sorting == 'athlete_asc' %}selected{% endif %}>Athlete (Asc)</option>
+                                <option value="athlete_desc" {% if current_sorting == 'athlete_desc' %}selected{% endif %}>Athlete (Desc)</option>
+                                <option value="club_asc" {% if current_sorting == 'club_asc' %}selected{% endif %}>Club (Asc)</option>
+                                <option value="club_desc" {% if current_sorting == 'club_desc' %}selected{% endif %}>Club (Desc)</option>
+                                <option value="bibnumber_asc" {% if current_sorting == 'bibnumber_asc' %}selected{% endif %}>Bib (Asc)</option>
+                                <option value="bibnumber_desc" {% if current_sorting == 'bibnumber_desc' %}selected{% endif %}>Bib (Desc)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 order-md-first">
+                        <p class="text-muted mt-3 text-center text-md-left">
+                            {% if search_term or current_disciplines or current_distances or current_format or current_sorting != 'None_None' %}
+                                <span class="small"><a href="{% url 'single_event_result_list' eventinstance.id %}">All Results</a> | </span>
+                            {% endif %}
+                            {{ results|length }} Results{% if search_term %} found for <strong>"{{ search_term }}"</strong>{% endif %}
+                        </p>
+                    </div>               
+                
+                </div>
+                <span>Filter: Age Categories:</span>
+                <A href="{% url 'single_event_result_list' eventinstance.id %}?agecat=Snr">Senior</a> | 
+                <A href="{% url 'single_event_result_list' eventinstance.id %}?agecat=Vet">Veteran</a> | 
+                <br>
+                <span>Filter: Gender:</span>
+                <A href="{% url 'single_event_result_list' eventinstance.id %}?gender=M">M</a> | 
+                <A href="{% url 'single_event_result_list' eventinstance.id %}?gender=F">F</a> | 
+                <br>
+                <hr>
+
                 <hr>
         <div class="row">
             <div class="col">
-                
+                <h1>Results for {{ eventinstance.friendly_name }}</h1>
                 {{ eventinstance.friendly_name }} | 
                 Date: {{ eventinstance.event_date }} | 
                 Year: {{ eventinstance.event_date.year }} | 
@@ -36,4 +83,36 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+    <script type="text/javascript">
+		$('.btt-link').click(function(e) {
+			window.scrollTo(0,0)
+		})
+	</script>
+    
+    <script type="text/javascript">
+        $('#sort-select').change(function() {
+            var selector = $(this);
+            var currentUrl = new URL(window.location);
+
+            var selectedVal = selector.val();
+            if(selectedVal != "reset"){
+                var sort = selectedVal.split("_")[0];
+                var direction = selectedVal.split("_")[1];
+
+                currentUrl.searchParams.set("sort", sort);
+                currentUrl.searchParams.set("direction", direction);
+
+                window.location.replace(currentUrl);
+            } else {
+                currentUrl.searchParams.delete("sort");
+                currentUrl.searchParams.delete("direction");
+
+                window.location.replace(currentUrl);
+            }
+        })
+    </script>
 {% endblock %}
