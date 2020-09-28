@@ -26,3 +26,14 @@ def all_results(request):
     }
 
     return render(request, 'results/results.html', context)
+
+def single_result(request, result_id):
+    """ A view to show single details """
+
+    result = get_object_or_404(Result, pk=result_id)
+
+    context = {
+        'result': result,
+    }
+
+    return render(request, 'results/single_result.html', context)

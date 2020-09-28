@@ -29,13 +29,17 @@
             <div class="col">
                 {% for r in results %}
                 <p>
+                <span>{{ forloop.counter }}</span> | 
                 <span>{{ r.eventinstance.friendly_name }}</span> | 
                 <span>{{ r.athlete }}</span> | 
                 <span>{{ r.chiptime }}</span> |
                 <span>{{ r.gender }}</span> |
                 <span>{{ r.bibnumber }}</span> |
                 <span>{{ r.agecat }}</span> |
-                <span>{{ r.club.friendly_name }}</span> 
+                <span>{{ r.club.friendly_name }}</span> | 
+                
+                <a href="{% url 'single_result' r.id %}">View Details</a>
+                
                 </p>
                 {% endfor %}
             </div>

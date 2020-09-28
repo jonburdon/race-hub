@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+            
+        <div class="row">
+            <div class="col">
+                <h3>Result Details for {{ result.athlete }} at {{ r.eventinstance.friendly_name }}</h3>
+                <p>Bib: {{ result.bibnumber }}</p>
+
+                <p>Time: {{ result.chiptime }}</p> 
+                <p>{{ result.gender }}</p>
+                <p>{{ result.agecat }}</p>
+                <p>{{ result.club.friendly_name }}</p> 
+                
+                
+            </div>
+        </div>
+    </div>
+{% endblock %}
