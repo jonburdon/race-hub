@@ -46,6 +46,11 @@ def all_result_lists(request):
                     sortkey = f'-{sortkey}'
             resultlists = resultlists.order_by(sortkey)
 
+ #       if 'year' in request.GET:
+  #          year = request.GET['year'].split(',')
+  #          resultlists = resultlists.filter(eventdate.year__in=year)
+  #          year = Result.objects.filter(eventdate.year__in=year)
+
         if 'agecat' in request.GET:
             agecat = request.GET['agecat'].split(',')
             resultlists = resultlists.filter(agecat__in=agecat)
