@@ -51,9 +51,9 @@ class OrganiserAdmin(admin.ModelAdmin):
 
 class EventInstanceAdmin(admin.ModelAdmin):
     list_display = (
-        'friendly_name',
+        'friendlyname',
         'name',
-        'event_date',
+        'eventdate',
         'race_limit',
     )
 

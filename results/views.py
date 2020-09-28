@@ -61,7 +61,7 @@ def all_result_lists(request):
             if not query:
                 messages.error(request, "You didn't enter any search criteria!")
                 return redirect(reverse('results'))
-            queries = Q(event__friendly_name__icontains=query)
+            queries = Q(friendlyname__icontains=query)
             resultlists = resultlists.filter(queries)  
 
     context = {
@@ -126,7 +126,7 @@ def single_event_result_list(request, eventinstance_id):
             if not query:
                 messages.error(request, "You didn't enter any search criteria!")
                 return redirect(reverse('results'))
-            queries = Q(athlete__icontains=query) | Q(agecat__icontains=query)  | Q(club__friendly_name__icontains=query)
+            queries = Q(athlete__icontains=query) | Q(agecat__icontains=query)  | Q(club__friendlyname__icontains=query)
             resultsforthisevent = resultsforthisevent.filter(queries)  
 
     context = {
@@ -190,7 +190,7 @@ def all_results(request):
             if not query:
                 messages.error(request, "You didn't enter any search criteria!")
                 return redirect(reverse('results'))
-            queries = Q(athlete__icontains=query) | Q(agecat__icontains=query)  | Q(club__friendly_name__icontains=query)
+            queries = Q(athlete__icontains=query) | Q(agecat__icontains=query)  | Q(club__friendlyname__icontains=query)
             results = results.filter(queries)
 
     context = {

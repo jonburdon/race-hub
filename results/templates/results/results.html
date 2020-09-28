@@ -67,7 +67,7 @@
                 {% for r in results %}
                 <p>
                 <span>{{ forloop.counter }}</span> | 
-                <span>{{ r.eventinstance.friendly_name }}
+                <span>{{ r.eventinstance.friendlyname }}
                 <A href="{% url 'single_event_result_list' r.eventinstance.id %}">Full Results </a>
                 
                 </span> | 
@@ -76,7 +76,7 @@
                 <span>{{ r.gender }}</span> |
                 <span>{{ r.bibnumber }}</span> |
                 <span>{{ r.agecat }}</span> |
-                <span>{{ r.club.friendly_name }}</span> | 
+                <span>{{ r.club.friendlyname }}</span> | 
                 
                 <a href="{% url 'single_result' r.id %}">View Details</a>
                 

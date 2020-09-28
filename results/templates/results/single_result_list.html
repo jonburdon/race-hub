@@ -62,17 +62,17 @@
                 <hr>
         <div class="row">
             <div class="col">
-                <h1>Results for {{ eventinstance.friendly_name }}</h1>
-                {{ eventinstance.friendly_name }} | 
-                Date: {{ eventinstance.event_date }} | 
-                Year: {{ eventinstance.event_date.year }} | 
-                Month: {{ eventinstance.event_date.month }} | 
-                Day: {{ eventinstance.event_date.day }} | 
-                Time: Year: {{ eventinstance.event_date.time }} | 
+                <h1>Results for {{ eventinstance.friendlyname }}</h1>
+                {{ eventinstance.friendlyname }} | 
+                Date: {{ eventinstance.eventdate }} | 
+                Year: {{ eventinstance.eventdate.year }} | 
+                Month: {{ eventinstance.eventdate.month }} | 
+                Day: {{ eventinstance.eventdate.day }} | 
+                Time: Year: {{ eventinstance.eventdate.time }} | 
 
-                {{ eventinstance.event_date.month }} | 
-                Friendly Date:{{ eventinstance.event_date|date:"j F, Y" }} | 
-                Month:{{ eventinstance.event_date|date:"F" }}<br>
+                {{ eventinstance.eventdate.month }} | 
+                Friendly Date:{{ eventinstance.eventdate|date:"j F, Y" }} | 
+                Month:{{ eventinstance.eventdate|date:"F" }}<br>
                 <hr>
                 {% for r in resultsforthisevent %}
                 {{ forloop.counter }}
