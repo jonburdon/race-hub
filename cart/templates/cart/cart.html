@@ -23,6 +23,8 @@
         <div class="row">
             <div class="col">
                 {% if cart_items %}
+                    {{ cart_items}}<Br><br>
+                    {{ request.session.cart }}<br><br>
                     <div class="table-responsive rounded">
                         <table class="table table-sm table-borderless">
                             <thead class="text-black">
@@ -42,7 +44,7 @@
                                     </td>
                                     <td class="py-3">
                                         <p class="my-0"><strong>{{ item.event.friendlyname }}</strong></p>
-                                        <p class="my-0"><strong>Athlete to Register: </strong>{{ item.which_athlete|upper }}</p>
+                                        <p class="my-0"><strong>Athlete to Register: </strong>{{ item.athlete|upper }}</p>
                                     </td>
                                     <td class="py-3">
                                         <p class="my-0">£{{ item.event.price }}</p>

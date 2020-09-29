@@ -10,17 +10,28 @@ def view_cart(request):
 def add_to_cart(request, item_id):
     """ Add a quantity of the specified event to the shopping cart """
 
-    quantity = int(request.POST.get('quantity'))
+    quantity = 1
+    redirect_url = request.POST.get('redirect_url')
     which_athlete = request.POST.get('which_athlete')
     print(which_athlete)
-    redirect_url = request.POST.get('redirect_url')
     cart = request.session.get('cart', {})
 
+    
     if item_id in list(cart.keys()):
-        cart[item_id] += quantity
+        if which_athlete in cart[item_id]['items_by_athlete'].keys():
+            # Add error here to refuse to add another entry for the same athlete
+            cart[item_id]['items_by_athlete'][which_athlete] += quantity
+        else:
+            cart[item_id]['items_by_athlete'][which_athlete] = quantity
     else:
-        cart[item_id] = quantity
+        cart[item_id] = {'items_by_athlete': {which_athlete: quantity}}
+
+
+    # if item_id in list(cart.keys()):
+     #   cart[item_id] += quantity
+    #else:
+    #    cart[item_id] = quantity
 
     request.session['cart'] = cart
-    print(request.session['cart'])
+
     return redirect(redirect_url)

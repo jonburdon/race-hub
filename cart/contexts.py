@@ -10,15 +10,27 @@ def cart_contents(request):
     entries_count = 0
     cart = request.session.get('cart', {})
 
-    for item_id, quantity in cart.items():
-        event = get_object_or_404(EventInstance, pk=item_id)
-        total += quantity * event.price
-        entries_count += quantity
-        cart_items.append({
-            'item_id': item_id,
-            'quantity': quantity,
-            'event': event,
-        })
+    for item_id, item_data in cart.items():
+        if isinstance(item_data, int):
+            event = get_object_or_404(EventInstance, pk=item_id)
+            total += quantity * event.price
+            entries_count += item_data
+            cart_items.append({
+                'item_id': item_id,
+                'quantity': item_data,
+                'event': event,
+            })
+        else:
+            event = get_object_or_404(EventInstance, pk=item_id)
+            for which_athlete, quantity in item_data['items_by_athlete'].items():
+                total += quantity * event.price
+                entries_count += quantity
+                cart_items.append({
+                    'item_id': item_id,
+                    'quantity': item_data,
+                    'event': event,
+                    'athlete': which_athlete,
+                })
 
     if total < settings.FREE_DELIVERY_THRESHOLD:
         delivery = total * Decimal(settings.STANDARD_DELIVERY_PERCENTAGE / 100)
