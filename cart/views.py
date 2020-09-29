@@ -40,19 +40,16 @@ def add_to_cart(request, item_id):
 
 def remove_from_cart(request, item_id):
     """Remove the item from the shopping cart"""
-
+    test = request.POST['which_athlete']
+    print(test)
     try:
         which_athlete = None
         if 'which_athlete' in request.POST:
             athlete = request.POST['which_athlete']
         cart = request.session.get('cart', {})
+        print (cart)
 
-        if athlete:
-            del cart[item_id]['which_athlete'][athlete]
-            if not cart[item_id]['which_athlete']:
-                cart.pop(item_id)
-        else:
-            cart.pop(item_id)
+        cart.pop(item_id)
 
         request.session['cart'] = cart
         return HttpResponse(status=200)
