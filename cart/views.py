@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, reverse, HttpResponse
-
+from django.contrib import messages
+from events.models import EventInstance
 # Create your views here.
 
 def view_cart(request):
@@ -9,7 +10,7 @@ def view_cart(request):
 
 def add_to_cart(request, item_id):
     """ Add a quantity of the specified event to the shopping cart """
-
+    event = EventInstance.objects.get(pk=item_id)
     quantity = 1
     redirect_url = request.POST.get('redirect_url')
     which_athlete = request.POST.get('which_athlete')
@@ -26,6 +27,7 @@ def add_to_cart(request, item_id):
             cart[item_id]['items_by_athlete'][which_athlete] = quantity
     else:
         cart[item_id] = {'items_by_athlete': {which_athlete: quantity}}
+        messages.success(request, f'{which_athlete} is ready to enter the {event.friendlyname}.')
 
 
     # if item_id in list(cart.keys()):
