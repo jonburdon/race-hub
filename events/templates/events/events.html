@@ -20,11 +20,13 @@
         <div class="row">
             <div class="col text-center mt-3">
                 <h2 class="logo-font">Events</h2>
+                
                 {% for d in current_disciplines %}
                     <a class="category-badge text-decoration-none" href="{% url 'events' %}?discipline={{ d.name }}">
                         <span class="p-2 skew-style mt-2 badge badge-white text-black rounded-0 border border-dark">{{ d.friendly_name }}</span>
                     </a>
                 {% endfor %}
+                
                 {% for e in current_distance %}
                     <a class="category-badge text-decoration-none" href="{% url 'events' %}?distance={{ e.name }}">
                         <span class="p-2 skew-style mt-2 badge badge-white text-black rounded-0 border border-dark">{{ e.friendly_name }}</span>

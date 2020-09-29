@@ -31,21 +31,19 @@
             <div class="col">
                 <h1>Results</h1>
                 <hr>
-                <span>Filter By | </span>
-                <A href="{% url 'all_result_lists' %}?year=2021">2021</a> | 
-                <A href="{% url 'all_result_lists' %}?year=2020">2020</a> | 
-                <A href="{% url 'all_result_lists' %}?year=2019">2019</a> 
+                
 
-                            <div class="sort-select-wrapper w-50">
-                            <select id="sort-select" class="custom-select custom-select-sm rounded-0 border border-{% if current_sorting != 'None_None' %}info{% else %}black{% endif %}">
-                                <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
-                                <option value="eventdate_asc" {% if current_sorting == 'date_asc' %}selected{% endif %}>Date (Asc)</option>
-                                <option value="eventdate_desc" {% if current_sorting == 'date_desc' %}selected{% endif %}>Date (Desc)</option>
-                                <option value="friendlyname_asc" {% if current_sorting == 'name_asc' %}selected{% endif %}>Name (Asc)</option>
-                                <option value="friendlyname_desc" {% if current_sorting == 'name_desc' %}selected{% endif %}>Name (Desc)</option>
-                                
-                            </select>
-                        </div>
+                <div class="sort-select-wrapper w-50">
+                    <select id="sort-select" class="custom-select custom-select-sm rounded-0 border border-{% if current_sorting != 'None_None' %}info{% else %}black{% endif %}">
+                        <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
+                        <option value="eventdate_asc" {% if current_sorting == 'date_asc' %}selected{% endif %}>Date (Asc)</option>
+                        <option value="eventdate_desc" {% if current_sorting == 'date_desc' %}selected{% endif %}>Date (Desc)</option>
+                        <option value="friendlyname_asc" {% if current_sorting == 'name_asc' %}selected{% endif %}>Name (Asc)</option>
+                        <option value="friendlyname_desc" {% if current_sorting == 'name_desc' %}selected{% endif %}>Name (Desc)</option>
+                        
+                    </select>
+                </div>
+                
                 <hr>
                 {% for r in resultlists %}
                     <p>

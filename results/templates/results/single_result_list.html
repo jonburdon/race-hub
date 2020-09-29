@@ -41,10 +41,11 @@
                     </div>
                     <div class="col-12 col-md-6 order-md-first">
                         <p class="text-muted mt-3 text-center text-md-left">
-                            {% if search_term or current_disciplines or current_distances or current_format or current_sorting != 'None_None' %}
+                            {% if search_term or current_sorting or current_agecat or current_gender != 'None_None' %}
                                 <span class="small"><a href="{% url 'single_event_result_list' eventinstance.id %}">All Results</a> | </span>
                             {% endif %}
-                            {{ results|length }} Results{% if search_term %} found for <strong>"{{ search_term }}"</strong>{% endif %}
+                            
+                            {{ resultsforthisevent|length }} Results{% if search_term %} found for <strong>"{{ search_term }}"</strong>{% endif %}
                         </p>
                     </div>               
                 

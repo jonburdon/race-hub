@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'events',
     'results',
     'clubs',
+    'cart',
 ]
 
 MIDDLEWARE = [

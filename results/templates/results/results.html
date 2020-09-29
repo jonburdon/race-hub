@@ -43,9 +43,10 @@
                     </div>
                     <div class="col-12 col-md-6 order-md-first">
                         <p class="text-muted mt-3 text-center text-md-left">
-                            {% if search_term or current_disciplines or current_distances or current_format or current_sorting != 'None_None' %}
+                            {% if search_term or current_sorting != 'None_None' %}
                                 <span class="small"><a href="{% url 'results' %}">Results Home</a> | </span>
                             {% endif %}
+                            <span class="small"><a href="{% url 'results' %}">All Results</a> | </span>
                             {{ results|length }} Results{% if search_term %} found for <strong>"{{ search_term }}"</strong>{% endif %}
                         </p>
                     </div>               

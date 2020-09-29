@@ -46,11 +46,6 @@ def all_result_lists(request):
                     sortkey = f'-{sortkey}'
             resultlists = resultlists.order_by(sortkey)
 
- #       if 'year' in request.GET:
-  #          year = request.GET['year'].split(',')
-  #          resultlists = resultlists.filter(eventdate.year__in=year)
-  #          year = Result.objects.filter(eventdate.year__in=year)
-
         if 'agecat' in request.GET:
             agecat = request.GET['agecat'].split(',')
             resultlists = resultlists.filter(agecat__in=agecat)
@@ -69,8 +64,11 @@ def all_result_lists(request):
             queries = Q(friendlyname__icontains=query)
             resultlists = resultlists.filter(queries)  
 
+    current_sorting = f'{sort}_{direction}'
+
     context = {
         'resultlists': resultlists,
+        'current_sorting': current_sorting,
     }
     
     return render(request, 'results/result_lists.html', context)
@@ -85,6 +83,7 @@ def single_event_result_list(request, eventinstance_id):
     query = None
     name = None
     agecat = None
+    gender = None
     chiptime = None
     club = None
     athlete = None
@@ -131,12 +130,18 @@ def single_event_result_list(request, eventinstance_id):
             if not query:
                 messages.error(request, "You didn't enter any search criteria!")
                 return redirect(reverse('results'))
-            queries = Q(athlete__icontains=query) | Q(agecat__icontains=query)  | Q(club__friendlyname__icontains=query)
+            queries = Q(athlete__icontains=query) | Q(agecat__icontains=query)  | Q(club__friendly_name__icontains=query)
             resultsforthisevent = resultsforthisevent.filter(queries)  
+
+    current_sorting = f'{sort}_{direction}'
 
     context = {
         'eventinstance': eventinstance,
         'resultsforthisevent' : resultsforthisevent,
+        'search_term': query,
+        'current_agecat' : agecat,
+        'current_gender' : gender,
+        'current_sorting': current_sorting,
     }
 
     return render(request, 'results/single_result_list.html', context)
@@ -195,12 +200,15 @@ def all_results(request):
             if not query:
                 messages.error(request, "You didn't enter any search criteria!")
                 return redirect(reverse('results'))
-            queries = Q(athlete__icontains=query) | Q(agecat__icontains=query)  | Q(club__friendlyname__icontains=query)
+            queries = Q(athlete__icontains=query) | Q(agecat__icontains=query)  | Q(club__friendly_name__icontains=query)
             results = results.filter(queries)
+
+    current_sorting = f'{sort}_{direction}'
 
     context = {
         'results': results,
         'search_term': query,
+        'current_sorting': current_sorting,
     }
 
     return render(request, 'results/results.html', context)
