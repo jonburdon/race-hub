@@ -23,17 +23,16 @@
         <div class="row">
             <div class="col">
                 {% if cart_items %}
-                    {{ cart_items}}<Br><br>
-                    {{ request.session.cart }}<br><br>
+
                     <div class="table-responsive rounded">
                         <table class="table table-sm table-borderless">
                             <thead class="text-black">
                                 <tr>
                                     <th scope="col">Event Registration Info</th>
                                     <th scope="col"></th>
-                                    <th scope="col">Price</th>
+                                    <th scope="col"></th>
                                     <th scope="col">Qty</th>
-                                    <th scope="col">Subtotal</th>
+                                    <th scope="col">Price</th>
                                 </tr>
                             </thead>
 
@@ -45,12 +44,14 @@
                                     <td class="py-3">
                                         <p class="my-0"><strong>{{ item.event.friendlyname }}</strong></p>
                                         <p class="my-0"><strong>Athlete to Register: </strong>{{ item.athlete|upper }}</p>
+                                        <a class="remove-item text-danger float-right" id="remove_{{ item.item_id }}" data-which_athlete="{{ item.athlete }}"><small>Remove entry for {{ item.athlete|upper }}</small></a>
                                     </td>
                                     <td class="py-3">
-                                        <p class="my-0">£{{ item.event.price }}</p>
+                                        
                                     </td>
                                     <td class="py-3 w-25">
                                         <p class="my-0">{{ item.quantity }}</p>
+                                        
                                     </td>
                                     <td class="py-3">
                                         <p class="my-0">£{{ item.event.price }}</p>
@@ -99,4 +100,68 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+<script type="text/javascript">
+
+    // Disable +/- buttons outside 1-99 range
+    function handleEnableDisable(itemId) {
+        var currentValue = parseInt($(`#id_qty_${itemId}`).val());
+        var minusDisabled = currentValue < 2;
+        var plusDisabled = currentValue > 98;
+        $(`#decrement-qty_${itemId}`).prop('disabled', minusDisabled);
+        $(`#increment-qty_${itemId}`).prop('disabled', plusDisabled);
+    }
+
+    // Ensure proper enabling/disabling of all inputs on page load
+    var allQtyInputs = $('.qty_input');
+    for(var i = 0; i < allQtyInputs.length; i++){
+        var itemId = $(allQtyInputs[i]).data('item_id');
+        handleEnableDisable(itemId);
+    }
+
+    // Check enable/disable every time the input is changed
+    $('.qty_input').change(function() {
+        var itemId = $(this).data('item_id');
+        handleEnableDisable(itemId);
+    });
+
+    // Increment quantity
+    $('.increment-qty').click(function(e) {
+       e.preventDefault();
+       var closestInput = $(this).closest('.input-group').find('.qty_input')[0];
+       var currentValue = parseInt($(closestInput).val());
+       $(closestInput).val(currentValue + 1);
+       var itemId = $(this).data('item_id');
+       handleEnableDisable(itemId);
+    });
+
+    // Decrement quantity
+    $('.decrement-qty').click(function(e) {
+       e.preventDefault();
+       var closestInput = $(this).closest('.input-group').find('.qty_input')[0];
+       var currentValue = parseInt($(closestInput).val());
+       $(closestInput).val(currentValue - 1);
+       var itemId = $(this).data('item_id');
+       handleEnableDisable(itemId);
+    });
+</script>
+
+<script type="text/javascript">
+    // Remove item and reload on click
+    $('.remove-item').click(function(e) {
+        var csrfToken = "{{ csrf_token }}";
+        var itemId = $(this).attr('id').split('remove_')[1];
+        var athlete = $(this).data('which_athlete');
+        var url = `/cart/remove/${itemId}/`;
+        var data = {'csrfmiddlewaretoken': csrfToken, 'which_athlete': athlete};
+
+        $.post(url, data)
+         .done(function() {
+             location.reload();
+         });
+    })
+</script>
 {% endblock %}

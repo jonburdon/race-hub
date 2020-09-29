@@ -203,6 +203,11 @@ a.category-badge > span.badge:hover {
   width: 100vw;
 }
 
+.btt-link,
+.remove-item {
+    cursor: pointer;
+}
+
 /* -------------------------------- Media Queries */
 
 /* Slightly larger container on xl screens */
