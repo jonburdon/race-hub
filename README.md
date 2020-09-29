@@ -21,6 +21,8 @@ Code for mobile view buttons refacroted from Code Institute tutorial
 ## Events App
 - Inspiration for Bootstrap cards taken from: https://codepen.io/aminulhchy/pen/RVeJMZ
 
+## Known Issues
+- Remove item from cart removes all entries for this event, not the single athlete.
 
 ### Testing
 

@@ -22,6 +22,7 @@ def add_to_cart(request, item_id):
         if which_athlete in cart[item_id]['items_by_athlete'].keys():
             # Add error here to refuse to add another entry for the same athlete
             # cart[item_id]['items_by_athlete'][which_athlete] += quantity
+            messages.error(request, f'An entry for {which_athlete} at {event.friendlyname} is already in the shopping cart.')
             print (which_athlete)
         else:
             cart[item_id]['items_by_athlete'][which_athlete] = quantity
@@ -45,14 +46,14 @@ def remove_from_cart(request, item_id):
     test = request.POST['which_athlete']
     print(test)
     try:
+        
         which_athlete = None
         if 'which_athlete' in request.POST:
             athlete = request.POST['which_athlete']
         cart = request.session.get('cart', {})
-        print (cart)
 
         cart.pop(item_id)
-
+        messages.success(request, f'Entry removed.')
         request.session['cart'] = cart
         return HttpResponse(status=200)
 
