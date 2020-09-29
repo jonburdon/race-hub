@@ -23,7 +23,9 @@
         <div class="row">
             <div class="col">
                 {% if cart_items %}
-                    <div class="table-responsive rounded"></div>
+                    <div class="table-responsive rounded">
+                    {{ cart_items }}
+                    </div>
                 {% else %}
                     <p class="lead mb-5">Your have no Event Entries in your cart.</p>
                     <a href="{% url 'events' %}" class="btn btn-outline-black rounded-0 btn-lg">

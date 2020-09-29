@@ -45,6 +45,7 @@ class EventInstance(models.Model):
     name = models.CharField(max_length=254)
     friendlyname = models.CharField(max_length=254, null=True, blank=True)
     eventdate = models.DateTimeField()
+    price = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
     race_limit = models.DecimalField(max_digits=4, decimal_places=0, null=True, blank=True)
 
     def __str__(self):

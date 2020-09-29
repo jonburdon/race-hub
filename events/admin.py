@@ -54,6 +54,7 @@ class EventInstanceAdmin(admin.ModelAdmin):
         'friendlyname',
         'name',
         'eventdate',
+        'price',
         'race_limit',
     )
 
