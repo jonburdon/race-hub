@@ -31,6 +31,12 @@ Navigation elements from https://codepen.io/skywalkapps/pen/VeNzwG were found to
 ### References and Acknowledgements:
 Responsive Bootstrap Mega Menu: https://codepen.io/JakubHonisek/pen/xXaYqg
 
+#### Stripe
+
+Card number for testing with authentication (triggers popup with overlay)
+4000 0025 0000 3155
+
+
 
 ### Credits:
 
