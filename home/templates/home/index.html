@@ -1,5 +1,25 @@
 {% extends "base.html" %}
 {% load static %}
+
+{% block extra_js %}
+<script>
+// Make a variable of an empty array and loop through the data to make a javascript object of event name, event discipline, event latitude, event longitude
+
+$( document ).ready(function() {
+    console.log( "ready!" );
+var mapevents = [
+    {% for event in events %}
+
+{{ event.latitude }},
+{{ event.longitude }},
+
+{% endfor %}
+];
+
+console.log (mapevents)
+});
+</script>
+{% endblock %}
 {% block page_header %}
 <div class="container header-container">
     <div class="row">
@@ -35,5 +55,238 @@
             </div>
         </div>
         </section>
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="d-flex justify-content-between align-items-center breaking-news bg-white">
+                <div class="d-flex flex-row flex-grow-1 flex-fill justify-content-center bg-green skew-style py-2 text-white px-1 news"><span class="d-flex align-items-center skew-style">&nbsp;Upcoming Events:</span></div>
+                <marquee class="news-scroll" behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();">
+                <img src='/media/running-walk.svg' width=15px>
+                {% for event in events %}
+                <a href="#">{{ event.name }}</a> <img src='/media/running-walk.svg' width=15px class="mx-1" ></span> 
+                
+                {% endfor %}
+                </marquee>
+            </div>
+        </div>
     </div>
+</div>
+
+<div class="container-fluid ">
+    <div class="row my-5">
+        
+        <div class="col-sm-6 col-md-6 col-lg-6 px-3 highlight-section">
+        <h2>Racehub for:</h2>
+        <ul>
+        <li>Finding and entering your next event</li>
+        <li>Finding results and build your profile</li>
+        <li>Creating and entering virtual challenges</li>
+        <li>Organising your next running event</li>
+        </ul>
+        </div>
+        <div class="col-sm-6 col-md-6 col-lg-6 px-3 highlight-section">
+        <h2>Virtual Races</h2>
+        <ul>
+        <li>Enter</li>
+        <li>Upload your own results</li>
+        <li>View leaderboards</li>
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+<div id="mapid" class="map-medium-size"></div>
+
+
+
+<h2 class="display-4 text-black my-5" >
+                    Race Types
+                </h2>
+        <div class="row">
+            
+                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
+                    <div class="card">
+                        <div class="card-img-top">                               
+                            <a href="">
+                                <img class="card-img-top img-fluid" src="https://8000-a3074e07-6d86-4e8c-b70a-9bcbc374716b.ws-eu01.gitpod.io/media/Windmill_UNGtjKA.jpg" alt="">
+                            </a>
+                        </div>
+                        <div class="card-block">
+                            <h4 class="card-title">ROAD RACES</h4>   
+                            <a href="" class="action-button skew-style btn btn-lg rounded-0 text-uppercase py-1">
+                            Find
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
+                    <div class="card">
+                        <div class="card-img-top">                               
+                            <a href="">
+                                <img class="card-img-top img-fluid" src="https://8000-a3074e07-6d86-4e8c-b70a-9bcbc374716b.ws-eu01.gitpod.io/media/Windmill_UNGtjKA.jpg" alt="">
+                            </a>
+                        </div>
+                        <div class="card-block">
+                            <h4 class="card-title">TRAIL RACES</h4>   
+                            <a href="" class="action-button skew-style btn btn-lg rounded-0 text-uppercase py-1">
+                            Find
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
+                    <div class="card">
+                        <div class="card-img-top">                               
+                            <a href="">
+                                <img class="card-img-top img-fluid" src="https://8000-a3074e07-6d86-4e8c-b70a-9bcbc374716b.ws-eu01.gitpod.io/media/Windmill_UNGtjKA.jpg" alt="">
+                            </a>
+                        </div>
+                        <div class="card-block">
+                            <h4 class="card-title">FELL RACES</h4>   
+                            <a href="" class="action-button skew-style btn btn-lg rounded-0 text-uppercase py-1">
+                            Find
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                    <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
+                    <div class="card">
+                        <div class="card-img-top">                               
+                            <a href="">
+                                <img class="card-img-top img-fluid" src="https://8000-a3074e07-6d86-4e8c-b70a-9bcbc374716b.ws-eu01.gitpod.io/media/Windmill_UNGtjKA.jpg" alt="">
+                            </a>
+                        </div>
+                        <div class="card-block">
+                            <h4 class="card-title">ALL RACE TYPES</h4>   
+                            <a href="" class="action-button skew-style btn btn-lg rounded-0 text-uppercase py-1">
+                            Find
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+            
+        </div>
+<h2 class="display-4 text-black my-5" >
+                    Race Distances
+                </h2>
+        <div class="row">
+                
+                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
+                    <div class="card">
+                        <div class="card-img-top">                               
+                            <a href="">
+                                <img class="card-img-top img-fluid" src="https://8000-a3074e07-6d86-4e8c-b70a-9bcbc374716b.ws-eu01.gitpod.io/media/Windmill_UNGtjKA.jpg" alt="">
+                            </a>
+                        </div>
+                        <div class="card-block">
+                            <h4 class="card-title">10k Races</h4>   
+                            <a href="" class="action-button skew-style btn btn-lg rounded-0 text-uppercase py-1">
+                            Find
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
+                    <div class="card">
+                        <div class="card-img-top">                               
+                            <a href="">
+                                <img class="card-img-top img-fluid" src="https://8000-a3074e07-6d86-4e8c-b70a-9bcbc374716b.ws-eu01.gitpod.io/media/Windmill_UNGtjKA.jpg" alt="">
+                            </a>
+                        </div>
+                        <div class="card-block">
+                            <h4 class="card-title">Half Marathon Races</h4>   
+                            <a href="" class="action-button skew-style btn btn-lg rounded-0 text-uppercase py-1">
+                            Find
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
+                    <div class="card">
+                        <div class="card-img-top">                               
+                            <a href="">
+                                <img class="card-img-top img-fluid" src="https://8000-a3074e07-6d86-4e8c-b70a-9bcbc374716b.ws-eu01.gitpod.io/media/Windmill_UNGtjKA.jpg" alt="">
+                            </a>
+                        </div>
+                        <div class="card-block">
+                            <h4 class="card-title">Marathon Races</h4>   
+                            <a href="" class="action-button skew-style btn btn-lg rounded-0 text-uppercase py-1">
+                            Find
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                    <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
+                    <div class="card">
+                        <div class="card-img-top">                               
+                            <a href="">
+                                <img class="card-img-top img-fluid" src="https://8000-a3074e07-6d86-4e8c-b70a-9bcbc374716b.ws-eu01.gitpod.io/media/Windmill_UNGtjKA.jpg" alt="">
+                            </a>
+                        </div>
+                        <div class="card-block">
+                            <h4 class="card-title">All Distances</h4>   
+                            <a href="" class="action-button skew-style btn btn-lg rounded-0 text-uppercase py-1">
+                            Find
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+            
+        </div>
+<h2 class="display-4 text-black " >
+                    Coming up soon:
+                </h2>
+[insert newsticker with events by date:]
+    </div>
+{% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+<script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="https://d3js.org/topojson.v0.min.js"></script>
+	<link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.2/dist/leaflet.css" />
+	 <script src="https://npmcdn.com/leaflet@1.0.0-rc.2/dist/leaflet.js"></script>
+
+
+<script>
+navigator.geolocation.getCurrentPosition(function(location) {
+  var latlng = new L.LatLng(location.coords.latitude, location.coords.longitude);
+
+  var mymap = L.map('mapid').setView(latlng, 8)
+  L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://mapbox.com">Mapbox</a>',
+    maxZoom: 18,
+    id: 'mapbox.streets',
+    accessToken: 'pk.eyJ1IjoiYmJyb29rMTU0IiwiYSI6ImNpcXN3dnJrdDAwMGNmd250bjhvZXpnbWsifQ.Nf9Zkfchos577IanoKMoYQ'
+  }).addTo(mymap);
+
+var marker = L.marker(latlng).addTo(mymap);
+{% for event in events %}
+var marker = L.marker([{{ event.latitude }}, {{ event.longitude }}]).addTo(mymap); 
+marker.bindPopup(`<b>{{ event.name }}</b><br><img src='/media/walking.svg' width='20px'>{{ event.discipline }} | 
+<A href='{% url 'event_profile' event.id %}'>View</a>`).openPopup();  
+
+{% endfor %}  
+// var marker = L.marker([51.5, -0.09]).addTo(mymap);  
+  
+// marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();  
+  
+// var marker = L.marker([51.9, -0.12]).addTo(mymap);    
+  
+// marker.bindPopup("<b>Hello world!</b><br>I am another popup.").openPopup(); 
+  
+// var marker = L.marker([53.56588, -1.69692]).addTo(mymap);   
+
+});
+</script>
 {% endblock %}
