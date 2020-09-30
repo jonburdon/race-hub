@@ -25,7 +25,7 @@ hr { display: block; height: 1px;
     margin: auto; padding: 0px 0px 20px 0px; margin-top: 20px; }
 
 
-
+/*** Home Page ***/
 /* hero header */
 
 .hero-header {
@@ -34,7 +34,12 @@ hr { display: block; height: 1px;
     padding: 10vw 0vw;
     
 }
-
+/* logo-overlap */
+.logo-overlap {
+    margin-top: -11vw;
+    width: 50vw;
+    margin-left: 30vw;
+}
 
 /* from Bulma */
 .icon {
@@ -68,6 +73,7 @@ hr { display: block; height: 1px;
 }
 
 .main-logo-link {
+
     width: fit-content;
 }
 
