@@ -111,6 +111,13 @@
                                     <a href="{% url 'event_profile' event.id %}" class="action-button skew-style btn btn-lg rounded-0 text-uppercase py-1">
                                     View Event
                                     </a>
+                                    {% if request.user.is_superuser %}
+                                    <br>
+                                        <small class="ml-3">
+                                            <a href="{% url 'edit_event' event.id %}">Edit</a> | 
+                                            <a class="text-danger" href="{% url 'delete_event' event.id %}">Delete</a>
+                                        </small>
+                                    {% endif %}
                                 
                                 
                     
