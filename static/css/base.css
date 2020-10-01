@@ -96,10 +96,16 @@ hr { display: block; height: 1px;
     color: white;
 }
 
-.btn-outline-black {
+.btn-outline-black, .btn-outline-green {
     background: white;
     color: black !important; /* use important to override link colors for <a> elements */
     border: 1px solid black;
+}
+
+.btn-outline-green {
+    background: white;
+    color: var(--primary-color-dark) !important; /* use important to override link colors for <a> elements */
+    border: 1px solid var(--primary-color-dark) ;
 }
 
 .btn-outline-black:hover,
@@ -108,6 +114,15 @@ hr { display: block; height: 1px;
     background: black;
     color: white !important;
 }
+
+
+.btn-outline-green:hover,
+.btn-outline-green:active,
+.btn-outline-green:focus {
+    background: var(--primary-color-dark);
+    color: white !important;
+}
+
 
 .shop-now-button:hover,
 .shop-now-button:active,
@@ -341,6 +356,71 @@ a.category-badge > span.badge:hover {
     }
 
 
+}
+
+/* Allauth form formatting */
+
+.allauth-form-inner-content p {
+    margin-top: 1.5rem; /* mt-4 */
+    color: #6c757d; /* text-secondary */
+}
+
+.allauth-form-inner-content input {
+    border-color: #000;
+    border-radius: 0;
+    -moz-transform: skew(-10deg, 0deg);
+    -webkit-transform: skew(-10deg, 0deg);
+    -o-transform: skew(-10deg, 0deg);
+    -ms-transform: skew(-10deg, 0deg);
+    transform: skew(-10deg, 0deg);
+}
+
+.allauth-form-inner-content label:not([for='id_remember']) {
+    display: none;
+}
+
+.allauth-form-inner-content input::placeholder {
+    color: #aab7c4;
+}
+
+.allauth-form-inner-content button,
+.allauth-form-inner-content input[type='submit'] {
+	/* btn */
+	display: inline-block;
+    font-weight: 200;
+    font-family: 'Racing Sans One';
+    color: #fff;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: var(--primary-color-dark);
+    border: 1px solid var(--primary-color-dark);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0;
+        -moz-transform: skew(-10deg, 0deg);
+    -webkit-transform: skew(-10deg, 0deg);
+    -o-transform: skew(-10deg, 0deg);
+    -ms-transform: skew(-10deg, 0deg);
+    transform: skew(-10deg, 0deg);
+
+    /* standard bootstrap btn transitions */
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.allauth-form-inner-content button:hover,
+.allauth-form-inner-content input[type='submit']:hover {	
+	color: var(--primary-color-dark);
+    background-color: #fff;
+    border-color: var(--primary-color-dark);
+}
+
+.allauth-form-inner-content a {
+	color: #17a2b8; /* text-info */
 }
 
 /*** Classes for Main Nav ***/
