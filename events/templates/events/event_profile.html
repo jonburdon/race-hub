@@ -26,6 +26,14 @@
                             <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ event.name }}">
                         
                     {% endif %}
+                    <h4>Athlete Check:</h4>
+                    <p>
+                    {% if athleteprofile.eaverified %}
+                Your England Athletics number is verified. Discounts will automatically be applied to your entries by Racehub.
+                {% else %}
+                Your England Athletics number is invalid. Please provide a fully paid up licence number.
+                {% endif %}
+                    </p>
                 </div>
             </div>
             <div class="col-12 col-md-6 col-lg-4">
@@ -41,7 +49,7 @@
                                     </p>
                                     {% endif %}
                     <p class="mb-0">Event Date: {{ event.event_instance.eventdate }}</p>
-                    <p class="lead mb-0 text-left font-weight-bold">${{ event.price }}</p>
+                    <p class="lead mb-0 text-left font-weight-bold">£{{ event.price }}</p>
                     {% if event.rating %}
                         <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ event.rating }} / 5</small>
                     {% else %}
@@ -61,10 +69,15 @@
                                     </div>
                                     <div class="sort-select-wrapper">
                                     <span>Select Which Athletes to Enter</span>
+                                    <span>Add Racehub Friends to your profile for them to appear here.</span>
                                     <select id="id_which_athlete" name="which_athlete" class="custom-select custom-select-sm rounded-0 border ">
-                                        <option value="myself" selected>Myself</option>
+                                        <option value="{{ athleteprofile }}" selected>Myself ({{ athleteprofile }})</option>
+                                        {% for f in racehubfriendsforthisathlete %}
+                                        <option value="{{ f.rfuserprofile }} Racehub ID #{{ f.rfuserprofile_id }}">{{ f.rfuserprofile }}</option>
+                                        {% endfor %}
                                         <option value="Jane" >Jane</option>
                                         <option value="Bob" >Bob</option>
+                                        
                                     </select>
                                 </div>
                                     

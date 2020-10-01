@@ -16,11 +16,65 @@
 {% block content %}
     <div class="overlay"></div>
     <div class="container">
+{% if athleteprofile %}
         <div class="row">
             <div class="col">
                 <hr>
-                <h2 class="logo-font mb-4"><img src='/media/running-walk.svg' width=25px>My Racehub</h2>
+                <h2 class="logo-font mb-4"><img src='/media/running-walk.svg' width=25px>{{ athleteprofile }}'s My Racehub
+                  </h2>
+                
                 <hr>
+            </div>
+        </div>
+{% else %}
+<h1>You have not created your My Racehub profile yet. Please complete this form to create your profile.</h1>
+{% endif %}
+
+        <div class="row">
+            <div class="col">
+                <hr>
+                <h2 class="logo-font mb-4"><img src='/media/running-walk.svg' width=25px>{{ athleteprofile }}'s My Racehub
+                  </h2>
+                
+                <hr>
+            </div>
+        </div>
+                <div class="row">
+            <div class="col-12 col-lg-4">
+                
+                <h4>My Club: {{ athleteprofile.club.friendly_name }}</h4>
+                
+                <h4>My EA Number: {{ athleteprofile.eanumber }}</h4>
+                {% if athleteprofile.eaverified %}
+                Your England Athletics number is verified. Discounts will automatically be applied to your entries by Racehub.
+                {% else %}
+                Your England Athletics number is invalid. Please provide a fully paid up licence number.
+                {% endif %}
+                
+                
+            </div>
+            <div class="col-12 col-lg-4">
+                <h4>My DOB: {{ athleteprofile.dateofbirth }}</h4>
+                <h4>My Gender: {{ athleteprofile.gender }}</h4>
+                <h4>My Current Age Category:</h4>
+                <h4>My T-Shirt Size: {{ athleteprofile.tshirtsize }}</h4>
+                
+            </div>
+            <div class="col-12 col-lg-4">
+                <h4>Emergency Contact Info</h4>
+                <h4>Contact Name: {{ athleteprofile.emergencycontactname }}</h4>
+                <h4>Contact Phone: {{ athleteprofile.emergencycontactphone }}</h4>
+                <br>
+                <br>
+                <br>
+                
+                
+
+                <br>
+                
+                <br>
+                
+                
             </div>
         </div>
         <div class="row">
@@ -74,13 +128,20 @@
             </div>
             <div class="col-12 col-lg-4">
                 <p class="text-muted">My Racehub Results</p>
+                <h4>My Racehub Friends</h4>
+                <p class="text-muted">Add Athletes here to enter them for events from your shopping cart.</p>
+                
+                {% for f in racehubfriendsforthisathlete %}
+                    {{ f.rfuserprofile }}, USER Profile ID #{{ f.rfuserprofile_id }} is a Racehub friend of {{ f.rfathleteprofile }}, Athlete Profile ID #{{ f.rfathleteprofile_id }}<br><hr>
+                {% endfor %}
+
+                <h4>Friends and Family</h4>
+                <p class="text-muted">These athletes have been saved by you. They are not Racehub customers, but you can enter them for events using this saved data:</p>
+                {% for f in nonracehubfriendsforthisathlete %}
+                        {{ f.athletefirstname }} {{ f.athletesurname }} ID #{{f.id}}, is a Racehub friend of {{ f.parentprofile }}, Athlete Profile ID #{{ f.parentprofile_id }}<br><hr>
+                {% endfor %}
                 <br><br>
-                <p class="text-muted">Friends and Family</p>
-                <br><br>
-                <p class="text-muted">EA Membership</p>
-                <br><br>
-                <p class="text-muted">My Emergency Contacts</p>
-                <br><br>
+                
                 
             </div>
         </div>
@@ -89,4 +150,5 @@
 {% block postloadjs %}
     {{ block.super }}
     <script type="text/javascript" src="{% static 'profiles/js/countryfield.js' %}"></script>
+   
 {% endblock %}
