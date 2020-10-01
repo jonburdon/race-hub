@@ -4,6 +4,8 @@ from django.db.models import Q
 from django.db.models.functions import Lower
 from .models import Event, Discipline, Distance, Format
 from profiles.models import AthleteProfile, RaceHubFriends, NonRaceHubFriends
+
+from .forms import EventForm
 # Create your views here.
 
 def all_events(request):
@@ -110,3 +112,13 @@ def map_view(request):
     }
 
     return render(request, 'events/map_view.html', context)
+
+def add_event(request):
+    """ Add an event to the store """
+    form = EventForm()
+    template = 'events/add_event.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
