@@ -50,27 +50,20 @@ def checkout(request):
             order = order_form.save(commit=False)
             pid = request.POST.get('client_secret').split('_secret')[0]
             order.stripe_pid = pid
-            order.original_bag = json.dumps(cart)
+            order.original_cart = json.dumps(cart)
             order.save()
             for item_id, item_data in cart.items():
                 try:
                     event = EventInstance.objects.get(id=item_id)
-                    if isinstance(item_data, int):
+
+                    for athlete, quantity in item_data['items_by_athlete'].items():
                         order_line_item = OrderLineItem(
                             order=order,
                             event=event,
-                            quantity=item_data,
+                            quantity=quantity,
+                            which_athlete=athlete,
                         )
                         order_line_item.save()
-                    else:
-                        for athlete, quantity in item_data['items_by_athlete'].items():
-                            order_line_item = OrderLineItem(
-                                order=order,
-                                event=event,
-                                quantity=quantity,
-                                which_athlete=athlete,
-                            )
-                            order_line_item.save()
                 except EventInstance.DoesNotExist:
                     messages.error(request, (
                         "One of the events in your cart wasn't found in our database. "

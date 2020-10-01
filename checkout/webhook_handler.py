@@ -82,11 +82,11 @@ class StripeWH_Handler:
                     stripe_pid=pid,
                 )
                 for item_id, item_data in json.loads(cart).items():
-                    event = EventInstance.objects.get(id=item_id)
+                    eventpurchased = EventInstance.objects.get(id=item_id)
                     if isinstance(item_data, int):
                         order_line_item = OrderLineItem(
                             order=order,
-                            event=event,
+                            eventpurchased=eventpurchased,
                             quantity=item_data,
                         )
                         order_line_item.save()
@@ -94,7 +94,7 @@ class StripeWH_Handler:
                         for athlete, quantity in item_data['items_by_athlete'].items():
                             order_line_item = OrderLineItem(
                                 order=order,
-                                event=event,
+                                event=eventpurchased,
                                 quantity=quantity,
                                 which_athlete=athlete,
                             )

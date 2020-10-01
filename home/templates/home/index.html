@@ -64,7 +64,7 @@ console.log (mapevents)
                 <marquee class="news-scroll" behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();">
                 <img src='/media/running-walk.svg' width=15px>
                 {% for event in events %}
-                <a href="#">{{ event.name }}</a> <img src='/media/running-walk.svg' width=15px class="mx-1" ></span> 
+                <a href="{% url 'event_profile' event.id %}">{{ event.name }}</a> <img src='/media/running-walk.svg' width=15px class="mx-1" ></span> 
                 
                 {% endfor %}
                 </marquee>
@@ -243,10 +243,7 @@ console.log (mapevents)
                 
             
         </div>
-<h2 class="display-4 text-black " >
-                    Coming up soon:
-                </h2>
-[insert newsticker with events by date:]
+
     </div>
 {% endblock %}
 
