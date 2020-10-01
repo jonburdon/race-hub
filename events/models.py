@@ -65,7 +65,7 @@ class Event(models.Model):
     sku = models.CharField(max_length=254, null=True, blank=True)
     name = models.CharField(max_length=254)
     event_instance = models.OneToOneField(EventInstance, on_delete=models.CASCADE, null=True, blank=True)
-    entrycutoff = models.DateTimeField()
+    entrycutoff = models.DateTimeField(null=True, blank=True)
     keyinfo = models.TextField()
     description = models.TextField()
     location_post_code = models.TextField(max_length=8)

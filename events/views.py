@@ -115,7 +115,18 @@ def map_view(request):
 
 def add_event(request):
     """ Add an event to the store """
-    form = EventForm()
+    if request.method == 'POST':
+        form = EventForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Successfully added event!')
+            return redirect(reverse('add_event'))
+        else:
+            messages.error(request, 'Failed to add event. Please ensure the form is valid.')
+    else:
+        form = EventForm()
+
+
     template = 'events/add_event.html'
     context = {
         'form': form,
