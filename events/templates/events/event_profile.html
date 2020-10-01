@@ -75,8 +75,9 @@
                                         {% for f in racehubfriendsforthisathlete %}
                                         <option value="{{ f.rfuserprofile }} Racehub ID #{{ f.rfuserprofile_id }}">{{ f.rfuserprofile }}</option>
                                         {% endfor %}
-                                        <option value="Jane" >Jane</option>
-                                        <option value="Bob" >Bob</option>
+                                        {% for f in nonracehubfriendsforthisathlete %}
+                                        <option value="{{ f.athletefirstname }} {{ f.athletesurname }}Racehub Friend ID #{{ f.id }}">{{ f.athletefirstname }} {{ f.athletesurname }}</option>
+                                        {% endfor %}
                                         
                                     </select>
                                 </div>
