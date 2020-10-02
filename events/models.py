@@ -44,7 +44,7 @@ class Organiser(models.Model):
 class EventInstance(models.Model):
     name = models.CharField(max_length=254)
     friendlyname = models.CharField(max_length=254, null=True, blank=True)
-    eventdate = models.DateTimeField()
+    eventdate = models.DateField(null=True, blank=True)
     price = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
     race_limit = models.DecimalField(max_digits=4, decimal_places=0, null=True, blank=True)
     sku = models.CharField(max_length=254, null=True, blank=True)
@@ -65,7 +65,7 @@ class Event(models.Model):
     sku = models.CharField(max_length=254, null=True, blank=True)
     name = models.CharField(max_length=254)
     event_instance = models.OneToOneField(EventInstance, on_delete=models.CASCADE, null=True, blank=True)
-    entrycutoff = models.DateTimeField(null=True, blank=True)
+    entrycutoff = models.DateField(null=True, blank=True)
     keyinfo = models.TextField()
     description = models.TextField()
     location_post_code = models.TextField(max_length=8)

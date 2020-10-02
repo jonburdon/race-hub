@@ -1,7 +1,7 @@
 from django import forms
 from .widgets import CustomClearableFileInput
 from .models import Event, Discipline, Distance, Format, Organiser
-
+from bootstrap_datepicker.widgets import DatePicker
 
 class EventForm(forms.ModelForm):
 
@@ -21,7 +21,12 @@ class EventForm(forms.ModelForm):
         friendly_namesdist = [(c.id, c.get_friendly_name()) for c in distances]
         friendly_namesformat = [(c.id, c.get_friendly_name()) for c in formats]
         friendly_namesorganiser = [(c.id, c.get_friendly_name()) for c in organisers]
-
+        self.fields['entrycutoff'] = forms.DateField(
+        widget=forms.TextInput(
+            attrs={'type': 'date'}
+        )
+    )
+        print (self.fields)
         self.fields['discipline'].choices = friendly_names
         self.fields['distance'].choices = friendly_namesdist
         self.fields['organiser'].choices = friendly_namesorganiser
