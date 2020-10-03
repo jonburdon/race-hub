@@ -76,20 +76,21 @@
                 Month:{{ eventinstance.eventdate|date:"F" }}<br>
                 <hr>
                 <ul class="list-group list-group-horizontal">
-                    <li class="list-group-item flex-fill">#</li>
-                    <li class="list-group-item flex-fill">First Name</li>
-                    <li class="list-group-item  flex-fill">Surname</li>
-                    <li class="list-group-item flex-fill d-none d-md-inline-block">Bib</li>
-                    <li class="list-group-item flex-fill d-none d-md-inline-block">Gender</li>
-                    <li class="list-group-item  flex-fill d-none d-md-inline-block">Age Category</li>
-                    <li class="list-group-item  flex-fill d-none d-md-inline-block">Club</li>
-                    <li class="list-group-item flex-fill">Chip Time</li>
-                    <li class="list-group-item flex-fill d-md-none">
-                    <button class="btn btn-primary d-md-none" >
+                    <li class="list-group-item column-small">Pos</li>
+                    <li class="list-group-item column-medium">First Name</li>
+                    <li class="list-group-item  column-medium">Surname</li>
+                    <li class="list-group-item column-small d-none d-md-inline-block">Bib</li>
+                    <li class="list-group-item column-small d-none d-md-inline-block">Gender</li>
+                    <li class="list-group-item column-small  d-none d-md-inline-block">Cat</li>
+                    <li class="list-group-item  
+                     d-none d-md-inline-block column-large">Club</li>
+                    <li class="list-group-item column-medium">Chip Time</li>
+                    <li class="list-group-item column-medium d-md-none">
+                    <button class="btn btn-blackd-md-none" >
                     None
                 </button>
                     </li>
-                    <li class="list-group-item  flex-fill d-none d-md-inline-block">Gun Time</li>
+                    <li class="list-group-item column-medium flex-fill d-none d-md-inline-block">Gun Time</li>
                 </ul>
                 
                 <div class="collapse" id="collapseExample">
@@ -102,21 +103,21 @@
                 </div>
                 {% for r in resultsforthisevent %}
                 
-                <ul class="list-group list-group-horizontal">
-                    <li class="list-group-item flex-fill">{{ forloop.counter }}</li>
-                    <li class="list-group-item flex-fill">{{ r.athletefirstname }}</li>
-                    <li class="list-group-item  flex-fill">{{ r.athletesurname }}</li>
-                    <li class="list-group-item flex-fill d-none d-md-inline-block">{{ r.bibnumber }}</li>
-                    <li class="list-group-item flex-fill d-none d-md-inline-block">{{ r.gender }}</li>
-                    <li class="list-group-item  flex-fill d-none d-md-inline-block">{{ r.agecat }}</li>
-                    <li class="list-group-item  flex-fill d-none d-md-inline-block">{{ r.club.friendly_name }}</li>
-                    <li class="list-group-item flex-fill">{{ r.chiptime }}</li>
-                    <li class="list-group-item flex-fill d-md-none">
+                <ul class="list-group list-group-horizontal ">
+                    <li class="list-group-item column-small {% if forloop.counter|divisibleby:2 %}list-group-item-dark{% endif %}">{{ forloop.counter }}</li>
+                    <li class="list-group-item column-medium {% if forloop.counter|divisibleby:2 %}list-group-item-dark{% endif %}">{{ r.athletefirstname }}</li>
+                    <li class="list-group-item  column-medium {% if forloop.counter|divisibleby:2 %}list-group-item-dark{% endif %}">{{ r.athletesurname }}</li>
+                    <li class="list-group-item column-small {% if forloop.counter|divisibleby:2 %}list-group-item-dark{% endif %} d-none d-md-inline-block">{{ r.bibnumber }}</li>
+                    <li class="list-group-item column-small {% if forloop.counter|divisibleby:2 %}list-group-item-dark{% endif %} d-none d-md-inline-block">{{ r.gender }}</li>
+                    <li class="list-group-item column-small {% if forloop.counter|divisibleby:2 %}list-group-item-dark{% endif %} d-none d-md-inline-block">{{ r.agecat }}</li>
+                    <li class="list-group-item column-large {% if forloop.counter|divisibleby:2 %}list-group-item-dark{% endif %} d-none d-md-inline-block">{{ r.club.friendly_name }}</li>
+                    <li class="list-group-item column-medium {% if forloop.counter|divisibleby:2 %}list-group-item-dark{% endif %}">{{ r.chiptime }}</li>
+                    <li class="list-group-item column-medium {% if forloop.counter|divisibleby:2 %}list-group-item-dark{% endif %} d-md-none">
                     <button class="btn btn-primary d-md-none" type="button" data-toggle="collapse" data-target="#collapseresult{{ forloop.counter }}" aria-expanded="false" aria-controls="collapseresult">
                     More
                 </button>
                     </li>
-                    <li class="list-group-item  flex-fill d-none d-md-inline-block">{{ r.guntime }}</li>
+                    <li class="list-group-item column-small {% if forloop.counter|divisibleby:2 %}list-group-item-dark{% endif %} d-none d-md-inline-block">{{ r.guntime }}</li>
                 </ul>
                 
                 <div class="collapse" id="collapseresult{{ forloop.counter }}">

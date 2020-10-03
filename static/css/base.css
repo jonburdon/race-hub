@@ -379,6 +379,15 @@ a.category-badge > span.badge:hover {
 
 }
 
+/* Table formatting */
+
+.column-small {
+    flex-basis: 10%;
+}
+.column-medium {flex-basis: 20%;}
+.column-large {flex-basis: 30%;}
+
+
 /* Allauth form formatting */
 
 .allauth-form-inner-content p {
