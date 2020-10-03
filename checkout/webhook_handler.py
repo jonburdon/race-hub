@@ -64,6 +64,10 @@ class StripeWH_Handler:
                 print(order_line_item)
                 print('Athlete:')
                 print(order_line_item.which_athlete)
+                if 'Myself' in order_line_item.which_athlete:
+                    print ("Found User Athlete")
+                if 'Friend' in order_line_item.which_athlete:
+                    print ("Found Friend Athlete")
                 print('Event:')
                 print(order_line_item.event)
                 print('----')
@@ -83,6 +87,8 @@ class StripeWH_Handler:
                 print('-- at this event: --')
                 print(order_line_item.event.friendlyname)
                 print(order_line_item.event.id)
+                
+                
                 newresult = Result.objects.create(
                     eventinstance = order_line_item.event,
                     athletefirstname = selectedathletetoenter.athletefirstname,
