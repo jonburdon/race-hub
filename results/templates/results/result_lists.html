@@ -47,11 +47,9 @@
                 <hr>
                 {% for r in resultlists %}
                     <p>
-
                         <span>{{ r.friendlyname }} | 
                         <span>{{ r.eventdate }} | {{ r.eventdate.year }} | 
                         <A href="{% url 'single_event_result_list' r.id %}">Full Results </a>
-
                     </p>
                 {% endfor %}
                 

@@ -60,6 +60,34 @@ class StripeWH_Handler:
                     quantity=quantity,
                     which_athlete=athlete,
                 )
+                
+                
+                
+                athleteidforthisresult = order_line_item.which_athlete.split("#")
+                selectedathleteid = athleteidforthisresult[1]
+                if 'Myself' in order_line_item.which_athlete:
+                    selectedathletetoenter = AthleteProfile.objects.get(id=athleteidforthisresult[1])
+                if 'Friend' in order_line_item.which_athlete:
+                    print ("Found Friend Athlete")
+                print('-- This SHOULD create a result for: --')
+                print(selectedathletetoenter.athletefirstname)
+                print(selectedathletetoenter.athletesurname)
+                print(selectedathletetoenter.gender)
+                print(selectedathletetoenter.dateofbirth)
+                print(selectedathletetoenter.club)
+                print(selectedathletetoenter.id)
+                newresult = Result.objects.create(
+                    eventinstance = order_line_item.event,
+                    athletefirstname = selectedathletetoenter.athletefirstname,
+                    athletesurname = selectedathletetoenter.athletesurname,
+                    dateofbirth = selectedathletetoenter.dateofbirth,
+                    gender = selectedathletetoenter.gender,
+                    club = selectedathletetoenter.club,
+            )
+
+                if 'Friend' in order_line_item.which_athlete:
+                    print ("Found Friend Athlete")
+
                 print('This is the order data')
                 print(order_line_item)
                 print('Athlete:')
@@ -71,13 +99,10 @@ class StripeWH_Handler:
                 print('Event:')
                 print(order_line_item.event)
                 print('----')
-                athleteidforthisresult = order_line_item.which_athlete.split("#")
                 print('----')
                 print(athleteidforthisresult[1])
-                selectedathleteid = athleteidforthisresult[1]
                 print('----')
-                selectedathletetoenter = AthleteProfile.objects.get(id=athleteidforthisresult[1])
-                print('-- create a result for: --')
+                print('-- This SHOULD create a result for: --')
                 print(selectedathletetoenter.athletefirstname)
                 print(selectedathletetoenter.athletesurname)
                 print(selectedathletetoenter.gender)
@@ -87,18 +112,6 @@ class StripeWH_Handler:
                 print('-- at this event: --')
                 print(order_line_item.event.friendlyname)
                 print(order_line_item.event.id)
-                
-                
-                newresult = Result.objects.create(
-                    eventinstance = order_line_item.event,
-                    athletefirstname = selectedathletetoenter.athletefirstname,
-                    athletesurname = selectedathletetoenter.athletesurname,
-                    dateofbirth = selectedathletetoenter.dateofbirth,
-                    gender = selectedathletetoenter.gender,
-                    club = selectedathletetoenter.club,
-                )
-                # get the result just created, make the bib number equal to the id number and resave.
-                # get the result just created, generate an age category and resave
                 
                
 
