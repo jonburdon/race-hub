@@ -26,16 +26,7 @@
                             <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ event.name }}">
                         
                     {% endif %}
-                    <h4>Athlete Check:</h4>
-                    <p>
-                    {% if request.user.is_authenticated %}
-                    {% if athleteprofile.eaverified %}
-                Your England Athletics number is verified. Discounts will automatically be applied to your entries by Racehub.
-                {% else %}
-                Your England Athletics number is invalid. Please provide a fully paid up licence number.
-                {% endif %}
-                {% endif %}
-                    </p>
+                    
                 </div>
             </div>
             <div class="col-12 col-md-6 col-lg-4">
@@ -73,19 +64,8 @@
                                     {% if request.user.is_authenticated %}
                                     <span>Select Which Athletes to Enter</span>
                                     <span>Add Racehub Friends to your profile for them to appear here.</span>
-                                    <select id="id_which_athlete" name="which_athlete" class="custom-select custom-select-sm rounded-0 border ">
-                                        <option value="{{ athleteprofile.athletefirstname }} 
-                                         {{ athleteprofile.athletesurname }}, Racehub Athlete ID#{{ athleteprofile.id }}" selected>Myself ({{ athleteprofile.athletefirstname }} {{ athleteprofile.athletesurname }})</option>
-                                        <!--- REMOVE FUNCTION TO ADD RACEHUB FRIENDS
-                                        {% for f in racehubfriendsforthisathlete %}
-                                        <option value="{{ f.rfuserprofile }} Racehub ID #{{ f.rfuserprofile_id }}">{{ f.rfuserprofile }}</option>
-                                        {% endfor %}
-                                        -->
-                                        {% for f in nonracehubfriendsforthisathlete %}
-                                        <option value="{{ f.athletefirstname }} {{ f.athletesurname }}Racehub Friend ID #{{ f.id }}">{{ f.athletefirstname }} {{ f.athletesurname }}</option>
-                                        {% endfor %}
-                                        
-                                    </select>
+                                    
+                                    <h4>Please Log In</h4>
                                 </div>
                                     {% endif %}
                                 </div>
@@ -98,7 +78,11 @@
                                     </span>
                                     <span class="text-uppercase">Find More Events</span>
                                 </a>
-                                <input type="submit" class="btn btn-black rounded-0 text-uppercase mt-5" value="Add to Cart">
+                                <a href="{% url 'account_login' %}" class="btn btn-black rounded-0 text-uppercase mt-5">
+                                
+                                    <span class="text-uppercase">Please Log In to Enter Events</span>
+                                </a>
+                                
                             </div>
                             {% if request.user.is_superuser %}
                             <br>

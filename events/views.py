@@ -82,8 +82,21 @@ def all_events(request):
 
     return render(request, 'events/events.html', context)
 
+
 def event_profile(request, event_id):
     """ A view to show individual event details """
+    testitem = request.user
+    print (testitem)
+    if request.user != 'AnonymousUser':
+        print("testing not request.user")
+        event = get_object_or_404(Event, pk=event_id)
+        messages.error(request, 'Sorry, only logged in users can view and enter events.')
+        context = {
+        'event': event,
+        }
+
+        return render(request, 'events/event_profile_notloggedin.html', context)
+
     athleteprofile = get_object_or_404(AthleteProfile, user=request.user)
     event = get_object_or_404(Event, pk=event_id)
     racehubfriends = RaceHubFriends.objects.all()

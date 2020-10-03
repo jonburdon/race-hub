@@ -91,6 +91,8 @@ class StripeWH_Handler:
                     gender = selectedathletetoenter.gender,
                     club = selectedathletetoenter.club,
                 )
+                # get the result just created, make the bib number equal to the id number and resave.
+                # get the result just created, generate an age category and resave
                 
                
 
