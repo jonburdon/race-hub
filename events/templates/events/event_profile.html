@@ -17,6 +17,7 @@
         <div class="row">
             <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
                 <div class="image-container my-5">
+                
                     {% if event.image %}
                         
                             <img class="card-img-top img-fluid" src="{{ event.image.url }}" alt="{{ event.name }}">
@@ -28,13 +29,13 @@
                     {% endif %}
                     <h4>Athlete Check:</h4>
                     <p>
-                    {% if request.user.is_authenticated %}
+                    
                     {% if athleteprofile.eaverified %}
                 Your England Athletics number is verified. Discounts will automatically be applied to your entries by Racehub.
                 {% else %}
                 Your England Athletics number is invalid. Please provide a fully paid up licence number.
                 {% endif %}
-                {% endif %}
+                
                     </p>
                 </div>
             </div>
@@ -70,9 +71,10 @@
                                         <input class="form-control qty_input" type="hidden" name="quantity" value="1" min="1" max="1" data-item_id="{{ event.event_instance.id }}" id="id_qty_{{ event.event_instance.id }}">
                                     </div>
                                     <div class="sort-select-wrapper">
-                                    {% if request.user.is_authenticated %}
+                                    
                                     <span>Select Which Athletes to Enter</span>
                                     <span>Add Racehub Friends to your profile for them to appear here.</span>
+                                    
                                     <select id="id_which_athlete" name="which_athlete" class="custom-select custom-select-sm rounded-0 border ">
                                         <option value="{{ athleteprofile.athletefirstname }} 
                                          {{ athleteprofile.athletesurname }}, Racehub Athlete ID#{{ athleteprofile.id }}" selected>Myself ({{ athleteprofile.athletefirstname }} {{ athleteprofile.athletesurname }})</option>
@@ -86,8 +88,9 @@
                                         {% endfor %}
                                         
                                     </select>
+                                    
                                 </div>
-                                    {% endif %}
+                                    
                                 </div>
                             </div>
 

@@ -85,34 +85,31 @@ def all_events(request):
 
 def event_profile(request, event_id):
     """ A view to show individual event details """
-    testitem = request.user
-    print (testitem)
-    if request.user != 'AnonymousUser':
-        print("testing not request.user")
+    
+    if request.user.is_authenticated:
+        athleteprofile = get_object_or_404(AthleteProfile, user=request.user)
         event = get_object_or_404(Event, pk=event_id)
-        messages.error(request, 'Sorry, only logged in users can view and enter events.')
+        racehubfriends = RaceHubFriends.objects.all()
+        racehubfriendsforthisathlete = racehubfriends.filter(rfathleteprofile_id=athleteprofile.id)
+
+        nonracehubfriends = NonRaceHubFriends.objects.all()
+        nonracehubfriendsforthisathlete = nonracehubfriends.filter(parentprofile_id=athleteprofile.id)
+
         context = {
-        'event': event,
+            'event': event,
+            'athleteprofile': athleteprofile,
+            'racehubfriendsforthisathlete': racehubfriendsforthisathlete,
+            'nonracehubfriendsforthisathlete': nonracehubfriendsforthisathlete,
         }
 
+        return render(request, 'events/event_profile.html', context)
+
+    else:
+        event = get_object_or_404(Event, pk=event_id)
+        context = {'event': event}
         return render(request, 'events/event_profile_notloggedin.html', context)
 
-    athleteprofile = get_object_or_404(AthleteProfile, user=request.user)
-    event = get_object_or_404(Event, pk=event_id)
-    racehubfriends = RaceHubFriends.objects.all()
-    racehubfriendsforthisathlete = racehubfriends.filter(rfathleteprofile_id=athleteprofile.id)
-
-    nonracehubfriends = NonRaceHubFriends.objects.all()
-    nonracehubfriendsforthisathlete = nonracehubfriends.filter(parentprofile_id=athleteprofile.id)
-
-    context = {
-        'event': event,
-        'athleteprofile': athleteprofile,
-        'racehubfriendsforthisathlete': racehubfriendsforthisathlete,
-        'nonracehubfriendsforthisathlete': nonracehubfriendsforthisathlete,
-    }
-
-    return render(request, 'events/event_profile.html', context)
+    
 
 
 
