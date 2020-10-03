@@ -50,6 +50,7 @@ class RaceHubFriendsAdmin(admin.ModelAdmin):
     list_display = (
     'rfuserprofile',
     'rfathleteprofile',
+    'myfriendsracehubid',
     )
 
 

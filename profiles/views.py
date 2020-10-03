@@ -12,45 +12,55 @@ def profile(request):
     """ Display the user's profile. """
     profile = get_object_or_404(UserProfile, user=request.user)
     athleteprofile = get_object_or_404(AthleteProfile, user=request.user)
-    
+    print ('My USERNAME is:')
+    print (profile)
+    myusername = profile
+    print(athleteprofile.id)
+    print (myusername)
     racehubfriends = RaceHubFriends.objects.all()
-    racehubfriendsforthisathlete = racehubfriends.filter(rfathleteprofile_id=athleteprofile.id)
-
+    # Needs to Filter to match if the value 'rfuserprofile' is equal to 'athleteprofile' This should work!! See line 43 below - this would match the data perfectly.
+    racehubfriendsforthisathlete = racehubfriends.filter(rfuserprofile_id=athleteprofile.id)  
     nonracehubfriends = NonRaceHubFriends.objects.all()
     nonracehubfriendsforthisathlete = nonracehubfriends.filter(parentprofile_id=athleteprofile.id)
+   # print ('Athlete ID:')
+   # print (athleteprofile.id)
+   # print ('All Non Racehub Friends:')
+   # for friend in nonracehubfriends:
+   #     print (friend.athletefirstname)
+   #     print (friend.athletesurname)
+   #     print("_______")
+   # print("_______")
+   # print ('Non Racehub Friends for this athlete:')
+   # for friend in nonracehubfriendsforthisathlete:
+   #     print (friend.athletefirstname)
+   #     print (friend.athletesurname)
+   #     print("_______")
+   # print("_______")
     print ('Athlete ID:')
     print (athleteprofile.id)
-    print ('All Non Racehub Friends:')
-    for friend in nonracehubfriends:
-        print (friend.athletefirstname)
-        print (friend.athletesurname)
-        print("_______")
-    print("_______")
-    print ('Non Racehub Friends for this athlete:')
-    for friend in nonracehubfriendsforthisathlete:
-        print (friend.athletefirstname)
-        print (friend.athletesurname)
-        print("_______")
-    print("_______")
-  #  print ('Athlete ID:')
-   # print (athleteprofile.id)
-    #print ('Racehub Friends:')
-    #print (racehubfriends)
-    #for friend in racehubfriends:
-    #    print (friend.rfuserprofile)
-    #    print (friend.rfuserprofile_id)
-    #    print (friend.rfathleteprofile)
-    #    print (friend.rfathleteprofile_id)
-    #    
-    #    print("_______")
+    print ('Racehub Friends:')
+    print (racehubfriends)
+    for friend in racehubfriends:
+        print ('My Username:')
+        print (myusername)
+        print ('My Data to match:')
+        print (friend.rfuserprofile)
+        if myusername == friend.rfuserprofile:
+            print ('Owner Profile')
+            print (friend.rfuserprofile)
+            print (friend.rfuserprofile_id)
+            print ('Athlete Profile')
+            print (friend.myfriendsracehubid)
         
-    #print ('Racehub Friends for this athlete:')
-   # print (racehubfriendsforthisathlete)
-    #for friend in racehubfriendsforthisathlete:
-     #   print (friend.rfuserprofile)
-      #  print (friend.rfuserprofile_id)
-       # print (friend.rfathleteprofile)
-       # print (friend.rfathleteprofile_id)
+        
+        print("_______")
+        
+    print ('Racehub Friends for this athlete:')
+    print (racehubfriendsforthisathlete)
+    for friend in racehubfriendsforthisathlete:
+        print (friend.rfuserprofile)
+        
+       
 
     if request.method == 'POST':
         form = UserProfileForm(request.POST, instance=profile)

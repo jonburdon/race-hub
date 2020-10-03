@@ -20,7 +20,7 @@
         <div class="row">
             <div class="col">
                 <hr>
-                <h2 class="logo-font mb-4"><img src='/media/running-walk.svg' width=25px>{{ athleteprofile }}'s My Racehub
+                <h2 class="logo-font mb-4"><img src='/media/running-walk.svg' width=25px>{{ athleteprofile }}'s My Racehub 
                   </h2>
                 
                 <hr>
@@ -33,7 +33,7 @@
         <div class="row">
             <div class="col">
                 <hr>
-                <h2 class="logo-font mb-4"><img src='/media/running-walk.svg' width=25px>{{ athleteprofile }}'s My Racehub
+                <h2 class="logo-font mb-4"><img src='/media/running-walk.svg' width=25px>MyRacehub Profile ID: {{ athleteprofile.id }} {{ athleteprofile.athletefirstname }}
                   </h2>
                 
                 <hr>
@@ -132,13 +132,14 @@
                 <p class="text-muted">Add Athletes here to enter them for events from your shopping cart.</p>
                 
                 {% for f in racehubfriendsforthisathlete %}
-                    {{ f.rfuserprofile }}, USER Profile ID #{{ f.rfuserprofile_id }} is a Racehub friend of {{ f.rfathleteprofile }}, Athlete Profile ID #{{ f.rfathleteprofile_id }}<br><hr>
+                    {{ f.rfuserprofile }}, USER Profile ID #{{ f.rfuserprofile_id }} is a Racehub friend of {{ f.rfathleteprofile }}, Their Athlete Profile ID is #{{ f.myfriendsracehubid}} <br><hr>
                 {% endfor %}
 
                 <h4>Friends and Family</h4>
                 <p class="text-muted">These athletes have been saved by you. They are not Racehub customers, but you can enter them for events using this saved data:</p>
                 {% for f in nonracehubfriendsforthisathlete %}
-                        {{ f.athletefirstname }} {{ f.athletesurname }} ID #{{f.id}}, is a Racehub friend of {{ f.parentprofile }}, Athlete Profile ID #{{ f.parentprofile_id }}<br><hr>
+                        {{ f.athletefirstname }} {{ f.athletesurname }} ID #{{f.id}},
+                         is a Racehub friend of {{ f.parentprofile }}, Athlete Profile ID #{{ f.parentprofile_id }}. {% if f.eaverified %}(EA Discount Confirmed){% else%} (No EA Discount) {% endif %}<br><hr>
                 {% endfor %}
                 <br><br>
                 

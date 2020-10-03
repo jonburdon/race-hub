@@ -71,10 +71,14 @@
                                     <span>Select Which Athletes to Enter</span>
                                     <span>Add Racehub Friends to your profile for them to appear here.</span>
                                     <select id="id_which_athlete" name="which_athlete" class="custom-select custom-select-sm rounded-0 border ">
-                                        <option value="{{ athleteprofile }}" selected>Myself ({{ athleteprofile }})</option>
+                                        <option value="{{ athleteprofile.athletefirstname }} 
+                                         {{ athleteprofile.athletesurname }}, Racehub Athlete ID{{ athleteprofile.id }}" selected>Myself ({{ athleteprofile.athletefirstname }} 
+                                         {{ athleteprofile.athletesurname }})</option>
+                                        <!--- REMOVE FUNCTION TO ADD RACEHUB FRIENDS
                                         {% for f in racehubfriendsforthisathlete %}
                                         <option value="{{ f.rfuserprofile }} Racehub ID #{{ f.rfuserprofile_id }}">{{ f.rfuserprofile }}</option>
                                         {% endfor %}
+                                        -->
                                         {% for f in nonracehubfriendsforthisathlete %}
                                         <option value="{{ f.athletefirstname }} {{ f.athletesurname }}Racehub Friend ID #{{ f.id }}">{{ f.athletefirstname }} {{ f.athletesurname }}</option>
                                         {% endfor %}

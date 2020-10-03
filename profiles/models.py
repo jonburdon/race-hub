@@ -78,6 +78,7 @@ class RaceHubFriends(models.Model):
     """
     rfuserprofile = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL)
     rfathleteprofile = models.ForeignKey(AthleteProfile, null=True, blank=True, on_delete=models.SET_NULL)
+    myfriendsracehubid = models.DecimalField(max_digits=10, decimal_places=0, null=True, blank=True)
     
 
 
