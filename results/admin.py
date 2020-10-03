@@ -9,6 +9,8 @@ from .models import Result
 class ResultsAdmin(admin.ModelAdmin):
     list_display = (
         'eventinstance',
+        'athletefirstname',
+        'athletesurname',
         'athlete',
         'gender',
         'bibnumber',

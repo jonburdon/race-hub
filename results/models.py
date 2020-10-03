@@ -9,7 +9,10 @@ class Result(models.Model):
     distance = models.ForeignKey(Distance, null=True, blank=True, on_delete=models.SET_NULL)
     discipline = models.ForeignKey(Discipline, null=True, blank=True, on_delete=models.SET_NULL)
     event_format = models.ForeignKey(Format, null=True, blank=True, on_delete=models.SET_NULL)
+    athletefirstname = models.CharField(max_length=40, null=True, blank=True)
+    athletesurname = models.CharField(max_length=40, null=True, blank=True)
     athlete = models.CharField(max_length=125, null=True, blank=True)
+    dateofbirth = models.DateField(null=True, blank=True)
     M = 'M'
     F = 'F'
     N = 'N'
@@ -24,7 +27,7 @@ class Result(models.Model):
         null=True, blank=True
     )
 
-    bibnumber = models.DecimalField(max_digits=6, decimal_places=0)
+    bibnumber = models.DecimalField(max_digits=6, decimal_places=0, null=True, blank=True)
     Junior = 'Jr'
     Senior = 'Snr'
     Veteran = 'Vet'

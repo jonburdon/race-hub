@@ -5,6 +5,7 @@ from django.db.models.functions import Lower
 from .models import Result
 from events.models import EventInstance
 from clubs.models import Club
+from .forms import ResultForm
 # Create your views here.
 
 def all_result_lists(request):
@@ -223,3 +224,23 @@ def single_result(request, result_id):
     }
 
     return render(request, 'results/single_result.html', context)
+
+def add_result(request):
+    """ Add a result to the store """
+    if request.method == 'POST':
+        form = ResultForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Successfully added result!')
+            return redirect(reverse('add_result'))
+        else:
+            messages.error(request, 'Failed to add result. Please ensure the form is valid.')
+    else:
+        form = ResultForm()
+        
+    template = 'results/add_result.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)

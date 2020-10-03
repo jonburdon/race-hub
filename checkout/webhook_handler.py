@@ -2,10 +2,12 @@ from django.http import HttpResponse
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.conf import settings
+from django.shortcuts import render, get_object_or_404
 
 from .models import Order, OrderLineItem
 from events.models import EventInstance
-from profiles.models import UserProfile
+from results.models import Result
+from profiles.models import UserProfile, AthleteProfile
 
 import json
 import time
@@ -34,6 +36,63 @@ class StripeWH_Handler:
             settings.DEFAULT_FROM_EMAIL,
             [cust_email]
         )        
+
+
+    def _create_result(self, order, event):
+        """Create a result in the database"""
+        """  CREATE THIS IF ORDER EXISTS BELOW OR IF CREATED BY WEBHOOK HANDLER"""
+        print('This will create a result for the following order:')
+        print(order)
+        intent = event.data.object
+        cart = intent.metadata.cart
+        
+        # Decide if this is myself or a Racehub Friend
+        # Calculate the age category
+        # Create the new result
+        # EITHER USER ATHLETE PROFILE DATA OR USE SAVED NON RACEHUB FRIENDS DATA
+        for item_id, item_data in json.loads(cart).items():
+            eventpurchased = EventInstance.objects.get(id=item_id)
+            # Get the athlete_profile data for each item in the cart
+            for athlete, quantity in item_data['items_by_athlete'].items():
+                order_line_item = OrderLineItem(
+                    order=order,
+                    event=eventpurchased,
+                    quantity=quantity,
+                    which_athlete=athlete,
+                )
+                print('This is the order data')
+                print(order_line_item)
+                print('Athlete:')
+                print(order_line_item.which_athlete)
+                print('Event:')
+                print(order_line_item.event)
+                print('----')
+                athleteidforthisresult = order_line_item.which_athlete.split("#")
+                print('----')
+                print(athleteidforthisresult[1])
+                selectedathleteid = athleteidforthisresult[1]
+                print('----')
+                selectedathletetoenter = AthleteProfile.objects.get(id=athleteidforthisresult[1])
+                print('-- create a result for: --')
+                print(selectedathletetoenter.athletefirstname)
+                print(selectedathletetoenter.athletesurname)
+                print(selectedathletetoenter.gender)
+                print(selectedathletetoenter.dateofbirth)
+                print(selectedathletetoenter.club)
+                print(selectedathletetoenter.id)
+                print('-- at this event: --')
+                print(order_line_item.event.friendlyname)
+                print(order_line_item.event.id)
+                newresult = Result.objects.create(
+                    eventinstance = order_line_item.event,
+                    athletefirstname = selectedathletetoenter.athletefirstname,
+                    athletesurname = selectedathletetoenter.athletesurname,
+                    dateofbirth = selectedathletetoenter.dateofbirth,
+                    gender = selectedathletetoenter.gender,
+                    club = selectedathletetoenter.club,
+                )
+                
+               
 
     def handle_event(self, event):
         """
@@ -102,6 +161,8 @@ class StripeWH_Handler:
                 time.sleep(1)
         if order_exists:
             self._send_confirmation_email(order)
+            print ('ORDER EXISTS SO CREATE A RESULT NOW')
+            self._create_result(order, event)
             return HttpResponse(
                 content=f'Webhook received: {event["type"]} | SUCCESS: Verified order already in database',
                 status=200)
@@ -130,6 +191,7 @@ class StripeWH_Handler:
                             eventpurchased=eventpurchased,
                             quantity=item_data,
                         )
+                        
                         order_line_item.save()
                     else:
                         for athlete, quantity in item_data['items_by_athlete'].items():
@@ -139,6 +201,7 @@ class StripeWH_Handler:
                                 quantity=quantity,
                                 which_athlete=athlete,
                             )
+                            
                             order_line_item.save()
             except Exception as e:
                 if order:
@@ -147,6 +210,8 @@ class StripeWH_Handler:
                     content=f'Webhook received: {event["type"]} | ERROR: {e}',
                     status=500)
         self._send_confirmation_email(order)
+        print ('I am going to add a row to the Results database for this order now...')
+        self._create_result(order, event)
         return HttpResponse(
             content=f'Webhook received: {event["type"]} | SUCCESS: Created order in webhook',
             status=200)

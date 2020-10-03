@@ -19,6 +19,8 @@ class UserProfileAdmin(admin.ModelAdmin):
 
 class AthleteProfileAdmin(admin.ModelAdmin):
     list_display = (
+    'athletefirstname',
+    'athletesurname',
     'eanumber',
     'eaverified',
     'club',
