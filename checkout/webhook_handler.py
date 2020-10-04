@@ -7,7 +7,7 @@ from django.shortcuts import render, get_object_or_404
 from .models import Order, OrderLineItem
 from events.models import EventInstance
 from results.models import Result
-from profiles.models import UserProfile, AthleteProfile
+from profiles.models import UserProfile, AthleteProfile, NonRaceHubFriends
 
 import json
 import time
@@ -60,15 +60,14 @@ class StripeWH_Handler:
                     quantity=quantity,
                     which_athlete=athlete,
                 )
-                
-                
-                
+
                 athleteidforthisresult = order_line_item.which_athlete.split("#")
                 selectedathleteid = athleteidforthisresult[1]
                 if 'Myself' in order_line_item.which_athlete:
                     selectedathletetoenter = AthleteProfile.objects.get(id=athleteidforthisresult[1])
                 if 'Friend' in order_line_item.which_athlete:
                     print ("Found Friend Athlete")
+                    selectedathletetoenter = NonRaceHubFriends.objects.get(id=athleteidforthisresult[1])
                 print('-- This SHOULD create a result for: --')
                 print(selectedathletetoenter.athletefirstname)
                 print(selectedathletetoenter.athletesurname)
@@ -83,6 +82,7 @@ class StripeWH_Handler:
                     dateofbirth = selectedathletetoenter.dateofbirth,
                     gender = selectedathletetoenter.gender,
                     club = selectedathletetoenter.club,
+                    linkedathlete = selectedathleteid,
             )
 
                 if 'Friend' in order_line_item.which_athlete:

@@ -48,8 +48,5 @@ class Result(models.Model):
     hyperlink = models.CharField(max_length=240, null=True, blank=True)
     imageupload = models.ImageField(null=True, blank=True)
     verifiedresultforvirtual = models.BooleanField(null=True, blank=True, default=False)
+    linkedathlete = models.DecimalField(max_digits=3, decimal_places=0, null=True, blank=True)
 
-
-
-    def __str__(self):
-        return self.eventinstance

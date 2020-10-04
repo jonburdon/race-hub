@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 from .models import UserProfile, AthleteProfile, RaceHubFriends, NonRaceHubFriends
+from results.models import Result
 from .forms import UserProfileForm
 
 from checkout.models import Order
@@ -22,6 +23,7 @@ def profile(request):
     racehubfriendsforthisathlete = racehubfriends.filter(rfuserprofile_id=athleteprofile.id)  
     nonracehubfriends = NonRaceHubFriends.objects.all()
     nonracehubfriendsforthisathlete = nonracehubfriends.filter(parentprofile_id=athleteprofile.id)
+      
    # print ('Athlete ID:')
    # print (athleteprofile.id)
    # print ('All Non Racehub Friends:')

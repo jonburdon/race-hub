@@ -24,6 +24,7 @@ class ResultsAdmin(admin.ModelAdmin):
         'imageupload',
         'hyperlink',
         'verifiedresultforvirtual',
+        'linkedathlete'
     )
 
     ordering = ('eventinstance',)
