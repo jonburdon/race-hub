@@ -30,12 +30,6 @@ def add_to_cart(request, item_id):
         cart[item_id] = {'items_by_athlete': {which_athlete: quantity}}
         messages.success(request, f'{which_athlete} is ready to enter the {event.friendlyname}.')
 
-
-    # if item_id in list(cart.keys()):
-     #   cart[item_id] += quantity
-    #else:
-    #    cart[item_id] = quantity
-
     request.session['cart'] = cart
 
     return redirect(redirect_url)

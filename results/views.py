@@ -105,8 +105,8 @@ def single_event_result_list(request, eventinstance_id):
                 sortkey = 'chiptime'
             if sortkey == 'club':
                 sortkey = 'club__name'
-            if sortkey == 'athlete':
-                sortkey = 'athlete'
+            if sortkey == 'athletesurname':
+                sortkey = 'athletesurname'
             if sortkey == 'bibnumber':
                 sortkey = 'bibnumber'
 
@@ -131,7 +131,7 @@ def single_event_result_list(request, eventinstance_id):
             if not query:
                 messages.error(request, "You didn't enter any search criteria!")
                 return redirect(reverse('results'))
-            queries = Q(athlete__icontains=query) | Q(agecat__icontains=query)  | Q(club__friendly_name__icontains=query)
+            queries = Q(athletesurname__icontains=query) | Q(athletefirstname__icontains=query) | Q(agecat__icontains=query)  | Q(club__friendly_name__icontains=query)
             resultsforthisevent = resultsforthisevent.filter(queries)  
 
     current_sorting = f'{sort}_{direction}'
@@ -201,7 +201,7 @@ def all_results(request):
             if not query:
                 messages.error(request, "You didn't enter any search criteria!")
                 return redirect(reverse('results'))
-            queries = Q(athlete__icontains=query) | Q(agecat__icontains=query)  | Q(club__friendly_name__icontains=query)
+            queries = Q(athletefirstname__icontains=query) | Q(athletesurname__icontains=query) | Q(agecat__icontains=query)  | Q(club__friendly_name__icontains=query)
             results = results.filter(queries)
 
     current_sorting = f'{sort}_{direction}'

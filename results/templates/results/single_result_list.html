@@ -30,8 +30,8 @@
                                 <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
                                 <option value="chiptime_asc" {% if current_sorting == 'chiptime_asc' %}selected{% endif %}>Chiptime (Asc)</option>
                                 <option value="chiptime_desc" {% if current_sorting == 'chiptime_desc' %}selected{% endif %}>Chiptime (Desc)</option>
-                                <option value="athlete_asc" {% if current_sorting == 'athlete_asc' %}selected{% endif %}>Athlete (Asc)</option>
-                                <option value="athlete_desc" {% if current_sorting == 'athlete_desc' %}selected{% endif %}>Athlete (Desc)</option>
+                                <option value="athletesurname_asc" {% if current_sorting == 'athletesurname_asc' %}selected{% endif %}>Athlete (Asc)</option>
+                                <option value="athletesurname_desc" {% if current_sorting == 'athletesurname_desc' %}selected{% endif %}>Athlete (Desc)</option>
                                 <option value="club_asc" {% if current_sorting == 'club_asc' %}selected{% endif %}>Club (Asc)</option>
                                 <option value="club_desc" {% if current_sorting == 'club_desc' %}selected{% endif %}>Club (Desc)</option>
                                 <option value="bibnumber_asc" {% if current_sorting == 'bibnumber_asc' %}selected{% endif %}>Bib (Asc)</option>
@@ -86,9 +86,7 @@
                      d-none d-md-inline-block column-large">Club</li>
                     <li class="list-group-item column-medium">Chip Time</li>
                     <li class="list-group-item column-medium d-md-none">
-                    <button class="btn btn-blackd-md-none" >
-                    None
-                </button>
+                    
                     </li>
                     <li class="list-group-item column-medium flex-fill d-none d-md-inline-block">Gun Time</li>
                 </ul>
