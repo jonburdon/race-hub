@@ -21,6 +21,9 @@ class ResultsAdmin(admin.ModelAdmin):
         'distance',
         'discipline',
         'event_format',
+        'imageupload',
+        'hyperlink',
+        'verifiedresultforvirtual',
     )
 
     ordering = ('eventinstance',)

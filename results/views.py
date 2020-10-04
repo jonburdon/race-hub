@@ -2,10 +2,11 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q
 from django.db.models.functions import Lower
+from django.contrib.auth.decorators import login_required
 from .models import Result
 from events.models import EventInstance
 from clubs.models import Club
-from .forms import ResultForm
+from .forms import ResultForm, FullResultForm, TimeOnlyResultForm
 # Create your views here.
 
 def all_result_lists(request):
@@ -225,6 +226,7 @@ def single_result(request, result_id):
 
     return render(request, 'results/single_result.html', context)
 
+@login_required
 def add_result(request):
     """ Add a result to the store """
     if request.method == 'POST':
@@ -241,6 +243,69 @@ def add_result(request):
     template = 'results/add_result.html'
     context = {
         'form': form,
+    }
+
+    return render(request, template, context)
+
+def result_detail(request, result_id):
+    """ A view to show individual result details """
+    result = get_object_or_404(Result, pk=result_id)
+    context = {
+        'result': result,
+    }
+    return render(request, 'results/result_detail.html', context)
+
+
+@login_required
+def edit_full_result(request, result_id):
+    """ Edit a result in the results system """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
+    result = get_object_or_404(Result, pk=result_id)
+    if request.method == 'POST':
+        form = FullResultForm(request.POST, request.FILES, instance=result)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Successfully updated result!')
+            return redirect(reverse('result_detail', args=[result.id]))
+        else:
+            messages.error(request, 'Failed to update result. Please ensure the form is valid.')
+    else:
+        form = FullResultForm(instance=result)
+        messages.info(request, f'You are editing {result.eventinstance.friendlyname}')
+
+    template = 'results/edit_full_result.html'
+    context = {
+        'form': form,
+        'result': result,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def edit_result_time_only(request, result_id):
+    """ Edit a time in the results system - use for virtual events for this athlete """
+
+    result = get_object_or_404(Result, pk=result_id)
+    if request.method == 'POST':
+        form = TimeOnlyResultForm(request.POST, request.FILES, instance=result)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Successfully updated result!')
+            return redirect(reverse('result_detail', args=[result.id]))
+        else:
+            messages.error(request, 'Failed to update result. Please ensure the form is valid.')
+    else:
+        form = TimeOnlyResultForm(instance=result)
+        messages.info(request, f'You are editing {result.eventinstance.friendlyname}')
+
+    template = 'results/edit_time_only_for_result.html'
+    context = {
+        'form': form,
+        'result': result,
     }
 
     return render(request, template, context)

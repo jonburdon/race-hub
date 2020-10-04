@@ -28,3 +28,39 @@ class ResultForm(forms.ModelForm):
        
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'border-black rounded-0'
+
+
+class FullResultForm(forms.ModelForm):
+
+    class Meta:
+        model = Result
+        fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        clubs = Club.objects.all()
+        events = EventInstance.objects.all()
+        friendly_names = [(c.id, c.get_friendly_name()) for c in clubs]
+        
+        self.fields['club'].choices = friendly_names
+       
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'border-black rounded-0'
+
+
+class TimeOnlyResultForm(forms.ModelForm):
+
+    class Meta:
+        model = Result
+        fields = (
+        'chiptime',
+        'hyperlink',
+        'imageupload',
+
+    )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+       
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'border-black rounded-0'
