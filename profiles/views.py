@@ -23,6 +23,8 @@ def profile(request):
     racehubfriendsforthisathlete = racehubfriends.filter(rfuserprofile_id=athleteprofile.id)  
     nonracehubfriends = NonRaceHubFriends.objects.all()
     nonracehubfriendsforthisathlete = nonracehubfriends.filter(parentprofile_id=athleteprofile.id)
+    allresults = Result.objects.all()
+    resultsforthisathlete = allresults.filter(linkedathlete=athleteprofile.id)
       
    # print ('Athlete ID:')
    # print (athleteprofile.id)
@@ -82,6 +84,7 @@ def profile(request):
         'orders': orders,
         'athleteprofile': athleteprofile,
         'racehubfriends': racehubfriends,
+        'resultsforthisathlete': resultsforthisathlete,
         'racehubfriendsforthisathlete': racehubfriendsforthisathlete,
         'nonracehubfriendsforthisathlete': nonracehubfriendsforthisathlete,
         'on_profile_page': True
