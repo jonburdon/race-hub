@@ -44,9 +44,11 @@ class Result(models.Model):
     )
     Myself = 'myself'
     NonRacehubFriend = 'nonracehubfriend'
+    RacehubFriend = 'racehubfriend'
     athlete_type_choices = [
         (Myself, 'Myself'),
         (NonRacehubFriend, 'Friends or Family'),
+        (RacehubFriend, 'Racehub Friend'),
     ]
     athlete_type = models.CharField(
         max_length=18,

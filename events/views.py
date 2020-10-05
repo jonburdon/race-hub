@@ -91,6 +91,7 @@ def event_profile(request, event_id):
         event = get_object_or_404(Event, pk=event_id)
         racehubfriends = RaceHubFriends.objects.all()
         racehubfriendsforthisathlete = racehubfriends.filter(rfathleteprofile_id=athleteprofile.id)
+        racehubfriendprofiles = AthleteProfile.objects.all()
 
         nonracehubfriends = NonRaceHubFriends.objects.all()
         nonracehubfriendsforthisathlete = nonracehubfriends.filter(parentprofile_id=athleteprofile.id)
@@ -98,6 +99,7 @@ def event_profile(request, event_id):
         context = {
             'event': event,
             'athleteprofile': athleteprofile,
+            'racehubfriendprofiles': racehubfriendprofiles,
             'racehubfriendsforthisathlete': racehubfriendsforthisathlete,
             'nonracehubfriendsforthisathlete': nonracehubfriendsforthisathlete,
         }

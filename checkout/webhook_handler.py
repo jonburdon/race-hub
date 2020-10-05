@@ -7,7 +7,7 @@ from django.shortcuts import render, get_object_or_404
 from .models import Order, OrderLineItem
 from events.models import EventInstance
 from results.models import Result
-from profiles.models import UserProfile, AthleteProfile, NonRaceHubFriends
+from profiles.models import UserProfile, AthleteProfile, NonRaceHubFriends, RaceHubFriends
 
 import json
 import time
@@ -47,6 +47,7 @@ class StripeWH_Handler:
         cart = intent.metadata.cart
         Myself = 'myself'
         NonRacehubFriend = 'nonracehubfriend'
+        RacehubFriend = 'racehubfriend'
         # Decide if this is myself or a Racehub Friend
         # Calculate the age category
         # Create the new result
@@ -67,10 +68,15 @@ class StripeWH_Handler:
                 if 'Myself' in order_line_item.which_athlete:
                     selectedathletetoenter = AthleteProfile.objects.get(id=athleteidforthisresult[1])
                     athletetype= Myself
-                if 'Friend' in order_line_item.which_athlete:
+                if 'Racehub' in order_line_item.which_athlete:
+                    selectedathletetoenter = AthleteProfile.objects.get(id=athleteidforthisresult[1])
+                    athletetype= RacehubFriend
+                if 'Family' in order_line_item.which_athlete:
                     print ("Found Friend Athlete")
                     selectedathletetoenter = NonRaceHubFriends.objects.get(id=athleteidforthisresult[1])
                     athletetype= NonRacehubFriend
+                
+                    
                     print('-- This SHOULD create a result for: --')
                     print(selectedathletetoenter.athletefirstname)
                     print(selectedathletetoenter.athletesurname)

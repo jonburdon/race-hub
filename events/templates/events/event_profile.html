@@ -73,20 +73,38 @@
                                     <div class="sort-select-wrapper">
                                     
                                     <span>Select Which Athletes to Enter</span>
-                                    <span>Add Racehub Friends to your profile for them to appear here.</span>
+                                    
                                     
                                     <select id="id_which_athlete" name="which_athlete" class="custom-select custom-select-sm rounded-0 border ">
-                                        <option value="Myself ({{ athleteprofile.athletefirstname }} {{ athleteprofile.athletesurname }}), Racehub Athlete ID#{{ athleteprofile.id }}" selected>Myself ({{ athleteprofile.athletefirstname }} {{ athleteprofile.athletesurname }})</option>
-                                        <!--- REMOVE FUNCTION TO ADD RACEHUB FRIENDS
+                                        <option value="Myself ({{ athleteprofile.athletefirstname }} {{ athleteprofile.athletesurname }}),  Athlete ID#{{ athleteprofile.id }}" selected>Myself ({{ athleteprofile.athletefirstname }} {{ athleteprofile.athletesurname }})</option>
+
+
                                         {% for f in racehubfriendsforthisathlete %}
-                                        <option value="{{ f.rfuserprofile }} Racehub ID #{{ f.rfuserprofile_id }}">{{ f.rfuserprofile }}</option>
-                                        {% endfor %}
-                                        -->
+                    
+                                            {% for r in racehubfriendprofiles %}
+                                                {% if r.id == f.myfriendsracehubid %}
+                                                <option value="{{ r.athletefirstname }} {{ r.athletesurname }} Racehub Friend ID#
+                                                {{r.id}}">{{ r.athletefirstname }} {{ r.athletesurname }}
+                                                </option>
+                                                
+                                                {% endif %}
+
+                                            {% endfor %}
+                                            
+                                            
+                                         {% endfor %}
+                                        
+
+                                        
+
                                         {% for f in nonracehubfriendsforthisathlete %}
-                                        <option value="{{ f.athletefirstname }} {{ f.athletesurname }}Racehub Friend ID #{{ f.id }}">{{ f.athletefirstname }} {{ f.athletesurname }}</option>
+                                        <option value="{{ f.athletefirstname }} {{ f.athletesurname }}Family and Friend ID #{{ f.id }}">{{ f.athletefirstname }} {{ f.athletesurname }}</option>
                                         {% endfor %}
                                         
                                     </select>
+                                    <span class="text-muted">Register other athletes by adding family, friends and other Racehub athletes to your profile.</span>
+
+
                                     
                                 </div>
                                     

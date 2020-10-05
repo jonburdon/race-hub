@@ -21,15 +21,16 @@ def profile(request):
     print(athleteprofile.id)
     print (myusername)
     racehubfriends = RaceHubFriends.objects.all()
-    # Needs to Filter to match if the value 'rfuserprofile' is equal to 'athleteprofile' This should work!! See line 43 below - this would match the data perfectly.
-    racehubfriendsforthisathlete = racehubfriends.filter(rfuserprofile_id=athleteprofile.id)  
+    racehubfriendsforthisathlete = racehubfriends.filter(rfathleteprofile_id=athleteprofile.id)
+    racehubfriendprofiles = AthleteProfile.objects.all()
+    
     nonracehubfriends = NonRaceHubFriends.objects.all()
     nonracehubfriendsforthisathlete = nonracehubfriends.filter(parentprofile_id=athleteprofile.id)
     allresults = Result.objects.all()
     resultsforthisathlete = allresults.filter(linkedathlete=athleteprofile.id)
     
       
-   # print ('Athlete ID:')
+    print ('Athlete ID:')
    # print (athleteprofile.id)
    # print ('All Non Racehub Friends:')
    # for friend in nonracehubfriends:
@@ -65,7 +66,7 @@ def profile(request):
     print ('Racehub Friends for this athlete:')
     print (racehubfriendsforthisathlete)
     for friend in racehubfriendsforthisathlete:
-        print (friend.rfuserprofile)
+        print (friend.myfriendsracehubid)
         
        
 
@@ -89,6 +90,7 @@ def profile(request):
         'racehubfriends': racehubfriends,
         'resultsforthisathlete': resultsforthisathlete,
         'racehubfriendsforthisathlete': racehubfriendsforthisathlete,
+        'racehubfriendprofiles': racehubfriendprofiles,
         'nonracehubfriendsforthisathlete': nonracehubfriendsforthisathlete,
         'on_profile_page': True,
         'currenttime': currenttime
