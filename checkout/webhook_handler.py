@@ -45,7 +45,8 @@ class StripeWH_Handler:
         print(order)
         intent = event.data.object
         cart = intent.metadata.cart
-        
+        Myself = 'myself'
+        NonRacehubFriend = 'nonracehubfriend'
         # Decide if this is myself or a Racehub Friend
         # Calculate the age category
         # Create the new result
@@ -65,16 +66,18 @@ class StripeWH_Handler:
                 selectedathleteid = athleteidforthisresult[1]
                 if 'Myself' in order_line_item.which_athlete:
                     selectedathletetoenter = AthleteProfile.objects.get(id=athleteidforthisresult[1])
+                    athletetype= Myself
                 if 'Friend' in order_line_item.which_athlete:
                     print ("Found Friend Athlete")
                     selectedathletetoenter = NonRaceHubFriends.objects.get(id=athleteidforthisresult[1])
-                print('-- This SHOULD create a result for: --')
-                print(selectedathletetoenter.athletefirstname)
-                print(selectedathletetoenter.athletesurname)
-                print(selectedathletetoenter.gender)
-                print(selectedathletetoenter.dateofbirth)
-                print(selectedathletetoenter.club)
-                print(selectedathletetoenter.id)
+                    athletetype= NonRacehubFriend
+                    print('-- This SHOULD create a result for: --')
+                    print(selectedathletetoenter.athletefirstname)
+                    print(selectedathletetoenter.athletesurname)
+                    print(selectedathletetoenter.gender)
+                    print(selectedathletetoenter.dateofbirth)
+                    print(selectedathletetoenter.club)
+                    print(selectedathletetoenter.id)
                 newresult = Result.objects.create(
                     eventinstance = order_line_item.event,
                     athletefirstname = selectedathletetoenter.athletefirstname,
@@ -83,8 +86,10 @@ class StripeWH_Handler:
                     gender = selectedathletetoenter.gender,
                     club = selectedathletetoenter.club,
                     linkedathlete = selectedathleteid,
-            )
-
+                    athlete_type = athletetype,
+                )
+                
+                   
                 if 'Friend' in order_line_item.which_athlete:
                     print ("Found Friend Athlete")
 

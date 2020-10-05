@@ -42,6 +42,18 @@ class Result(models.Model):
         default=Senior,
         null=True, blank=True
     )
+    Myself = 'myself'
+    NonRacehubFriend = 'nonracehubfriend'
+    athlete_type_choices = [
+        (Myself, 'Myself'),
+        (NonRacehubFriend, 'Friends or Family'),
+    ]
+    athlete_type = models.CharField(
+        max_length=18,
+        choices=athlete_type_choices,
+        default=Myself,
+        null=True, blank=True
+    )
     club = models.ForeignKey(Club, null=True, blank=True, on_delete=models.SET_NULL)
     chiptime = models.DurationField(null=True, blank=True)
     guntime = models.DurationField(null=True, blank=True)
