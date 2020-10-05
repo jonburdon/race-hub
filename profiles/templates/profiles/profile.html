@@ -127,15 +127,38 @@
                 </div>
             </div>
             <div class="col-12 col-lg-4">
-                <h4>My ACTIVE Racehub Virtual Run Entries</h4>
+                <h4>My Racehub Results</h4>
+                <h5>Active entries and results</h5>
                 {% for r in resultsforthisathlete %}
-                {{ r.athletefirstname }}
-                {% endfor %}
+                    {% if r.isvirtual %}
+                            
+                            {% now "Y-m-d" as todays_date %}
+                            {% if todays_date < r.eventinstance.eventdate|date:"Y-m-d" %}
 
-                <h4>My CLOSED Racehub Virtual Run Entries</h4>
-                
+                            {{ r.athletefirstname }} | Full results | Submit result  | {{ r.eventinstance.eventdate }}<br>
+
+                            {% endif %}
+                        
+                    {% endif %}
+                {% endfor %}
                 <hr>
-                <p class="text-muted">My Racehub Results</p>
+                
+                <h5>Past and confirmed results.</h5>
+                    {% for r in resultsforthisathlete %}
+                        {% if r.isvirtual %}
+                                
+                                {% now "Y-m-d" as todays_date %}
+                                {% if todays_date > r.eventinstance.eventdate|date:"Y-m-d" %}
+
+                                {{ r.athletefirstname }} | Full results | My result  | {{ r.eventinstance.eventdate }}<br>
+
+                                {% endif %}
+                            
+                        {% endif %}
+                    {% endfor %}
+
+                <hr>
+               
                 <h4>My Racehub Friends</h4>
                 <p class="text-muted">Add Athletes here to enter them for events from your shopping cart.</p>
                 

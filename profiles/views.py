@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+import datetime
 
 from .models import UserProfile, AthleteProfile, RaceHubFriends, NonRaceHubFriends
 from results.models import Result
@@ -13,6 +14,7 @@ def profile(request):
     """ Display the user's profile. """
     profile = get_object_or_404(UserProfile, user=request.user)
     athleteprofile = get_object_or_404(AthleteProfile, user=request.user)
+    currenttime = datetime.datetime.now()
     print ('My USERNAME is:')
     print (profile)
     myusername = profile
@@ -25,6 +27,7 @@ def profile(request):
     nonracehubfriendsforthisathlete = nonracehubfriends.filter(parentprofile_id=athleteprofile.id)
     allresults = Result.objects.all()
     resultsforthisathlete = allresults.filter(linkedathlete=athleteprofile.id)
+    
       
    # print ('Athlete ID:')
    # print (athleteprofile.id)
@@ -87,7 +90,8 @@ def profile(request):
         'resultsforthisathlete': resultsforthisathlete,
         'racehubfriendsforthisathlete': racehubfriendsforthisathlete,
         'nonracehubfriendsforthisathlete': nonracehubfriendsforthisathlete,
-        'on_profile_page': True
+        'on_profile_page': True,
+        'currenttime': currenttime
     }
 
     return render(request, template, context)

@@ -21,6 +21,7 @@ class ResultsAdmin(admin.ModelAdmin):
         'distance',
         'discipline',
         'event_format',
+        'isvirtual',
         'imageupload',
         'hyperlink',
         'verifiedresultforvirtual',

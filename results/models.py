@@ -57,6 +57,7 @@ class Result(models.Model):
     club = models.ForeignKey(Club, null=True, blank=True, on_delete=models.SET_NULL)
     chiptime = models.DurationField(null=True, blank=True)
     guntime = models.DurationField(null=True, blank=True)
+    isvirtual = models.BooleanField(null=True, blank=True, default=False)
     hyperlink = models.CharField(max_length=240, null=True, blank=True)
     imageupload = models.ImageField(null=True, blank=True)
     verifiedresultforvirtual = models.BooleanField(null=True, blank=True, default=False)
