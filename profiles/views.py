@@ -120,14 +120,41 @@ def order_history(request, order_number):
 def add_racehub_friend(request):
     """ Add a racehub friend to Myracehub """
     template = 'profiles/add_racehub_friend.html'
-    
+    athleteprofile = get_object_or_404(AthleteProfile, user=request.user)
+    racehubfriends = RaceHubFriends.objects.all()
     if request.method == 'POST':
         form = AddRacehubFriendForm(request.POST, request.FILES)
-        # Check an athlete profile exists with this id number
+        
         if form.is_valid():
-            # 'rfathleteprofile',
-            form.save()
-            messages.success(request, 'Friend successfully added to My Racehub!')
+            print('Here is the form data')
+            for f in form:
+                print(f)
+                athletetoadd = str(f)
+                athletetoadd = athletetoadd.split('value="')
+                finalathleteid=athletetoadd[1].split('"')
+                myracehubfriendsid = finalathleteid[0]
+                print ('This is the friends id')
+                print (myracehubfriendsid)
+                # Check an athlete profile exists with this id number
+                athleteadded=False
+                for r in racehubfriends:
+                    print ('test-----')
+                    print (r.id)
+                    print (myracehubfriendsid)
+                    if int(myracehubfriendsid) == int(r.id):
+                        print ('Valid athlete found')
+                        newresult = RaceHubFriends.objects.create(
+                            rfathleteprofile = athleteprofile,
+                            myfriendsracehubid = myracehubfriendsid,
+                        )
+                        athleteadded=True
+                    else:
+                        print ('No match')
+                if athleteadded:
+                    messages.success(request, 'Friend successfully added to My Racehub!')
+                else:
+                    messages.warning(request, 'That was not a valid Racehub Athlete ID. Valid numbers are displayed at the top of your friends My Racehub Profile page. Add Friends and Family for non Racehub Athletes!')
+                
             context = {
             'form': form,
     }

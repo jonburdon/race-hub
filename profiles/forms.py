@@ -40,6 +40,7 @@ class AddRacehubFriendForm(forms.ModelForm):
         model = RaceHubFriends
         fields = (
         'myfriendsracehubid',
+        
     )
 
     def __init__(self, *args, **kwargs):
