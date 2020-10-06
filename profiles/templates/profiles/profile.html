@@ -183,7 +183,12 @@
                          is a Racehub friend of {{ f.parentprofile }}, Athlete Profile ID #{{ f.parentprofile_id }}. {% if f.eaverified %}(EA Discount Confirmed){% else%} (No EA Discount) {% endif %}<br>
                 {% endfor %}
                 <br>
-                <button class="btn btn-black rounded-0 text-uppercase float-right">Add Friends & Family</button><hr>
+                <a href="{% url 'add_nonracehubfriend' %}" class="btn btn-black rounded-0 mt-5 float-right d-block">
+                <span class="icon">
+                    <i class="fas fa-chevron-left"></i>
+                </span>
+                <span class="text-uppercase">Add Friends and Family</span>
+                </a><hr>
                 
                 
             </div>

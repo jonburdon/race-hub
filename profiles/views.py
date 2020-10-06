@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 import datetime
-from .forms import AddRacehubFriendForm
+from .forms import AddRacehubFriendForm, FamilyandFriendsForm, AthleteProfileForm
 
 from .models import UserProfile, AthleteProfile, RaceHubFriends, NonRaceHubFriends
 from results.models import Result
@@ -31,41 +31,7 @@ def profile(request):
     resultsforthisathlete = allresults.filter(linkedathlete=athleteprofile.id)
     
       
-    print ('Athlete ID:')
-   # print (athleteprofile.id)
-   # print ('All Non Racehub Friends:')
-   # for friend in nonracehubfriends:
-   #     print (friend.athletefirstname)
-   #     print (friend.athletesurname)
-   #     print("_______")
-   # print("_______")
-   # print ('Non Racehub Friends for this athlete:')
-   # for friend in nonracehubfriendsforthisathlete:
-   #     print (friend.athletefirstname)
-   #     print (friend.athletesurname)
-   #     print("_______")
-   # print("_______")
-    print ('Athlete ID:')
-    print (athleteprofile.id)
-    print ('Racehub Friends:')
-    print (racehubfriends)
-    for friend in racehubfriends:
-        print ('My Username:')
-        print (myusername)
-        print ('My Data to match:')
-        print (friend.rfuserprofile)
-        if myusername == friend.rfuserprofile:
-            print ('Owner Profile')
-            print (friend.rfuserprofile)
-            print (friend.rfuserprofile_id)
-            print ('Athlete Profile')
-            print (friend.myfriendsracehubid)
-        
-        
-        print("_______")
-        
-    print ('Racehub Friends for this athlete:')
-    print (racehubfriendsforthisathlete)
+    
     for friend in racehubfriendsforthisathlete:
         print (friend.myfriendsracehubid)
         
@@ -124,7 +90,6 @@ def add_racehub_friend(request):
     racehubfriends = RaceHubFriends.objects.all()
     if request.method == 'POST':
         form = AddRacehubFriendForm(request.POST, request.FILES)
-        
         if form.is_valid():
             print('Here is the form data')
             for f in form:
@@ -164,6 +129,54 @@ def add_racehub_friend(request):
     else:
         form = AddRacehubFriendForm()
         
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def add_nonracehubfriend(request):
+    """ Add non racehub friend to My Racehub """
+
+
+    if request.method == 'POST':
+        form = FamilyandFriendsForm(request.POST, request.FILES)
+        if form.is_valid():
+            event=form.save()
+            messages.success(request, 'Successfully added athlete! They will be saved on your My Racehub profile, and you can now enter them for Racehub events.')
+            return redirect(reverse('event_profile', args=[event.id]))
+        else:
+            messages.error(request, 'Failed to add athlete. Please ensure the form is valid.')
+    else:
+        form = FamilyandFriendsForm()
+
+
+    template = 'profiles/add_non_racehub_friend.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
+
+@login_required
+def add_athlete_profile(request):
+    """ Add an athleteprofile to My Racehub """
+
+    if request.method == 'POST':
+        form = AthleteProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            athleteprofile=form.save()
+            messages.success(request, 'Successfully added athlete profile!')
+            return redirect(reverse('my_racehub'))
+        else:
+            messages.error(request, 'Failed to add profile. Please ensure the form is valid.')
+    else:
+        form = AthleteProfileForm()
+
+
+    template = 'profiles/add_athlete_profile.html'
     context = {
         'form': form,
     }
