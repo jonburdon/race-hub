@@ -295,7 +295,7 @@ def edit_result_time_only(request, result_id):
         if form.is_valid():
             form.save()
             messages.success(request, 'Successfully updated result!')
-            return redirect(reverse('result_detail', args=[result.id]))
+            return redirect(reverse('single_result', args=[result.id]))
         else:
             messages.error(request, 'Failed to update result. Please ensure the form is valid.')
     else:

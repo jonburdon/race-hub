@@ -56,6 +56,7 @@ class EventInstanceAdmin(admin.ModelAdmin):
         'eventdate',
         'price',
         'race_limit',
+        'isvirtual',
     )
 
 

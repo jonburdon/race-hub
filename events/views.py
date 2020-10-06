@@ -136,7 +136,7 @@ def add_event(request):
     if request.method == 'POST':
         form = EventForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            event=form.save()
             messages.success(request, 'Successfully added event!')
             return redirect(reverse('event_profile', args=[event.id]))
         else:

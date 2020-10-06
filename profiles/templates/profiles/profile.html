@@ -128,14 +128,14 @@
             </div>
             <div class="col-12 col-lg-4">
                 <h4>My Racehub Results</h4>
-                <h5>Active entries and results</h5>
+                <h5>Submit virtual results</h5>
                 {% for r in resultsforthisathlete %}
                     {% if r.isvirtual %}
                             
                             {% now "Y-m-d" as todays_date %}
                             {% if todays_date < r.eventinstance.eventdate|date:"Y-m-d" %}
 
-                            {{ r.athletefirstname }} | Full results | Submit result  | {{ r.eventinstance.eventdate }}<br>
+                            {{ r.athletefirstname }} is registered for the {{ r.eventinstance.friendlyname }} virtual event | Result Deadline: {{ r.eventinstance.eventdate }} | <a href="{% url 'edit_result_time_only' r.id %}">Submit Result</a> <br>
 
                             {% endif %}
                         
@@ -145,22 +145,16 @@
                 
                 <h5>Past and confirmed results.</h5>
                     {% for r in resultsforthisathlete %}
-                        {% if r.isvirtual %}
-                                
-                                {% now "Y-m-d" as todays_date %}
-                                {% if todays_date > r.eventinstance.eventdate|date:"Y-m-d" %}
-
-                                {{ r.athletefirstname }} | Full results | My result  | {{ r.eventinstance.eventdate }}<br>
-
-                                {% endif %}
-                            
-                        {% endif %}
+                        
+                                {{ r.eventinstance.friendlyname }}, {{ r.eventinstance.eventdate }} | <a href="{% url 'single_event_result_list' r.eventinstance.id %}">Full Results</a> | <a href="{% url 'single_result' r.id %}">My Result</a> <br>
+                        
+       
                     {% endfor %}
 
                 <hr>
                
                 <h4>My Racehub Friends</h4>
-                <p class="text-muted">Add Athletes here to enter them for events from your shopping cart.</p>
+                <p class="text-muted">Add Racehub Athletes here to enter them for events from your shopping cart.</p>
                 
                 {% for f in racehubfriendsforthisathlete %}
                     
@@ -172,6 +166,15 @@
                     
                     <br>
                 {% endfor %}
+                <a href="{% url 'add_racehub_friend' %}" class="btn btn-black rounded-0 mt-5 float-right d-block">
+                <span class="icon">
+                    <i class="fas fa-chevron-left"></i>
+                </span>
+                <span class="text-uppercase">Add Racehub Friend</span>
+                </a>
+                <br>
+
+
                 <hr>
                 <h4>Friends and Family</h4>
                 <p class="text-muted">These athletes have been saved by you. They are not Racehub customers, but you can enter them for events using this saved data:</p>
@@ -179,7 +182,8 @@
                         {{ f.athletefirstname }} {{ f.athletesurname }} ID #{{f.id}},
                          is a Racehub friend of {{ f.parentprofile }}, Athlete Profile ID #{{ f.parentprofile_id }}. {% if f.eaverified %}(EA Discount Confirmed){% else%} (No EA Discount) {% endif %}<br>
                 {% endfor %}
-                <br><hr>
+                <br>
+                <button class="btn btn-black rounded-0 text-uppercase float-right">Add Friends & Family</button><hr>
                 
                 
             </div>

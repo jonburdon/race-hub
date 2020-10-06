@@ -62,7 +62,12 @@ class StripeWH_Handler:
                     quantity=quantity,
                     which_athlete=athlete,
                 )
-
+                print('This Event is:')
+                print(order_line_item.event)
+                print('Virtual?')
+                print(order_line_item.event.isvirtual)
+                if order_line_item.event.isvirtual == True:
+                    virtual = True
                 athleteidforthisresult = order_line_item.which_athlete.split("#")
                 selectedathleteid = athleteidforthisresult[1]
                 if 'Myself' in order_line_item.which_athlete:
@@ -93,6 +98,7 @@ class StripeWH_Handler:
                     club = selectedathletetoenter.club,
                     linkedathlete = selectedathleteid,
                     athlete_type = athletetype,
+                    isvirtual = virtual,
                 )
                 
                    

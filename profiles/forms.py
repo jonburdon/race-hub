@@ -1,5 +1,5 @@
 from django import forms
-from .models import UserProfile
+from .models import UserProfile, RaceHubFriends, NonRaceHubFriends
 
 
 class UserProfileForm(forms.ModelForm):
@@ -32,3 +32,18 @@ class UserProfileForm(forms.ModelForm):
                 self.fields[field].widget.attrs['placeholder'] = placeholder
             self.fields[field].widget.attrs['class'] = 'border-black rounded-0 profile-form-input'
             self.fields[field].label = False
+
+
+class AddRacehubFriendForm(forms.ModelForm):
+
+    class Meta:
+        model = RaceHubFriends
+        fields = (
+        'myfriendsracehubid',
+    )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+       
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'border-black rounded-0'

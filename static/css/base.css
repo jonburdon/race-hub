@@ -4,11 +4,9 @@ html {
 
 body {
 
-    
-    
     color: #000;
     font-family: 'Oswald';
-    
+
     
 }
 body h1, body h2, body h3, body .btn {
@@ -34,7 +32,11 @@ hr { display: block; height: 1px;
     background-size: cover;
     padding: 10vw 0vw;
     
+    height: 60vh;
+   
 }
+
+
 /* logo-overlap */
 .logo-overlap {
     margin-top: -11vw;

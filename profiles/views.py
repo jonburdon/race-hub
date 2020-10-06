@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 import datetime
+from .forms import AddRacehubFriendForm
 
 from .models import UserProfile, AthleteProfile, RaceHubFriends, NonRaceHubFriends
 from results.models import Result
@@ -111,6 +112,33 @@ def order_history(request, order_number):
     context = {
         'order': order,
         'from_profile': True,
+    }
+
+    return render(request, template, context)
+
+@login_required
+def add_racehub_friend(request):
+    """ Add a racehub friend to Myracehub """
+    template = 'profiles/add_racehub_friend.html'
+    
+    if request.method == 'POST':
+        form = AddRacehubFriendForm(request.POST, request.FILES)
+        # Check an athlete profile exists with this id number
+        if form.is_valid():
+            # 'rfathleteprofile',
+            form.save()
+            messages.success(request, 'Friend successfully added to My Racehub!')
+            context = {
+            'form': form,
+    }
+            return render(request, template, context)
+        else:
+            messages.error(request, 'Failed to add Racehub friend. Please ensure the form is valid.')
+    else:
+        form = AddRacehubFriendForm()
+        
+    context = {
+        'form': form,
     }
 
     return render(request, template, context)

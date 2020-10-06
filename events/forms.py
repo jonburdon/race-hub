@@ -26,7 +26,6 @@ class EventForm(forms.ModelForm):
             attrs={'type': 'date'}
         )
     )
-        print (self.fields)
         self.fields['discipline'].choices = friendly_names
         self.fields['distance'].choices = friendly_namesdist
         self.fields['organiser'].choices = friendly_namesorganiser
