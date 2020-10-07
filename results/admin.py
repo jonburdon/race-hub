@@ -4,7 +4,13 @@ from .models import Result
 
 # Register your models here.
 
+from import_export import resources
+from .models import Result
 
+class ResultDownload(resources.ModelResource):
+
+    class Meta:
+        model = Result
 
 class ResultsAdmin(admin.ModelAdmin):
     list_display = (

@@ -10,6 +10,7 @@ urlpatterns = [
     path('add/', views.add_result, name='add_result'),
     path('edit_full_result/<int:result_id>/', views.edit_full_result, name='edit_full_result'),
     path('submit_virtual_result/<int:result_id>/', views.edit_result_time_only, name='edit_result_time_only'),
-    path('transfer_result/<int:result_id>/', views.transfer_result, name='transfer_result'),        
+    path('transfer_result/<int:result_id>/', views.transfer_result, name='transfer_result'),
+    path('download_results/', views.download_results, name='download_results'),        
 
 ]

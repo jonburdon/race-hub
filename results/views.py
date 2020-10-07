@@ -7,6 +7,7 @@ from .models import Result
 from events.models import EventInstance
 from clubs.models import Club
 from .forms import ResultForm, FullResultForm, TimeOnlyResultForm, EntryTransferForm
+from .admin import ResultDownload
 # Create your views here.
 
 def all_result_lists(request):
@@ -335,3 +336,13 @@ def transfer_result(request, result_id):
     }
 
     return render(request, template, context)
+
+
+def download_results(request):
+    dataset = ResultDownload().export()
+    print(dataset.csv)
+    messages.info(request, 'Download complete - this will be emailed')
+
+    template = 'results/result_download.html'
+
+    return render(request, template )
