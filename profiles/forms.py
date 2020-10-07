@@ -1,6 +1,8 @@
 from django import forms
 from .models import UserProfile, RaceHubFriends, NonRaceHubFriends, AthleteProfile
 from clubs.models import Club
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout, Fieldset
 from bootstrap_datepicker.widgets import DatePicker
 
 class UserProfileForm(forms.ModelForm):
@@ -72,19 +74,22 @@ class AthleteProfileForm(forms.ModelForm):
 
 
 class AddRacehubFriendForm(forms.ModelForm):
-
     class Meta:
         model = RaceHubFriends
         fields = (
         'myfriendsracehubid',
         
     )
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        
        
         for field_name, field in self.fields.items():
+
+                
             field.widget.attrs['class'] = 'border-black rounded-0'
+
+        
 
 
 
@@ -93,7 +98,7 @@ class FamilyandFriendsForm(forms.ModelForm):
 
     class Meta:
         model = NonRaceHubFriends
-        fields = '__all__'
+        exclude = ('parentprofile', 'eaverified')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

@@ -1,6 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 import datetime
 from .forms import AddRacehubFriendForm, FamilyandFriendsForm, AthleteProfileForm
 
@@ -139,14 +140,21 @@ def add_racehub_friend(request):
 @login_required
 def add_nonracehubfriend(request):
     """ Add non racehub friend to My Racehub """
-
+    athleteprofile = get_object_or_404(AthleteProfile, user=request.user)
 
     if request.method == 'POST':
         form = FamilyandFriendsForm(request.POST, request.FILES)
         if form.is_valid():
-            event=form.save()
+            athletetoadd=form.save(commit=False)
+            athletetoadd.parentprofile = athleteprofile
+            athletetoadd.save()
+
             messages.success(request, 'Successfully added athlete! They will be saved on your My Racehub profile, and you can now enter them for Racehub events.')
-            return redirect(reverse('event_profile', args=[event.id]))
+            template = 'profiles/add_non_racehub_friend.html'
+            context = {
+                'form': form,
+            }
+            return render(request, template, context)
         else:
             messages.error(request, 'Failed to add athlete. Please ensure the form is valid.')
     else:
@@ -163,11 +171,13 @@ def add_nonracehubfriend(request):
 @login_required
 def add_athlete_profile(request):
     """ Add an athleteprofile to My Racehub """
-
+    athleteprofile = request.user
     if request.method == 'POST':
         form = AthleteProfileForm(request.POST, request.FILES)
         if form.is_valid():
-            athleteprofile=form.save()
+            athletetoadd=form.save(commit=False)
+            athletetoadd.user = athleteprofile
+            athletetoadd.save()
             messages.success(request, 'Successfully added athlete profile!')
             return redirect(reverse('my_racehub'))
         else:

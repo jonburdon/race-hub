@@ -65,8 +65,8 @@ class AthleteProfile(models.Model):
         default=Medium
     )
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    userprofile = models.OneToOneField(UserProfile, on_delete=models.CASCADE)
-    
+    userprofile = models.OneToOneField(UserProfile, on_delete=models.CASCADE, null=True, blank=True)
+
 
     def __str__(self):
         return self.user.username
@@ -125,6 +125,7 @@ class NonRaceHubFriends(models.Model):
    
 
 
+
 @receiver(post_save, sender=User)
 def create_or_update_user_profile(sender, instance, created, **kwargs):
     """
@@ -134,4 +135,3 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
         UserProfile.objects.create(user=instance)
     # Existing users: just save the profile
     instance.userprofile.save()
-
