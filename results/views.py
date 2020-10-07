@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Result
 from events.models import EventInstance
 from clubs.models import Club
-from .forms import ResultForm, FullResultForm, TimeOnlyResultForm
+from .forms import ResultForm, FullResultForm, TimeOnlyResultForm, EntryTransferForm
 # Create your views here.
 
 def all_result_lists(request):
@@ -269,7 +269,7 @@ def edit_full_result(request, result_id):
         if form.is_valid():
             form.save()
             messages.success(request, 'Successfully updated result!')
-            return redirect(reverse('result_detail', args=[result.id]))
+            return redirect(reverse('single_result', args=[result.id]))
         else:
             messages.error(request, 'Failed to update result. Please ensure the form is valid.')
     else:
@@ -303,6 +303,32 @@ def edit_result_time_only(request, result_id):
         messages.info(request, f'You are editing {result.eventinstance.friendlyname}')
 
     template = 'results/edit_time_only_for_result.html'
+    context = {
+        'form': form,
+        'result': result,
+    }
+
+    return render(request, template, context)
+
+@login_required
+def transfer_result(request, result_id):
+    """ Transfer a result in the results system """
+
+    result = get_object_or_404(Result, pk=result_id)
+    if request.method == 'POST':
+        form = EntryTransferForm(request.POST, request.FILES, instance=result)
+        if form.is_valid():
+            #ensure eventid is saved
+            form.save()
+            messages.success(request, 'Successfully updated result!')
+            return redirect(reverse('single_result', args=[result.id]))
+        else:
+            messages.error(request, 'Failed to update result. Please ensure the form is valid.')
+    else:
+        form = EntryTransferForm(instance=result)
+        messages.info(request, f'You are editing {result.eventinstance.friendlyname}')
+
+    template = 'results/edit_full_result.html'
     context = {
         'form': form,
         'result': result,

@@ -141,7 +141,7 @@
                             {% now "Y-m-d" as todays_date %}
                             {% if todays_date < r.eventinstance.eventdate|date:"Y-m-d" %}
 
-                            {{ r.athletefirstname }} is registered for the {{ r.eventinstance.friendlyname }} virtual event | Result Deadline: {{ r.eventinstance.eventdate }} | <a href="{% url 'edit_result_time_only' r.id %}">Submit Result</a> <br>
+                            {{ r.athletefirstname }} is registered for the {{ r.eventinstance.friendlyname }} virtual event | Result Deadline: {{ r.eventinstance.eventdate }} | <a href="{% url 'edit_result_time_only' r.id %}">Submit Result</a> | <a href="{% url 'transfer_result' r.id %}">Transfer</a><br> <br>
 
                             {% endif %}
                         
@@ -152,7 +152,7 @@
                 <h5>Past and confirmed results.</h5>
                     {% for r in resultsforthisathlete %}
                         
-                                {{ r.eventinstance.friendlyname }}, {{ r.eventinstance.eventdate }} | <a href="{% url 'single_event_result_list' r.eventinstance.id %}">Full Results</a> | <a href="{% url 'single_result' r.id %}">My Result</a> <br>
+                                {{ r.eventinstance.friendlyname }}, {{ r.eventinstance.eventdate }} | <a href="{% url 'single_event_result_list' r.eventinstance.id %}">Full Results</a> | <a href="{% url 'single_result' r.id %}">My Result</a> | <a href="{% url 'transfer_result' r.id %}">Transfer</a><br>
                         
        
                     {% endfor %}
