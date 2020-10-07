@@ -64,6 +64,12 @@
                 <h4>Emergency Contact Info</h4>
                 <h4>Contact Name: {{ athleteprofile.emergencycontactname }}</h4>
                 <h4>Contact Phone: {{ athleteprofile.emergencycontactphone }}</h4>
+                <a href="{% url 'edit_athlete_profile' athleteprofile.id %}" class="btn btn-black rounded-0 mt-5 float-right d-block">
+                <span class="icon">
+                    <i class="fas fa-chevron-left"></i>
+                </span>
+                <span class="text-uppercase">Edit Athlete Profile</span>
+                </a>
                 <br>
                 <br>
                 <br>

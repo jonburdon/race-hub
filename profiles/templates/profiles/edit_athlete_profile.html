@@ -1,0 +1,47 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <hr>
+                <h2 class="logo-font mb-4">My Racehub Profile Management</h2>
+                <h5 class="text-muted">Edit your Athlete Profile</h5>
+                <p>Thanks for keeping your profile up to date.</p>
+                <hr>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <form method="POST" action="{% url 'edit_athlete_profile' athleteprofile.id %}" class="form mb-2" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form | crispy }}
+                    <div class="text-right">
+                        <a class="btn btn-outline-black rounded-0" href="{% url 'results' %}">Cancel</a>
+                        <button class="btn btn-black rounded-0" type="submit">Save my Athlete Profile</button>
+                    </div>
+                </form>
+                <a href="{% url 'my_racehub' %}" class="btn btn-outline-black rounded-0 mt-5 float-right">
+                <span class="icon">
+                    <i class="fas fa-chevron-left"></i>
+                </span>
+                <span class="text-uppercase">Back to My Racehub</span>
+                </a>
+                <hr>
+                
+            </div>            
+        </div>
+    </div>
+{% endblock %}

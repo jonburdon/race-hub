@@ -192,3 +192,29 @@ def add_athlete_profile(request):
     }
 
     return render(request, template, context)
+
+
+@login_required
+def edit_athlete_profile(request, athleteprofile_id):
+    """ Edit athlete profile """
+
+    athleteprofile = get_object_or_404(AthleteProfile, pk=athleteprofile_id)
+    if request.method == 'POST':
+        form = AthleteProfileForm(request.POST, request.FILES, instance=athleteprofile)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Successfully updated your athlete profile!')
+            return redirect(reverse('my_racehub'))
+        else:
+            messages.error(request, 'Failed to update profile. Please ensure the form is valid.')
+    else:
+        form = AthleteProfileForm(instance=athleteprofile)
+        messages.info(request, 'You are editing your athlete profile!')
+
+    template = 'profiles/edit_athlete_profile.html'
+    context = {
+        'form': form,
+        'athleteprofile': athleteprofile,
+    }
+
+    return render(request, template, context)

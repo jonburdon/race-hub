@@ -7,4 +7,6 @@ urlpatterns = [
     path('add_racehub_friend/', views.add_racehub_friend, name='add_racehub_friend'),
     path('add_family_and_friends/', views.add_nonracehubfriend, name='add_nonracehubfriend'),
     path('add_athlete_profile/', views.add_athlete_profile, name='add_athlete_profile'),
+    path('edit_athlete_profile/<int:athleteprofile_id>/', views.edit_athlete_profile, name='edit_athlete_profile'),
+    
 ]
