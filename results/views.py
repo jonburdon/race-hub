@@ -8,6 +8,9 @@ from events.models import EventInstance
 from clubs.models import Club
 from .forms import ResultForm, FullResultForm, TimeOnlyResultForm, EntryTransferForm
 from .admin import ResultDownload
+import csv
+from io import StringIO
+from django.core.mail import EmailMessage
 # Create your views here.
 
 def all_result_lists(request):
@@ -341,6 +344,16 @@ def transfer_result(request, result_id):
 def download_results(request):
     dataset = ResultDownload().export()
     print(dataset.csv)
+
+    email = EmailMessage(
+            'Subject',
+            'Body',
+            'from@email.com',
+            ['to@email.com'],
+        )
+    email.attach('dataset.csv', 'text/csv')
+    email.send()
+
     messages.info(request, 'Download complete - this will be emailed')
 
     template = 'results/result_download.html'
