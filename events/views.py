@@ -292,3 +292,5 @@ def event_connect(request, event_id):
     }
 
     return render(request, template, context)
+
+

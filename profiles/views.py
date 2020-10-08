@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 import datetime
 from .forms import AddRacehubFriendForm, FamilyandFriendsForm, AthleteProfileForm
+from events.models import Event
 
 from .models import UserProfile, AthleteProfile, RaceHubFriends, NonRaceHubFriends
 from results.models import Result
@@ -218,3 +219,16 @@ def edit_athlete_profile(request, athleteprofile_id):
     }
 
     return render(request, template, context)
+
+def organiser_dashboard(request):
+    """ A view to return the index page """
+
+    events = Event.objects.all()
+    athleteprofile = get_object_or_404(AthleteProfile, user=request.user)
+
+    context = {
+        'events': events,
+        'athleteprofile': athleteprofile,
+    }
+
+    return render(request, 'profiles/organiser_dashboard.html', context)
