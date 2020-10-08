@@ -11,6 +11,7 @@
 
 {% block content %}
     <div class="container">
+    <h1>Review Virtual Results for the {{ eventinstance.friendlyname }} </h1>
             <form method="GET" action="{% url 'single_event_result_list' eventinstance.id  %}">
                     <div class="input-group w-100 skew-style ">
                         <input class="form-control border border-black rounded-0" type="text" name="q" placeholder="Search Athlete, Club or Age Category">
@@ -79,16 +80,17 @@
                     <li class="list-group-item column-small">Pos</li>
                     <li class="list-group-item column-medium">First Name</li>
                     <li class="list-group-item  column-medium">Surname</li>
-                    <li class="list-group-item column-small d-none d-md-inline-block">Bib</li>
-                    <li class="list-group-item column-small d-none d-md-inline-block">Gender</li>
-                    <li class="list-group-item column-small  d-none d-md-inline-block">Cat</li>
+                    <li class="list-group-item column-small d-none d-md-inline-block">Time</li>
+                    
+                    <li class="list-group-item column-small  d-none d-md-inline-block">Image</li>
                     <li class="list-group-item  
-                     d-none d-md-inline-block column-large">Club</li>
-                    <li class="list-group-item column-medium">Chip Time</li>
+                     d-none d-md-inline-block column-medium">Hyperlink</li>
+                     <li class="list-group-item column-small d-none d-md-inline-block">Verified?</li>
+                    
                     <li class="list-group-item column-medium d-md-none">
                     
                     </li>
-                    <li class="list-group-item column-medium flex-fill d-none d-md-inline-block">Gun Time</li>
+                    
                 </ul>
                 
                 <div class="collapse" id="collapseExample">
@@ -105,26 +107,24 @@
                     <li class="list-group-item column-small {% if forloop.counter|divisibleby:2 %}list-group-item-dark{% endif %}">{{ forloop.counter }}</li>
                     <li class="list-group-item column-medium {% if forloop.counter|divisibleby:2 %}list-group-item-dark{% endif %}">{{ r.athletefirstname }}</li>
                     <li class="list-group-item  column-medium {% if forloop.counter|divisibleby:2 %}list-group-item-dark{% endif %}">{{ r.athletesurname }}</li>
-                    <li class="list-group-item column-small {% if forloop.counter|divisibleby:2 %}list-group-item-dark{% endif %} d-none d-md-inline-block">{{ r.bibnumber }}</li>
-                    <li class="list-group-item column-small {% if forloop.counter|divisibleby:2 %}list-group-item-dark{% endif %} d-none d-md-inline-block">{{ r.gender }}</li>
-                    <li class="list-group-item column-small {% if forloop.counter|divisibleby:2 %}list-group-item-dark{% endif %} d-none d-md-inline-block">{{ r.agecat }}</li>
-                    <li class="list-group-item column-large {% if forloop.counter|divisibleby:2 %}list-group-item-dark{% endif %} d-none d-md-inline-block">{{ r.club.friendly_name }}</li>
-                    <li class="list-group-item column-medium {% if forloop.counter|divisibleby:2 %}list-group-item-dark{% endif %}">{{ r.chiptime }}</li>
+                    <li class="list-group-item column-small {% if forloop.counter|divisibleby:2 %}list-group-item-dark{% endif %}">{{ r.chiptime }}</li>
+                    <li class="list-group-item column-small {% if forloop.counter|divisibleby:2 %}list-group-item-dark{% endif %} d-none d-md-inline-block">{% if r.imageupload %}<a href="{{ r.imageupload.url }}" target="new"><img src="{{ r.imageupload.url }}" height="60px"><br>Open</a>{% else %}No Image Submitted{% endif %}</li>
+                    <li class="list-group-item column-medium {% if forloop.counter|divisibleby:2 %}list-group-item-dark{% endif %} d-none d-md-inline-block">{% if r.hyperlink %}<A href="{{ r.hyperlink }}" target="new">Review</a>{% else %}No link submitted{% endif %}</li>
+                    <li class="list-group-item column-small {% if forloop.counter|divisibleby:2 %}list-group-item-dark{% endif %} d-none d-md-inline-block">{% if r.verifiedforvirtualresult %}YES{% else %}NO{% endif %}</li>
                     <li class="list-group-item column-medium {% if forloop.counter|divisibleby:2 %}list-group-item-dark{% endif %} d-md-none">
                     <button class="btn btn-primary d-md-none" type="button" data-toggle="collapse" data-target="#collapseresult{{ forloop.counter }}" aria-expanded="false" aria-controls="collapseresult">
-                    More
+                    Review
                 </button>
                     </li>
-                    <li class="list-group-item column-small {% if forloop.counter|divisibleby:2 %}list-group-item-dark{% endif %} d-none d-md-inline-block">{{ r.guntime }}</li>
+                    
                 </ul>
                 
                 <div class="collapse" id="collapseresult{{ forloop.counter }}">
                 <div class="card card-body">
-                Bib: {{ r.bibnumber }}<br>
-                    Club: {{ r.club.friendly_name }}<br>
-                    Gender: {{ r.gender }}<br>
-                    Age Category: {{ r.agecat }}<br>
-                    Gun Time: {{ r.guntime }}<br>
+                
+                    <li >{% if r.imageupload %}<a href="{{ r.imageupload.url }}" target="new"><img src="{{ r.imageupload.url }}" height="60px"><br>Open</a>{% else %}No Image Submitted{% endif %}</li>
+                    <li >{% if r.hyperlink %}<A href="{{ r.hyperlink }}" target="new">Review</a>{% else %}No link submitted{% endif %}</li>
+                    <li >{% if r.verifiedforvirtualresult %}VERIFIED{% else %}NOT VERIFIED YET{% endif %}</li>
                 </div>
                 </div>
                 {% endfor %}

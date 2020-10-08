@@ -153,6 +153,81 @@ def single_event_result_list(request, eventinstance_id):
 
     return render(request, 'results/single_result_list.html', context)
 
+
+def review_virtual_results(request, eventinstance_id):
+    """ A view to show result list for one event """
+
+    eventinstance = get_object_or_404(EventInstance, pk=eventinstance_id)
+    print('Event Instance:----')
+    print (eventinstance)
+    results = Result.objects.all()
+    resultsforthisevent = results.filter(eventinstance=eventinstance)
+    query = None
+    name = None
+    agecat = None
+    gender = None
+    chiptime = None
+    club = None
+    athlete = None
+    sort = None
+    direction = None
+    bibnumber = None
+
+    if request.GET:
+        if 'sort' in request.GET:
+            sortkey = request.GET['sort']
+            sort = sortkey
+            if sortkey == 'name':
+                sortkey = 'lower_name'
+                events = events.annotate(lower_name=Lower('name'))
+            if sortkey == 'agecat':
+                sortkey = 'agecat'
+            if sortkey == 'chiptime':
+                sortkey = 'chiptime'
+            if sortkey == 'club':
+                sortkey = 'club__name'
+            if sortkey == 'athletesurname':
+                sortkey = 'athletesurname'
+            if sortkey == 'bibnumber':
+                sortkey = 'bibnumber'
+
+            if 'direction' in request.GET:
+                direction = request.GET['direction']
+                if direction == 'desc':
+                    sortkey = f'-{sortkey}'
+            resultsforthisevent = resultsforthisevent.order_by(sortkey)
+
+        if 'agecat' in request.GET:
+            agecat = request.GET['agecat'].split(',')
+            resultsforthisevent = resultsforthisevent.filter(agecat__in=agecat)
+            agecat = Result.objects.filter(agecat__in=agecat)
+
+        if 'gender' in request.GET:
+            gender = request.GET['gender'].split(',')
+            resultsforthisevent = resultsforthisevent.filter(gender__in=gender)
+            gender = Result.objects.filter(gender__in=gender)
+
+        if 'q' in request.GET:
+            query = request.GET['q']
+            if not query:
+                messages.error(request, "You didn't enter any search criteria!")
+                return redirect(reverse('results'))
+            queries = Q(athletesurname__icontains=query) | Q(athletefirstname__icontains=query) | Q(agecat__icontains=query)  | Q(club__friendly_name__icontains=query)
+            resultsforthisevent = resultsforthisevent.filter(queries)  
+
+    current_sorting = f'{sort}_{direction}'
+
+    context = {
+        'eventinstance': eventinstance,
+        'resultsforthisevent' : resultsforthisevent,
+        'search_term': query,
+        'current_agecat' : agecat,
+        'current_gender' : gender,
+        'current_sorting': current_sorting,
+    }
+
+    return render(request, 'results/review_virtual_results.html', context)
+
 def all_results(request):
     """ A view to show all results, including sorting and search queries """
 
