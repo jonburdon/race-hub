@@ -83,9 +83,10 @@ def single_event_result_list(request, eventinstance_id):
     """ A view to show result list for one event """
 
     eventinstance = get_object_or_404(EventInstance, pk=eventinstance_id)
-    
+    print('Event Instance:----')
+    print (eventinstance)
     results = Result.objects.all()
-    resultsforthisevent = results.filter(eventinstance__in=eventinstance_id)
+    resultsforthisevent = results.filter(eventinstance=eventinstance)
     query = None
     name = None
     agecat = None

@@ -48,7 +48,7 @@
                 {% for r in resultlists %}
                     <p>
                         <span>{{ r.friendlyname }} | 
-                        <span>{{ r.eventdate }} | {{ r.eventdate.year }} | 
+                        <span>{{ r.eventdate }} | {{ r.eventdate.year }} | EventID:{{ r.id}}
                         <A href="{% url 'single_event_result_list' r.id %}">Full Results </a>
                     </p>
                 {% endfor %}
