@@ -3,10 +3,10 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.db.models.functions import Lower
-from .models import Event, Discipline, Distance, Format
+from .models import Event, Discipline, Distance, Format, EventInstance
 from profiles.models import AthleteProfile, RaceHubFriends, NonRaceHubFriends
 
-from .forms import EventForm
+from .forms import EventForm, EventInstanceForm
 # Create your views here.
 
 def all_events(request):
@@ -191,3 +191,67 @@ def delete_event(request, event_id):
     event.delete()
     messages.success(request, 'Event deleted!')
     return redirect(reverse('events'))
+
+
+def event_instance_profile(request, eventinstance_id):
+    """ A view to show individual event instance details """
+    
+
+    athleteprofile = get_object_or_404(AthleteProfile, user=request.user)
+    eventinstance = get_object_or_404(EventInstance, pk=eventinstance_id)
+    racehubfriends = RaceHubFriends.objects.all()
+    racehubfriendsforthisathlete = racehubfriends.filter(rfathleteprofile_id=athleteprofile.id)
+    racehubfriendprofiles = AthleteProfile.objects.all()
+
+    nonracehubfriends = NonRaceHubFriends.objects.all()
+    nonracehubfriendsforthisathlete = nonracehubfriends.filter(parentprofile_id=athleteprofile.id)
+
+    context = {
+        'eventinstance': eventinstance,
+        'athleteprofile': athleteprofile,
+        'racehubfriendprofiles': racehubfriendprofiles,
+        'racehubfriendsforthisathlete': racehubfriendsforthisathlete,
+        'nonracehubfriendsforthisathlete': nonracehubfriendsforthisathlete,
+    }
+
+    return render(request, 'events/event_instance_profile.html', context)
+
+
+
+@login_required
+def add_event_instance(request):
+    """ Add an event instance to the store """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
+    if request.method == 'POST':
+        form = EventInstanceForm(request.POST, request.FILES)
+        if form.is_valid():
+            eventinstance=form.save()
+            messages.success(request, 'Successfully added event instance!')
+            return redirect(reverse('event_instance_profile', args=[eventinstance.id]))
+        else:
+            messages.error(request, 'Failed to add event instance. Please ensure the form is valid.')
+    else:
+        form = EventInstanceForm()
+
+
+    template = 'events/add_event_instance.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
+
+
+def event_link_options(request):
+    """ A view for when adding or creating events - options page """
+
+    events = Event.objects.all()
+
+    context = {
+        'events': events,
+    }
+
+    return render(request, 'events/event_link_options.html', context)
