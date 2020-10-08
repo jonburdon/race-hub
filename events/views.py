@@ -6,7 +6,7 @@ from django.db.models.functions import Lower
 from .models import Event, Discipline, Distance, Format, EventInstance
 from profiles.models import AthleteProfile, RaceHubFriends, NonRaceHubFriends
 
-from .forms import EventForm, EventInstanceForm
+from .forms import EventForm, EventInstanceForm, EventAndInstanceConnectForm
 # Create your views here.
 
 def all_events(request):
@@ -249,9 +249,46 @@ def event_link_options(request):
     """ A view for when adding or creating events - options page """
 
     events = Event.objects.all()
+    if request.method == 'POST':
+        form = EventAndInstanceConnectForm(request.POST, request.FILES)
+        if form.is_valid():
+            eventinstance=form.save()
+            messages.success(request, 'Successfully added event instance!')
+            return redirect(reverse('event_instance_profile', args=[eventinstance.id]))
+        else:
+            messages.error(request, 'Failed to add event instance. Please ensure the form is valid.')
+    else:
+        form = EventAndInstanceConnectForm()
 
     context = {
+        'form': form,
         'events': events,
     }
 
     return render(request, 'events/event_link_options.html', context)
+
+
+
+def event_connect(request, event_id):
+    """ A view for connecting events to event instances """
+
+    event = get_object_or_404(Event, pk=event_id)
+    if request.method == 'POST':
+        form = EventAndInstanceConnectForm(request.POST, request.FILES)
+        if form.is_valid():
+            eventinstance=form.save()
+            messages.success(request, 'Successfully connect parent event and event instance!')
+            return redirect(reverse('event_instance_profile', args=[eventinstance.id]))
+        else:
+            messages.error(request, 'Failed to add event instance. Please ensure the form is valid.')
+    else:
+        form = EventAndInstanceConnectForm()
+
+
+    template = 'events/event_instance_connect.html'
+    context = {
+        'form': form,
+        'event':event,
+    }
+
+    return render(request, template, context)

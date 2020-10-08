@@ -19,8 +19,11 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col text-center mt-3">
-                <h2 class="logo-font">To complete your event creation, please select from the following options:</h2>
-                
+            <h2 class="logo-font">IMPORTANT</h2>
+                <h2 class="logo-font">Final Confirmation:</h2>
+                <h3>Select new primary event instance for {{ event.name }}</h3>
+                <p>This will make this event instance the live instance of this event, and all registrations for this event will now be channelled to this event instance.</p>
+                 <p>Remember! Each Parents event can only have one LIVE Event Instance for the purposes of booking. You may create new Parent Events <A href="{% url 'add_event' %}">here</a> and new Event Instances of that event <A href="{% url 'add_event_instance' %}">here</a>.</p>
                 
                 
                 
@@ -32,24 +35,33 @@
     <div class="row my-5">
         
         <div class="col-sm-6 col-md-6 col-lg-6 px-3 ">
-        <h2>Connect your new event instance to an existing parent event.</h2>
-       
-        
-        
+        <h2>Select Event Instance.</h2>
+        <form method="POST" action="{% url 'event_connect' event.id%}" class="form mb-2" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        {% if field.name != 'image' %}
+                            {{ field | as_crispy_field }}
+                        {% else %}
+                            {{ field }}
+                        {% endif %}
+                    {% endfor %}
+                    <div class="text-right">
+                        <a class="btn btn-outline-green skew-style rounded-0" href="{% url 'events' %}">Cancel</a>
+                        <button class="btn btn-black skew-style rounded-0" type="submit">Connect Event Instance</button>
+                    </div>
+                </form>
         </div>
         <div class="col-sm-6 col-md-6 col-lg-6 px-3 ">
-        <h1>OR</h1>
-        <h4>
-            <a href="{% url 'add_event' %}" class="shop-now-button skew-style btn btn-lg rounded-0 text-uppercase py-3">
-            Create New Parent Event
-            </a>
-        </h4>
+        
         
         </div>
     </div>
 </div>
 
         <div class="row">
+            <div class="product-container col-10 offset-1">
+                <div class="row mt-1 mb-2">
+                            <div class="row">
             <div class="product-container col-10 offset-1">
                 <div class="row mt-1 mb-2">
                     
@@ -64,15 +76,20 @@
                                 
                                 <div class="card-block">
                                     <h4 class="card-title">{{ event.name }}</h4>
-                                      
+                                    
+                                    
+                                    
+                                    <p class="card-text my-3">{{ event.keyinfo }}</p>     
                                     
                                     {% if request.user.is_superuser %}
                                     <br>
-
-                                    <a href="{% url 'event_connect' event.id %}" class="action-button skew-style btn btn-lg rounded-0 text-uppercase py-1">
-                                    Connect
-                                    </a>
-                                        
+                                        <small class="ml-3">
+                                            <a href="{% url 'event_profile' event.id %}" >
+                                        View 
+                                        </a> | 
+                                            <a href="{% url 'edit_event' event.id %}">Edit</a> | 
+                                            <a class="text-danger" href="{% url 'delete_event' event.id %}">Delete</a>
+                                        </small>
                                     {% endif %}
                                 
                                 
@@ -86,6 +103,14 @@
                         
                     {% endfor %}
                 </div>
+            </div>
+        </div>
+    </div>
+                              
+                
+                </div>
+                <div class="row">
+
             </div>
         </div>
     </div>
