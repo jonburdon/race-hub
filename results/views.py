@@ -435,3 +435,16 @@ def download_results(request):
     template = 'results/result_download.html'
 
     return render(request, template )
+
+@login_required
+def verify_result(request, result_id):
+    """ Verify a result is genuine """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
+    result = get_object_or_404(Result, pk=result_id)
+    result.verifiedresultforvirtual = True
+    result.save()
+    messages.success(request, 'Result Verified!')
+    return redirect(reverse('organiser_dashboard'))

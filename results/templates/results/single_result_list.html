@@ -74,6 +74,14 @@
                 {{ eventinstance.eventdate.month }} | 
                 Friendly Date:{{ eventinstance.eventdate|date:"j F, Y" }} | 
                 Month:{{ eventinstance.eventdate|date:"F" }}<br>
+                {% if request.user.is_superuser %}
+                <a href="{% url 'review_virtual_results' eventinstance.id%}" class="btn btn-outline-black rounded-0 mt-5">
+                    <span class="icon">
+                        <i class="fas fa-chevron-left"></i>
+                    </span>
+                    <span class="text-uppercase">Review Virtual Events</span>
+                </a>
+                {% endif %}
                 <hr>
                 <ul class="list-group list-group-horizontal">
                     <li class="list-group-item column-small">Pos</li>

@@ -24,6 +24,9 @@
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="event-details-container mb-5 mt-md-5">
                     <p class="mb-0">{{ result.athletefirstname }}</p>
+                    <li >{% if r.imageupload %}<a href="{{ r.imageupload.url }}" target="new"><img src="{{ r.imageupload.url }}" height="120px"><br>Open</a>{% else %}No Image Submitted{% endif %}</li>
+                    <li >{% if r.hyperlink %}<A href="{{ r.hyperlink }}" target="new">Review</a>{% else %}No link submitted{% endif %}</li>
+                    <li >{% if r.verifiedforvirtualresult %}VERIFIED{% else %}NOT VERIFIED YET{% endif %}</li>
                     
                     
 
