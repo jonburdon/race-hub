@@ -447,4 +447,17 @@ def verify_result(request, result_id):
     result.verifiedresultforvirtual = True
     result.save()
     messages.success(request, 'Result Verified!')
-    return redirect(reverse('organiser_dashboard'))
+    return redirect(reverse('single_result', args=[result.id]))
+
+@login_required
+def unverify_result(request, result_id):
+    """ Unverify a result is genuine """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
+    result = get_object_or_404(Result, pk=result_id)
+    result.verifiedresultforvirtual = False
+    result.save()
+    messages.success(request, 'Result Unverified!')
+    return redirect(reverse('single_result', args=[result.id]))

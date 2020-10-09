@@ -13,6 +13,7 @@ urlpatterns = [
     path('submit_virtual_result/<int:result_id>/', views.edit_result_time_only, name='edit_result_time_only'),
     path('transfer_result/<int:result_id>/', views.transfer_result, name='transfer_result'),
     path('download_results/', views.download_results, name='download_results'),
-    path('verify_result/<int:result_id>/', views.verify_result, name='verify_result'),        
+    path('verify_result/<int:result_id>/', views.verify_result, name='verify_result'),
+    path('unverify_result/<int:result_id>/', views.unverify_result, name='unverify_result'),           
 
 ]

@@ -110,7 +110,7 @@
                     <li class="list-group-item column-small {% if forloop.counter|divisibleby:2 %}list-group-item-dark{% endif %}">{{ r.chiptime }}</li>
                     <li class="list-group-item column-small {% if forloop.counter|divisibleby:2 %}list-group-item-dark{% endif %} d-none d-md-inline-block">{% if r.imageupload %}<a href="{{ r.imageupload.url }}" target="new"><img src="{{ r.imageupload.url }}" height="60px"><br>Open</a>{% else %}No Image Submitted{% endif %}</li>
                     <li class="list-group-item column-medium {% if forloop.counter|divisibleby:2 %}list-group-item-dark{% endif %} d-none d-md-inline-block">{% if r.hyperlink %}<A href="{{ r.hyperlink }}" target="new">Review</a>{% else %}No link submitted{% endif %}</li>
-                    <li class="list-group-item column-small {% if forloop.counter|divisibleby:2 %}list-group-item-dark{% endif %} d-none d-md-inline-block">{% if r.verifiedforvirtualresult %}YES{% else %}NO{% endif %} | <A href="{% url 'verify_result' r.id %}">Verify Now</a></li>
+                    <li class="list-group-item column-small {% if forloop.counter|divisibleby:2 %}list-group-item-dark{% endif %} d-none d-md-inline-block">{% if r.verifiedresultforvirtual %}YES{% else %}NO{% endif %} | <A href="{% url 'verify_result' r.id %}">Verify Now</a> | <A href="{% url 'unverify_result' r.id %}">Unverify</a></li>
                     <li class="list-group-item column-medium {% if forloop.counter|divisibleby:2 %}list-group-item-dark{% endif %} d-md-none">
                     <button class="btn btn-primary d-md-none" type="button" data-toggle="collapse" data-target="#collapseresult{{ forloop.counter }}" aria-expanded="false" aria-controls="collapseresult">
                     Review
@@ -123,8 +123,11 @@
                 <div class="card card-body">
                 
                     <li >{% if r.imageupload %}<a href="{{ r.imageupload.url }}" target="new"><img src="{{ r.imageupload.url }}" height="60px"><br>Open</a>{% else %}No Image Submitted{% endif %}</li>
-                    <li >{% if r.hyperlink %}<A href="{{ r.hyperlink }}" target="new">Review</a>{% else %}No link submitted{% endif %}</li>
+                    <li >{% if r.hyperlink %}<A href="{{ r.hyperlink }}" target="new">Visit Link</a>{% else %}No link submitted{% endif %}</li>
                     <li >{% if r.verifiedforvirtualresult %}VERIFIED{% else %}NOT VERIFIED YET{% endif %}</li>
+                    <li><A href="{% url 'verify_result' r.id %}">Verify Now</a> </li>
+                    <li><A href="{% url 'unverify_result' r.id %}">Unverify</a></li>
+                    
                 </div>
                 </div>
                 {% endfor %}
