@@ -47,6 +47,11 @@ NB: eu-west-2 for London in django settings.
 
 During Deployment an error was found in the requirements.txt file due to a typo. This was fixed and the deployment process was then successful.
 
+During Deployment a typo was found in Procfile. NB race_hub is the name of the application. race-hub is used in AWS and also as the project name in Heroku.
+
+NB When logging in to deployed app for the first time, to verify email address... this may not appear. Try logging in to front end. This will cause allauth to create the email address in the back end. It can then be verified.
+
+
 
 ### Credits:
 
