@@ -51,6 +51,7 @@ During Deployment a typo was found in Procfile. NB race_hub is the name of the a
 
 NB When logging in to deployed app for the first time, to verify email address... this may not appear. Try logging in to front end. This will cause allauth to create the email address in the back end. It can then be verified.
 
+Bug found during deployment. Image urls were incorrectly coded and did not include {{ MEDIA_URL }} path.
 
 
 ### Credits:
