@@ -45,6 +45,8 @@ NB: Heroku login ipaddress mismatch error: Use `heroku login -i` to login from t
 
 NB: eu-west-2 for London in django settings.
 
+During Deployment an error was found in the requirements.txt file due to a typo. This was fixed and the deployment process was then successful.
+
 
 ### Credits:
 
