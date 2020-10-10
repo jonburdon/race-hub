@@ -427,7 +427,7 @@ def download_results(request):
             'jon@branchoutwebsites.com',
             ['jon@branchoutwebsites.com'],
         )
-    email.attach('dataset.csv', 'text/csv')
+    email.attach('dataset.csv', 'dataset.csv')
     email.send()
 
     messages.info(request, 'Download complete - this will be emailed')
