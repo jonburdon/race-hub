@@ -1,0 +1,1 @@
+web: gunicorn race-hub.wsgi:application

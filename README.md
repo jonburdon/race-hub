@@ -41,6 +41,7 @@ Card number for testing with authentication (triggers popup with overlay)
 ### NB need bulk data import using fixtures for news sets of results, clubs etc:
 NB: Fixtures have not been used to upload bulk product data so import of results data etc.
 
+NB: Heroku login ipaddress mismatch error: Use `heroku login -i` to login from terminal rather than opening browser
 
 
 
