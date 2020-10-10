@@ -43,6 +43,7 @@ NB: Fixtures have not been used to upload bulk product data so import of results
 
 NB: Heroku login ipaddress mismatch error: Use `heroku login -i` to login from terminal rather than opening browser
 
+NB: eu-west-2 for London in django settings.
 
 
 ### Credits:
