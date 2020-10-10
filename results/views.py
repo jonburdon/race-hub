@@ -424,7 +424,7 @@ def download_results(request):
     email = EmailMessage(
             'Subject',
             'Body',
-            'hello@racehub.com',
+            'jon@branchoutwebsites.com',
             ['jon@branchoutwebsites.com'],
         )
     email.attach('dataset.csv', 'text/csv')
