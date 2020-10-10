@@ -36,6 +36,12 @@ Responsive Bootstrap Mega Menu: https://codepen.io/JakubHonisek/pen/xXaYqg
 Card number for testing with authentication (triggers popup with overlay)
 4000 0025 0000 3155
 
+## Deployment
+
+### NB need bulk data import using fixtures for news sets of results, clubs etc:
+NB: Fixtures have not been used to upload bulk product data so import of results data etc.
+
+
 
 
 ### Credits:
