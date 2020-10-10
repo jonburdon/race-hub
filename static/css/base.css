@@ -73,6 +73,7 @@ hr { display: block; height: 1px;
 #hero-logo-text {
     margin-left: 10px;
     color: white !important;
+    font-size: 32pt; 
 }
 
 .main-logo-link {
@@ -82,8 +83,7 @@ hr { display: block; height: 1px;
 
 .shop-now-button {
     background: var(--primary-color-dark);
-    color: white;
-    min-width: 260px;  
+    color: white;  
 }
 
 .action-button {
@@ -377,9 +377,15 @@ a.category-badge > span.badge:hover {
         left: 0;
         z-index: 1030;
     }
+    .navbar-expand-lg {
+        justify-content: center;
+
+    }
 
 
 }
+
+
 
 /* Table formatting */
 
@@ -508,4 +514,14 @@ width: 50px;
   .container {
     max-width: 80%;
   }
+}
+/* Responsive text in header */
+@media screen and (min-width: 768px) {
+  #hero-logo-text {
+    font-size: 42pt; 
+    }
+    .shop-now-button {
+
+    min-width: 260px;  
+}
 }
