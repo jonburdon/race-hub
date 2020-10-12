@@ -20,7 +20,8 @@ Racehub is race entry and results management system for amateur athletes and eve
 ## [UX](#ux)
 [Developer Aims](#developer-aims) | [UX](#ux) | [User Stories and Corresponding Features](#user-stories-and-features) | [UI Structure](#ui-structure) | [Visual Layout](#visual-layout) | [Technologies Used](#technologies-used) | [Information Architecture](#information-architecture) | [Deployment](#deployment) | [Local Development](#local-development) | [Testing](#testing) | [Acknowledgements](#acknowledgements)
 
-### User Stories
+## [User Stories and Corresponding Features](#user-stories-and-features)
+[Developer Aims](#developer-aims) | [UX](#ux) | [User Stories and Corresponding Features](#user-stories-and-features) | [UI Structure](#ui-structure) | [Visual Layout](#visual-layout) | [Technologies Used](#technologies-used) | [Information Architecture](#information-architecture) | [Deployment](#deployment) | [Local Development](#local-development) | [Testing](#testing) | [Acknowledgements](#acknowledgements)
 
 | User Story ID | As a / an | I want to be able to... | ... so that I can | Existing Features | Suggested future features |
 |---|---|---|---|---|---|
@@ -36,44 +37,27 @@ Racehub is race entry and results management system for amateur athletes and eve
 | 2c |  | Recover my password | Authentication added |  | 
 | 2e |  | Receive email confirmation after registering | Email confirmation added |  | 
 | 2f |  | View a personalised user profile |  |  | 
-| 2g |  | "Cancel entry |  transfer my entry to another user |  swap my entry to another event from same organiser." | Entry can be transferred to other users by changing ID | Verification that all details have genuinely been changed when a registration is transferred. | 
+| 2g |  | Cancel entry |  transfer my entry to another user |  swap my entry to another event from same organiser." | Entry can be transferred to other users by changing ID | Verification that all details have genuinely been changed when a registration is transferred. | 
 |  |  | Sorting and Searching |  |  | 
-| 3a |  | Sort the list of events | "Easily identify events by date, discipline, distance |  | 
-| 3b |  | Filter to find only events in a specific category |  |  | 
-| 3c |  | sort multiple properties of events simultaneously | Eg find a 10k road event or set of results in Yorkshire |  | 
-| 3d |  | Search for an event or set of results by name. |  |  | 
+| 3a |  | Sort the list of events | Easily identify events by date, discipline, distance |  | 
+| 3b |  | Filter to find only events in a specific category | date, disciple |  | 
+| 3c |  | Sort multiple properties of events simultaneously | Eg find a 10k road event or set of results in Yorkshire | After filtering by discipline, sorting features can can used find by distance | Add colours and icons to make different categories of events stand out |
+| 3d |  | Search for results. | Search for results by athlete name, club or age category |  | 
 | 3e |  | Easily enter an event |  |  | 
-| 3f |  | Easily edit my own Athlete details |  |  | 
-| 3g |  | "Enter multiple athletes for one event at the same time |  and pay for their entry all at once." |  |  | 
+| 3f |  | Easily edit my own Athlete details | Athlete profile can be edited |  | 
+| 3g |  | Enter multiple athletes for one event at the same time |  and pay for their entry all at once. | Self, friends or family can all be added to the same basket |  | 
 | 3h |  |  |  |  | 
 | 3i |  |  |  |  | 
-| 3j |  | Add results for virtual races I am registered for |  |  | 
-| 3k |  | Transfer my place to another registered site user (or user not registered on this site?) |  |  | 
-| 3l |  |  |  |  | 
-|  |  | Purchasing and Checkout |  |  | 
-| 4a |  |  |  |  | 
-| 4b |  |  |  |  | 
+| 3j |  | Add results for virtual races I am registered for | Result can be submitted as photo or hyperlink |  | 
+
+|Admin and management  | 
+| 4a | Club or organisation official | Manage teams | my club has it's own private page |  |  |
+| 4b |  | Make my club events private  | they are not on the main listing pages |  |  | 
 | 4c |  |  |  |  | 
-| 4d |  |  |  |  | 
-| 4e |  |  |  |  | 
-|  |  | Admin and management |  |  | 
-| 5a | Club Official | Manage teams |  |  | 
-| 5b |  | "Make my club events private to that they are only listed on my club page |  not on the main listing pages" |  |  | 
-| 5c |  |  |  |  | 
-| 5d | Event Organiser | Add events |  |  | 
-| 5e |  | Add results by bulk upload |  |  | 
-| 5f |  | Add individual results 'live' at the finish line. |  |  | 
-| 5g |  | "Convert mass start events in to virtual events |  postpone or cancel them." |  |  | 
-| 5h |  |  |  |  | 
-| 5i | Site Owner |  |  |  | 
-| 5j |  |  |  | |
-
-### Site Owner Stories
-
-
-
-## [User Stories and Corresponding Features](#user-stories-and-features)
-[Developer Aims](#developer-aims) | [UX](#ux) | [User Stories and Corresponding Features](#user-stories-and-features) | [UI Structure](#ui-structure) | [Visual Layout](#visual-layout) | [Technologies Used](#technologies-used) | [Information Architecture](#information-architecture) | [Deployment](#deployment) | [Local Development](#local-development) | [Testing](#testing) | [Acknowledgements](#acknowledgements)
+| 4d | Event Organiser | Add events |  |  | 
+| 4e |  | Add results by bulk upload |  |  | 
+| 4f |  | Download results in bulk | Results can be exported to email account from Organiser Profile | Select one specific result set for download | 
+| 4g |  | Add individual results 'live' at the finish line. | Single results can be added | Quick input form so that results are easier to add | 
 
 
 ## [UI Structure](#ui-structure)
@@ -85,9 +69,80 @@ Racehub is race entry and results management system for amateur athletes and eve
 ## [Technologies Used](#technologies-used)
 [Developer Aims](#developer-aims) | [UX](#ux) | [User Stories and Corresponding Features](#user-stories-and-features) | [UI Structure](#ui-structure) | [Visual Layout](#visual-layout) | [Technologies Used](#technologies-used) | [Information Architecture](#information-architecture) | [Deployment](#deployment) | [Local Development](#local-development) | [Testing](#testing) | [Acknowledgements](#acknowledgements)
 
+#### Languages:
+* HTML for page structure and contents
+* CSS for styling the content
+* Javascript for DOM manipulation and stripe payment processing
+* Python3 for application logic
+
+#### Framework:
+* Django (v3.1.1) for application backend, development database provision (SQLite3), routing and template manipulation;
+
+#### Libraries:
+* [Bootstrap](https://getbootstrap.com/) used for grid layout and front end ui components.
+* [jQuery](https://jquery.com/) to easier DOM manipulation
+* [Google Fonts](https://fonts.google.com/)
+* [Font Awesome](https://fontawesome.com/) for icons
+
+#### Development:
+* [Gitpod](https://www.gitpod.io/) Used for ide
+* [Github](https://github.com/) Used for version control
+
+#### Code Validation Tools:
+* [W3C Markup Validation Service](https://validator.w3.org/) was used to validate HTML and CSS code;
+* [JSHint](https://jshint.com/) was used to validate JavaScript code;
+* [PEP8 online](http://pep8online.com/) to validate Python code;
+
+#### Deployment:
+* [Amazon Web Services](https://aws.amazon.com/free/) S3 used for image Hosting
+* [Heroku](https://dashboard.heroku.com/apps) used for application online deployment and production database provision (PostgresSQL)
+
+#### External (third party) services:
+* [Gmail](https://www.google.com/intl/en_uk/gmail/about/) for sending email
+* [Stripe](https://dashboard.stripe.com/) for credit card payment processing
+
 ## [Information Architecture](#information-architecture)
 [Developer Aims](#developer-aims) | [UX](#ux) | [User Stories and Corresponding Features](#user-stories-and-features) | [UI Structure](#ui-structure) | [Visual Layout](#visual-layout) | [Technologies Used](#technologies-used) | [Information Architecture](#information-architecture) | [Deployment](#deployment) | [Local Development](#local-development) | [Testing](#testing) | [Acknowledgements](#acknowledgements)
 
+
+### Data Models
+
+#### The User Model
+The standard Django user model, `django.contrib.auth.models` was used for this project.
+
+#### Cart app
+Order Model:
+| Key in db | Field Type | Validation |
+|---|---|---|
+| order_number | CharField | max_length=32, null=False, editable=False | 
+| user_profile | ForeignKey | UserProfile, on_delete=models.SET_NULL, null=True blank=True, related_name='orders' | 
+| full_name | CharField | max_length=50, null=False, blank=False | 
+| email | EmailField | max_length=254, null=False, blank=False | 
+| phone_number | CharField | max_length=20, null=False, blank=False | 
+| country = CountryField | blank_label='Country *', null=False, blank=False | 
+| postcode | CharField | max_length=20, null=True, blank=True | 
+| town_or_city | CharField | max_length=40, null=False, blank=False | 
+| street_address1 | CharField | max_length=80, null=False, blank=False | 
+| street_address2 | CharField | max_length=80, null=True, blank=True | 
+| county | CharField | max_length=80, null=True, blank=True | 
+| date | DateTimeField | auto_now_add=True | 
+| delivery_cost | DecimalField | max_digits=6, decimal_places=2, null=False, default=0 | 
+| order_total | DecimalField | max_digits=10, decimal_places=2, null=False, default=0 | 
+| grand_total | DecimalField | max_digits=10, decimal_places=2, null=False, default=0 | 
+| original_cart | TextField | null=False, blank=False, default='' | 
+| stripe_pid | CharField | max_length=254, null=False, blank=False, default='' | 
+
+#### Checkout app
+
+#### Clubs app
+
+#### Events app
+
+#### Home app
+
+#### Profiles app
+
+#### Results app
 
 ## [Deployment](#deployment)
 [Developer Aims](#developer-aims) | [UX](#ux) | [User Stories and Corresponding Features](#user-stories-and-features) | [UI Structure](#ui-structure) | [Visual Layout](#visual-layout) | [Technologies Used](#technologies-used) | [Information Architecture](#information-architecture) | [Deployment](#deployment) | [Local Development](#local-development) | [Testing](#testing) | [Acknowledgements](#acknowledgements)
