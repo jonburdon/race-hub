@@ -111,7 +111,8 @@ Racehub is race entry and results management system for amateur athletes and eve
 The standard Django user model, `django.contrib.auth.models` was used for this project.
 
 #### Cart app
-Order Model:
+
+**Order Model:**
 | Key in db | Field Type | Validation |
 |---|---|---|
 | order_number | CharField | max_length=32, null=False, editable=False | 
@@ -131,18 +132,98 @@ Order Model:
 | grand_total | DecimalField | max_digits=10, decimal_places=2, null=False, default=0 | 
 | original_cart | TextField | null=False, blank=False, default='' | 
 | stripe_pid | CharField | max_length=254, null=False, blank=False, default='' | 
+**Order Line model:**
+
+| Key in db | Field Type | Validation |
+|---|---|---|
+| order  | ForeignKey | Order, null=False, blank=False, | on_delete=models.CASCADE, related_name='lineitems' | 
+| event  | ForeignKey | EventInstance, null=False, blank=False, |on_delete=models.CASCADE | 
+| which_athlete  | CharField | max_length=2, null=True, blank=True | 
+| quantity  | IntegerField | null=False, blank=False, default=0 | 
+| lineitem_total  | DecimalField | max_digits=6, decimal_places=2, null=False, blank=False, editable=False | 
+
 
 #### Checkout app
 
+| Key in db | Field Type | Validation |
+|---|---|---|
+
 #### Clubs app
+
+**Club model**
+
+| Key in db | Field Type | Validation |
+|---|---|---|
 
 #### Events app
 
+**Discipline model**
+**Distances model**
+**Format model**
+**Organiser model**
+**Event Instance model**
+**Event model**
+
+| Key in db | Field Type | Validation |
+|---|---|---|
+
 #### Home app
+
+| Key in db | Field Type | Validation |
+|---|---|---|
 
 #### Profiles app
 
+**User Profile model**
+**Athlete Profile model**
+**Racehub Friends model**
+**Non Racehub Friends model**
+
+| Key in db | Field Type | Validation |
+|---|---|---|
+
 #### Results app
+
+**Result model**
+
+| Key in db | Field Type | Validation |
+|---|---|---|
+| eventinstance  | ForeignKey | EventInstance, on_delete=models.SET_NULL, null=True, blank=True | 
+| distance  | ForeignKey | Distance, null=True, blank=True, on_delete=models.SET_NULL | 
+| discipline  | ForeignKey | Discipline, null=True, blank=True, on_delete=models.SET_NULL | 
+| event_format  | ForeignKey | Format, null=True, blank=True, on_delete=models.SET_NULL | 
+| athletefirstname  | CharField | max_length=40, null=True, blank=True | 
+| athletesurname  | CharField | max_length=40, null=True, blank=True | 
+| athlete  | CharField | max_length=125, null=True, blank=True | 
+| dateofbirth  | DateField | null=True, blank=True | 
+| gender  | CharField | 
+    max_length=2,
+    choices=gender_choices,
+    null=True, blank=True
+ | 
+| bibnumber  | DecimalField | max_digits=6, decimal_places=0, null=True, blank=True | 
+| agecat  | CharField | 
+    max_length=6,
+    choices=age_cat_choices,
+    default=Senior,
+    null=True, blank=True
+ | 
+| athlete_type  | CharField | 
+    max_length=18,
+    choices=athlete_type_choices,
+    default=Myself,
+    null=True, blank=True
+ | 
+| club  | ForeignKey | Club, null=True, blank=True, on_delete=models.SET_NULL | 
+| chiptime  | DurationField | null=True, blank=True | 
+| guntime  | DurationField | null=True, blank=True | 
+| isvirtual  | BooleanField | null=True, blank=True, default=False | 
+| hyperlink  | CharField | max_length=240, null=True, blank=True | 
+| imageupload  | ImageField | null=True, blank=True | 
+| verifiedresultforvirtual  | BooleanField | null=True, blank=True, default=False | 
+| linkedathlete  | DecimalField | max_digits=3, decimal_places=0, null=True, blank=True | 
+
+
 
 ## [Deployment](#deployment)
 [Developer Aims](#developer-aims) | [UX](#ux) | [User Stories and Corresponding Features](#user-stories-and-features) | [UI Structure](#ui-structure) | [Visual Layout](#visual-layout) | [Technologies Used](#technologies-used) | [Information Architecture](#information-architecture) | [Deployment](#deployment) | [Local Development](#local-development) | [Testing](#testing) | [Acknowledgements](#acknowledgements)
