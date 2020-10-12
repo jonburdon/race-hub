@@ -32,11 +32,10 @@ Racehub is race entry and results management system for amateur athletes and eve
 |   |   |   |   |   |   |
 |   |   |   |   |   |   |
 
-|User Story ID|As a / An|I want to be able to ...|so that I can...
-|||Viewing and Navigation|||
-|1a|Visitor|View a list of events|select one to enter||
-|1b||View race results|find performances||
-|1c||Quickly identify an event in my area and discipline|enter an event that suits my preferences||
+
+| 1a | Visitor | View a list of events | select one to enter | |
+ | 1b |  | View race results | find performances |  | 
+ | 1c |  | Quickly identify an event in my area and discipline | enter an event that suits my preferences |  | 
 |1d||Add a whole series or championship to my cart at once. |||
 |1e||Easily enter my friends who are / are not registered on this site. |||
 |1f|||||
