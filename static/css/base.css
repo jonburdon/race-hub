@@ -481,7 +481,7 @@ a.category-badge > span.badge:hover {
 	padding: 15px;
 }
 .dropdown-menu.megamenu {
-
+max-height: 60vh;
   width: 100%;
   overflow-y: scroll;
   -webkit-overflow-scrolling:touch; // mobile safari
