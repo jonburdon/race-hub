@@ -32,6 +32,52 @@ Racehub is race entry and results management system for amateur athletes and eve
 |   |   |   |   |   |   |
 |   |   |   |   |   |   |
 
+|User Story ID|As a / An|I want to be able to ...|so that I can...
+|||Viewing and Navigation|||
+|1a|Visitor|View a list of events|select one to enter||
+|1b||View race results|find performances||
+|1c||Quickly identify an event in my area and discipline|enter an event that suits my preferences||
+|1d||Add a whole series or championship to my cart at once. |||
+|1e||Easily enter my friends who are / are not registered on this site. |||
+|1f|||||
+|||Registration and User Accounts|||
+|2a|Registered Athlete|Easily register for an account|||
+|2b||Log in and out simply with social media account specifically facebook|||
+|2c||Recover my password|||
+|2e||Receive email confirmation after registering|||
+|2f||View a personalised user profile|||
+|2g||"Cancel entry| transfer my entry to another user| swap my entry to another event from same organiser."|||
+|||Sorting and Searching|||
+|3a||Sort the list of events|"Easily identify events by month| region| discipline| distance"||
+|3b||Filter to find only events in a specific category|||
+|3c||sort multiple properties of events simultaneously|Eg find a 10k road event or set of results in Yorkshire||
+|3d||Search for an event or set of results by name.|||
+|3e||Easily enter an event|||
+|3f||Easily edit my own Athlete details|||
+|3g||"Enter multiple athletes for one event at the same time| and pay for their entry all at once."|||
+|3h|||||
+|3i|||||
+|3j||Add results for virtual races I am registered for|||
+|3k||Transfer my place to another registered site user (or user not registered on this site?)|||
+|3l|||||
+|||Purchasing and Checkout|||
+|4a|||||
+|4b|||||
+|4c|||||
+|4d|||||
+|4e|||||
+|||Admin and management|||
+|5a|Club Official|Manage teams|||
+|5b||"Make my club events private to that they are only listed on my club page| not on the main listing pages"|||
+|5c|||||
+|5d|Event Organiser|Add events|||
+|5e||Add results by bulk upload|||
+|5f||Add individual results 'live' at the finish line.|||
+|5g||"Convert mass start events in to virtual events| postpone or cancel them."|||
+|5h|||||
+|5i|Site Owner||||
+|5j|||||
+
 ### Site Owner Stories
 
 
