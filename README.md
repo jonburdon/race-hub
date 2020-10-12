@@ -24,24 +24,21 @@ Racehub is race entry and results management system for amateur athletes and eve
 
 | User Story ID | As a / an | I want to be able to... | ... so that I can | Existing Features | Suggested future features |
 |---|---|---|---|---|---|
-|    **Viewing and Navigation**  |
-| 1a | Visitor | View a list of events | select one to enter |   |   |
-
-| 1a | Visitor | View a list of events | select one to enter | | |
-| 1b |  | View race results | find performances |  | |
-| 1c |  | Quickly identify an event in my area and discipline | enter an event that suits my preferences |  | |
+|  Viewing and Navigation  |
+| 1a | Visitor | View a list of events | select one to enter | List view with search and filters, , Filter by distance, discipline, Sort by distance, date, price | Add filters to map view  |
+| 1b |  | View race results | find performances | Find results by name, sort by date or name | Add further filtering controls |
+| 1c |  | Quickly identify an event in my area and discipline | enter an event that suits my preferences | Map view | Add filters to map view |
 | 1d |  | Add a whole series or championship to my cart at once.  |  |  | 
-| 1e |  | Easily enter my friends who are / are not registered on this site.  |  |  | 
-| 1f |  |  |  |  | 
-|  |  | Registration and User Accounts |  |  | 
-| 2a | Registered Athlete | Easily register for an account |  |  | 
+| 1e |  | Easily enter my friends who are / are not registered on this site.  | 'Family and Friends' can be added and entered for events. Registered users can be added as 'Racehub Friends' | Send a friends request to other site users, search athlete feature. | 
+| Registration and User Accounts  | 
+| 2a | Registered Athlete | Easily register for an account | Account creation automatically creates athlete profile | Popup 'tour' guides user through the process. | 
 | 2b |  | Log in and out simply with social media account specifically facebook |  |  | 
-| 2c |  | Recover my password |  |  | 
-| 2e |  | Receive email confirmation after registering |  |  | 
+| 2c |  | Recover my password | Authentication added |  | 
+| 2e |  | Receive email confirmation after registering | Email confirmation added |  | 
 | 2f |  | View a personalised user profile |  |  | 
-| 2g |  | "Cancel entry |  transfer my entry to another user |  swap my entry to another event from same organiser." |  |  | 
+| 2g |  | "Cancel entry |  transfer my entry to another user |  swap my entry to another event from same organiser." | Entry can be transferred to other users by changing ID | Verification that all details have genuinely been changed when a registration is transferred. | 
 |  |  | Sorting and Searching |  |  | 
-| 3a |  | Sort the list of events | "Easily identify events by month |  region|  discipline |  distance" |  | 
+| 3a |  | Sort the list of events | "Easily identify events by date, discipline, distance |  | 
 | 3b |  | Filter to find only events in a specific category |  |  | 
 | 3c |  | sort multiple properties of events simultaneously | Eg find a 10k road event or set of results in Yorkshire |  | 
 | 3d |  | Search for an event or set of results by name. |  |  | 
