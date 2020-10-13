@@ -63,8 +63,42 @@ Racehub is race entry and results management system for amateur athletes and eve
 ## [UI Structure](#ui-structure)
 [Developer Aims](#developer-aims) | [UX](#ux) | [User Stories and Corresponding Features](#user-stories-and-features) | [UI Structure](#ui-structure) | [Visual Layout](#visual-layout) | [Technologies Used](#technologies-used) | [Information Architecture](#information-architecture) | [Deployment](#deployment) | [Local Development](#local-development) | [Testing](#testing) | [Acknowledgements](#acknowledgements)
 
+The following UI layouts were considered essential for the implementation of user stories:
+
+- Navigation menu
+- Home Page
+- User login form
+- User registration form
+- Log out button
+- Event listing page
+- Result listing page
+- Cart page
+- Checkout page
+- User Dashboard page
+- Organiser Dashboard page
+- Add and manage Event page(s)
+- Add and manage results page(s)
+
+Bootstrap components used:
+- [Grid](https://getbootstrap.com/docs/4.0/layout/grid/)
+- [List Group](https://getbootstrap.com/docs/4.0/components/list-group/)
+- [Dropdowns](https://getbootstrap.com/docs/4.0/components/dropdowns/)
+
 ## [Visual Layout](#visual-layout)
 [Developer Aims](#developer-aims) | [UX](#ux) | [User Stories and Corresponding Features](#user-stories-and-features) | [UI Structure](#ui-structure) | [Visual Layout](#visual-layout) | [Technologies Used](#technologies-used) | [Information Architecture](#information-architecture) | [Deployment](#deployment) | [Local Development](#local-development) | [Testing](#testing) | [Acknowledgements](#acknowledgements)
+
+The visual layout was inspired by the Code Institute Boutique Ado project and also various reference sites.
+- [Sports Shoes](https://www.sportsshoes.com/)
+- [Yonda](https://yondasports.com/)
+- [Findrace](https://findarace.com/)
+- [Event Entry](https://findarace.com/)
+- [Trail Events](https://findarace.com/)
+- [SI Entries](https://www.sientries.co.uk/)
+- [Entry Central](https://www.entrycentral.com/)
+- [UKresults](https://findarace.com/)
+
+Bootstrap was used to achieve a responsive grid layout and add UI components.
+Logos were designed by the developer.
 
 ## [Technologies Used](#technologies-used)
 [Developer Aims](#developer-aims) | [UX](#ux) | [User Stories and Corresponding Features](#user-stories-and-features) | [UI Structure](#ui-structure) | [Visual Layout](#visual-layout) | [Technologies Used](#technologies-used) | [Information Architecture](#information-architecture) | [Deployment](#deployment) | [Local Development](#local-development) | [Testing](#testing) | [Acknowledgements](#acknowledgements)
@@ -101,6 +135,10 @@ Racehub is race entry and results management system for amateur athletes and eve
 * [Gmail](https://www.google.com/intl/en_uk/gmail/about/) for sending email
 * [Stripe](https://dashboard.stripe.com/) for credit card payment processing
 
+#### Utilities:
+* [Markdown Table Generator](https://www.tablesgenerator.com/markdown_tables)
+
+
 ## [Information Architecture](#information-architecture)
 [Developer Aims](#developer-aims) | [UX](#ux) | [User Stories and Corresponding Features](#user-stories-and-features) | [UI Structure](#ui-structure) | [Visual Layout](#visual-layout) | [Technologies Used](#technologies-used) | [Information Architecture](#information-architecture) | [Deployment](#deployment) | [Local Development](#local-development) | [Testing](#testing) | [Acknowledgements](#acknowledgements)
 
@@ -108,7 +146,7 @@ Racehub is race entry and results management system for amateur athletes and eve
 ## Data Models
 
 #### The User Model
-The standard Django user model, `django.contrib.auth.models` was used for this project.
+The standard Django user model, `django.contrib.auth.models` was used for this project. NB This is not to be confused with the User and Athlete models used in the Profile app.
 
 ### Cart app
 
@@ -145,8 +183,7 @@ The standard Django user model, `django.contrib.auth.models` was used for this p
 
 ### Checkout app
 
-| Key in db | Field Type | Validation |
-|---|---|---|
+This app does not have any models.
 
 ### Clubs app
 
@@ -158,6 +195,9 @@ The standard Django user model, `django.contrib.auth.models` was used for this p
 ### Events app
 
 **Discipline model**
+
+Contains type of race eg Road, Fell, Trail, Cross Country. Behaves like 'categories' in the data structure.
+
 | Key in db | Field Type | Validation |
 |---|---|---|
 | name  | CharField | max_length=254 | 
@@ -165,12 +205,16 @@ The standard Django user model, `django.contrib.auth.models` was used for this p
 
 **Distances model**
 
+Contains type of race eg 10k, Half Marathonn Marathon. Behaves like 'categories' in the data structure.
+
 | Key in db | Field Type | Validation |
 |---|---|---|
 | name  | CharField | max_length=254 | 
 | friendly_name  | CharField | max_length=254, null=True, blank=True | 
 
 **Format model**
+
+Contains type of race eg Mass Start, Virtual. Behaves like 'categories' in the data structure.
 
 | Key in db | Field Type | Validation |
 |---|---|---|
@@ -186,6 +230,8 @@ The standard Django user model, `django.contrib.auth.models` was used for this p
 
 **Event Instance model**
 
+An event instance would be created each time an event happens. Eg. The CI Marathon 2019, The CI Marathon 2020. Event Instances are then added to the checkout process. Results are also linked to a specific Event Instance.
+
 | Key in db | Field Type | Validation |
 |---|---|---|
 | name  | CharField | max_length=254 | 
@@ -197,6 +243,8 @@ The standard Django user model, `django.contrib.auth.models` was used for this p
 | isvirtual  | BooleanField | null=True, blank=True, default=False | 
 
 **Event model**
+
+Sometimes referred to in the user dashboard front end as the 'parent event.' This contains overall information about the event over time.
 
 | Key in db | Field Type | Validation |
 |---|---|---|
@@ -221,12 +269,13 @@ The standard Django user model, `django.contrib.auth.models` was used for this p
 
 ### Home app
 
-| Key in db | Field Type | Validation |
-|---|---|---|
+This app contains no models.
 
 ### Profiles app
 
 **User Profile model**
+
+Used to store default delivery information. This is passed to Stripe.
 
 | Key in db | Field Type | Validation |
 |---|---|---|
@@ -240,6 +289,8 @@ The standard Django user model, `django.contrib.auth.models` was used for this p
 | default_country = CountryField | blank_label='Country', null=True, blank=True | 
 
 **Athlete Profile model**
+
+Used to store Athlete information. This is not passed to Stripe.
 
 | Key in db | Field Type | Validation |
 |---|---|---|
@@ -258,6 +309,8 @@ The standard Django user model, `django.contrib.auth.models` was used for this p
 
 **Racehub Friends model**
 
+Used to link one Athlete Profile to another Athlete profile.
+
 | Key in db | Field Type | Validation |
 |---|---|---|
 | rfuserprofile  | ForeignKey | User, null=True, blank=True, on_delete=models.SET_NULL | 
@@ -265,6 +318,8 @@ The standard Django user model, `django.contrib.auth.models` was used for this p
 | myfriendsracehubid  | DecimalField | max_digits=10, decimal_places=0, null=True, blank=True | 
 
 **Non Racehub Friends model**
+
+Used to event athletes who are not registered on Racehub.
 
 | Key in db | Field Type | Validation |
 |---|---|---|
@@ -584,57 +639,9 @@ else:
     DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
 ```
 
+#### Further notes on deployment process
 
 
-## [Local Development](#local-development)
-[Developer Aims](#developer-aims) | [UX](#ux) | [User Stories and Corresponding Features](#user-stories-and-features) | [UI Structure](#ui-structure) | [Visual Layout](#visual-layout) | [Technologies Used](#technologies-used) | [Information Architecture](#information-architecture) | [Deployment](#deployment) | [Local Development](#local-development) | [Testing](#testing) | [Acknowledgements](#acknowledgements)
-
-## [Testing](#testing)
-[Developer Aims](#developer-aims) | [UX](#ux) | [User Stories and Corresponding Features](#user-stories-and-features) | [UI Structure](#ui-structure) | [Visual Layout](#visual-layout) | [Technologies Used](#technologies-used) | [Information Architecture](#information-architecture) | [Deployment](#deployment) | [Local Development](#local-development) | [Testing](#testing) | [Acknowledgements](#acknowledgements)
-
-## [Acknowledgements](#acknowledgements)
-[Developer Aims](#developer-aims) | [UX](#ux) | [User Stories and Corresponding Features](#user-stories-and-features) | [UI Structure](#ui-structure) | [Visual Layout](#visual-layout) | [Technologies Used](#technologies-used) | [Information Architecture](#information-architecture) | [Deployment](#deployment) | [Local Development](#local-development) | [Testing](#testing) | [Acknowledgements](#acknowledgements)
-
-
-### Nice to have
-- dropdowns open on hover (desktop)
-
-
-
-## Navigation
-Used advice from https://stackoverflow.com/questions/29752882/cant-scroll-within-mobile-drop-down-nav/29753214 to make mobile mega dropdowns scroll on mobile devices
-Refactored code, based on: https://codepen.io/JakubHonisek/pen/xXaYqg
-Code for mobile view buttons refacroted from Code Institute tutorial
-
-
-
-## Home Page App
-
-- Pillow installed to handle image field
-
-
-## Events App
-- Inspiration for Bootstrap cards taken from: https://codepen.io/aminulhchy/pen/RVeJMZ
-
-## Known Issues
-- Remove item from cart removes all entries for this event, not the single athlete.
-
-### Testing
-
-Navigation elements from https://codepen.io/skywalkapps/pen/VeNzwG were found to be incompatible with Bootstrap 4.
-
-### References and Acknowledgements:
-Responsive Bootstrap Mega Menu: https://codepen.io/JakubHonisek/pen/xXaYqg
-
-#### Stripe
-
-Card number for testing with authentication (triggers popup with overlay)
-4000 0025 0000 3155
-
-## Deployment
-
-### NB need bulk data import using fixtures for news sets of results, clubs etc:
-NB: Fixtures have not been used to upload bulk product data so import of results data etc.
 
 NB: Heroku login ipaddress mismatch error: Use `heroku login -i` to login from terminal rather than opening browser
 
@@ -648,8 +655,64 @@ NB When logging in to deployed app for the first time, to verify email address..
 
 Bug found during deployment. Image urls were incorrectly coded and did not include {{ MEDIA_URL }} path.
 
+## [Local Development](#local-development)
+[Developer Aims](#developer-aims) | [UX](#ux) | [User Stories and Corresponding Features](#user-stories-and-features) | [UI Structure](#ui-structure) | [Visual Layout](#visual-layout) | [Technologies Used](#technologies-used) | [Information Architecture](#information-architecture) | [Deployment](#deployment) | [Local Development](#local-development) | [Testing](#testing) | [Acknowledgements](#acknowledgements)
 
-### Credits:
+## [Testing](#testing)
+[Developer Aims](#developer-aims) | [UX](#ux) | [User Stories and Corresponding Features](#user-stories-and-features) | [UI Structure](#ui-structure) | [Visual Layout](#visual-layout) | [Technologies Used](#technologies-used) | [Information Architecture](#information-architecture) | [Deployment](#deployment) | [Local Development](#local-development) | [Testing](#testing) | [Acknowledgements](#acknowledgements)
 
+### Testing
+
+Navigation elements from https://codepen.io/skywalkapps/pen/VeNzwG were found to be incompatible with Bootstrap 4.
+
+Card number for testing with authentication (triggers popup with overlay)
+4000 0025 0000 3155
+
+### Automatic Testing
+
+### Manual Testing
+
+Manual testing was performed in a three step approach:
+
+- When Deployed to Production, a blank database was used and the data added as if using the site as a site administrator. This helped identify issues with the front end Organiser Dashboard.
+- Testing of User Stories. Testing of Features and Defensive Design
+- Device testing.
+
+#### Issues Identified during testing:
+
+**Issue #1** List testing issues here.
+
+**Issue #2**
+
+**Issue #3**
+
+**Issue #4**
+
+## [Acknowledgements](#acknowledgements)
+[Developer Aims](#developer-aims) | [UX](#ux) | [User Stories and Corresponding Features](#user-stories-and-features) | [UI Structure](#ui-structure) | [Visual Layout](#visual-layout) | [Technologies Used](#technologies-used) | [Information Architecture](#information-architecture) | [Deployment](#deployment) | [Local Development](#local-development) | [Testing](#testing) | [Acknowledgements](#acknowledgements)
+
+- The developer made close reference to the Code Institute tutorials for core logic, base.css and some front end templates. Original code was written to handle multiple types of event entry, connect these with the athlete and results models via the webhook handler.
+- Inspiration for Bootstrap cards taken from: https://codepen.io/aminulhchy/pen/RVeJMZ
+
+Navigation:
+- Used advice from https://stackoverflow.com/questions/29752882/cant-scroll-within-mobile-drop-down-nav/29753214 to make mobile mega dropdowns scroll on mobile devices
+- Refactored code, based on: https://codepen.io/JakubHonisek/pen/xXaYqg
+Code for mobile view buttons refactored from Code Institute tutorial
+- Responsive Bootstrap Mega Menu: https://codepen.io/JakubHonisek/pen/xXaYqg
+
+#### Media:
 - icons licensed and used from https://uxwing.com/
 - logos created by the author using Boxy SVG for macos
+
+
+
+
+## Known Issues
+- Remove item from cart removes all entries for this event, not the single athlete.
+
+
+
+
+
+
+
