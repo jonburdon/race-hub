@@ -105,12 +105,12 @@ Racehub is race entry and results management system for amateur athletes and eve
 [Developer Aims](#developer-aims) | [UX](#ux) | [User Stories and Corresponding Features](#user-stories-and-features) | [UI Structure](#ui-structure) | [Visual Layout](#visual-layout) | [Technologies Used](#technologies-used) | [Information Architecture](#information-architecture) | [Deployment](#deployment) | [Local Development](#local-development) | [Testing](#testing) | [Acknowledgements](#acknowledgements)
 
 
-### Data Models
+## Data Models
 
 #### The User Model
 The standard Django user model, `django.contrib.auth.models` was used for this project.
 
-#### Cart app
+### Cart app
 
 **Order Model:**
 | Key in db | Field Type | Validation |
@@ -132,8 +132,8 @@ The standard Django user model, `django.contrib.auth.models` was used for this p
 | grand_total | DecimalField | max_digits=10, decimal_places=2, null=False, default=0 | 
 | original_cart | TextField | null=False, blank=False, default='' | 
 | stripe_pid | CharField | max_length=254, null=False, blank=False, default='' | 
-**Order Line model:**
 
+**Order Line model:**
 | Key in db | Field Type | Validation |
 |---|---|---|
 | order  | ForeignKey | Order, null=False, blank=False, | on_delete=models.CASCADE, related_name='lineitems' | 
@@ -143,44 +143,142 @@ The standard Django user model, `django.contrib.auth.models` was used for this p
 | lineitem_total  | DecimalField | max_digits=6, decimal_places=2, null=False, blank=False, editable=False | 
 
 
-#### Checkout app
+### Checkout app
 
 | Key in db | Field Type | Validation |
 |---|---|---|
 
-#### Clubs app
+### Clubs app
 
 **Club model**
 
 | Key in db | Field Type | Validation |
 |---|---|---|
 
-#### Events app
+### Events app
 
 **Discipline model**
+| Key in db | Field Type | Validation |
+|---|---|---|
+| name  | CharField | max_length=254 | 
+| friendly_name  | CharField | max_length=254, null=True, blank=True | 
+
 **Distances model**
+
+| Key in db | Field Type | Validation |
+|---|---|---|
+| name  | CharField | max_length=254 | 
+| friendly_name  | CharField | max_length=254, null=True, blank=True | 
+
 **Format model**
+
+| Key in db | Field Type | Validation |
+|---|---|---|
+| name  | CharField | max_length=254 | 
+| friendly_name  | CharField | max_length=254, null=True, blank=True | 
+
 **Organiser model**
+
+| Key in db | Field Type | Validation |
+|---|---|---|
+| name  | CharField | max_length=254 | 
+| friendly_name  | CharField | max_length=254, null=True, blank=True | 
+
 **Event Instance model**
+
+| Key in db | Field Type | Validation |
+|---|---|---|
+| name  | CharField | max_length=254 | 
+| friendlyname  | CharField | max_length=254, null=True, blank=True | 
+| eventdate  | DateField | null=True, blank=True | 
+| price  | DecimalField | max_digits=6, decimal_places=2, null=True, blank=True | 
+| race_limit  | DecimalField | max_digits=4, decimal_places=0, null=True, blank=True | 
+| sku  | CharField | max_length=254, null=True, blank=True | 
+| isvirtual  | BooleanField | null=True, blank=True, default=False | 
+
 **Event model**
 
 | Key in db | Field Type | Validation |
 |---|---|---|
+| discipline  | ForeignKey | 'Discipline', null=True, blank=True, on_delete=models.SET_NULL | 
+| distance  | ForeignKey | 'Distance', null=True, blank=True, on_delete=models.SET_NULL | 
+| exactdistancekm  | DecimalField | max_digits=6, decimal_places=2, null=True, blank=True | 
+| event_format  | ForeignKey | 'Format', null=True, blank=True, on_delete=models.SET_NULL | 
+| organiser  | ForeignKey | 'Organiser', null=True, blank=True, on_delete=models.SET_NULL | 
+| sku  | CharField | max_length=254, null=True, blank=True | 
+| name  | CharField | max_length=254 | 
+| event_instance  | OneToOneField | EventInstance, on_delete=models.CASCADE, null=True, blank=True | 
+| entrycutoff  | DateField | null=True, blank=True | 
+| keyinfo  | TextField |  | 
+| description  | TextField |  | 
+| location_post_code  | TextField | max_length=8 | 
+| latitude  | DecimalField | max_digits=8, decimal_places=6, null=True, blank=True | 
+| longitude  | DecimalField | max_digits=8, decimal_places=6, null=True, blank=True | 
+| price  | DecimalField | max_digits=6, decimal_places=2 | 
+| rating  | DecimalField | max_digits=6, decimal_places=2, null=True, blank=True | 
+| image_url  | URLField | max_length=1024, null=True, blank=True | 
+| image  | ImageField | null=True, blank=True |
 
-#### Home app
+### Home app
 
 | Key in db | Field Type | Validation |
 |---|---|---|
 
-#### Profiles app
+### Profiles app
 
 **User Profile model**
+
+| Key in db | Field Type | Validation |
+|---|---|---|
+| user  | OneToOneField | User, on_delete=models.CASCADE | 
+| default_phone_number  | CharField | max_length=20, null=True, blank=True | 
+| default_street_address1  | CharField | max_length=80, null=True, blank=True | 
+| default_street_address2  | CharField | max_length=80, null=True, blank=True | 
+| default_town_or_city  | CharField | max_length=40, null=True, blank=True | 
+| default_county  | CharField | max_length=80, null=True, blank=True | 
+| default_postcode  | CharField | max_length=20, null=True, blank=True | 
+| default_country = CountryField | blank_label='Country', null=True, blank=True | 
+
 **Athlete Profile model**
+
+| Key in db | Field Type | Validation |
+|---|---|---|
+| athletefirstname  | CharField | max_length=60, null=True, blank=True | 
+| athletesurname  | CharField | max_length=60, null=True, blank=True | 
+| eanumber  | CharField | max_length=80, null=True, blank=True | 
+| eaverified  | BooleanField | default=True | 
+| club  | ForeignKey | Club, null=True, blank=True, on_delete=models.SET_NULL | 
+| dateofbirth   | DateField |  null=True, blank=True  | 
+| emergencycontactname  | CharField | max_length=60, null=True, blank=True | 
+| emergencycontactphone  | CharField | max_length=20, null=True, blank=True | 
+| gender  | CharField | max_length=2, choices=gender_choices, null=True, blank=True | 
+| tshirtsize  | CharField | max_length=5, choices=tshirtsize_choices,  default=Medium | 
+| user  | OneToOneField | User, on_delete=models.CASCADE | 
+| userprofile  | OneToOneField | UserProfile, on_delete=models.CASCADE, null=True, blank=True | 
+
 **Racehub Friends model**
+
+| Key in db | Field Type | Validation |
+|---|---|---|
+| rfuserprofile  | ForeignKey | User, null=True, blank=True, on_delete=models.SET_NULL | 
+| rfathleteprofile  | ForeignKey | AthleteProfile, null=True, blank=True, on_delete=models.SET_NULL | 
+| myfriendsracehubid  | DecimalField | max_digits=10, decimal_places=0, null=True, blank=True | 
+
 **Non Racehub Friends model**
 
 | Key in db | Field Type | Validation |
 |---|---|---|
+| parentprofile  | ForeignKey | AthleteProfile, on_delete=models.CASCADE | 
+| athletefirstname  | CharField | max_length=60, null=True, blank=True | 
+| athletesurname  | CharField | max_length=60, null=True, blank=True | 
+| eanumber  | CharField | max_length=80, null=True, blank=True | 
+| eaverified  | BooleanField | default=True | 
+| club  | ForeignKey | Club, null=True, blank=True, on_delete=models.SET_NULL | 
+| dateofbirth   | DateField |  null=True, blank=True  | 
+| emergencycontactname  | CharField | max_length=60, null=True, blank=True | 
+| emergencycontactphone  | CharField | max_length=20, null=True, blank=True | 
+gender  | CharField | max_length=2, choices=gender_choices, null=True, blank=True | 
+| tshirtsize | CharField | max_length=5, choices=tshirtsize_choices, default=Medium | 
 
 #### Results app
 
@@ -196,24 +294,10 @@ The standard Django user model, `django.contrib.auth.models` was used for this p
 | athletesurname  | CharField | max_length=40, null=True, blank=True | 
 | athlete  | CharField | max_length=125, null=True, blank=True | 
 | dateofbirth  | DateField | null=True, blank=True | 
-| gender  | CharField | 
-    max_length=2,
-    choices=gender_choices,
-    null=True, blank=True
- | 
+| gender  | CharField |  max_length=2, choices=gender_choices, null=True, blank=True | 
 | bibnumber  | DecimalField | max_digits=6, decimal_places=0, null=True, blank=True | 
-| agecat  | CharField | 
-    max_length=6,
-    choices=age_cat_choices,
-    default=Senior,
-    null=True, blank=True
- | 
-| athlete_type  | CharField | 
-    max_length=18,
-    choices=athlete_type_choices,
-    default=Myself,
-    null=True, blank=True
- | 
+| agecat  | CharField |  max_length=6, choices=age_cat_choices, default=Senior, null=True, blank=True | 
+| athlete_type  | CharField | max_length=18, choices=athlete_type_choices, default=Myself, null=True, blank=True | 
 | club  | ForeignKey | Club, null=True, blank=True, on_delete=models.SET_NULL | 
 | chiptime  | DurationField | null=True, blank=True | 
 | guntime  | DurationField | null=True, blank=True | 
