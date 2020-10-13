@@ -84,6 +84,23 @@ Bootstrap components used:
 - [List Group](https://getbootstrap.com/docs/4.0/components/list-group/)
 - [Dropdowns](https://getbootstrap.com/docs/4.0/components/dropdowns/)
 
+Forms used on the site:
+- Add Event
+- Add Results
+- Select which athlete to enter (Event entry process)
+- Edit Athlete Profile - My Racehub profile page
+- Edit User Profile - My Racehub profile page
+- Racehub Friends form - to add another site user to your 'Racehub friends'
+- Family and Friends form - to add a non racehub user to your My Racehub and allow facility to enter them in an event.
+- Submit Virtual Result
+- Transfer Entry form - to transfer event entry to another athlete.
+- Manage Virtual Results (Organiser)
+
+Javascript:
+- Map View. Made use of Leaflet.js to display events as pins on a map.
+- Search and filter functions (made reference to Boutique Ado project)
+
+
 ## [Visual Layout](#visual-layout)
 [Developer Aims](#developer-aims) | [UX](#ux) | [User Stories and Corresponding Features](#user-stories-and-features) | [UI Structure](#ui-structure) | [Visual Layout](#visual-layout) | [Technologies Used](#technologies-used) | [Information Architecture](#information-architecture) | [Deployment](#deployment) | [Local Development](#local-development) | [Testing](#testing) | [Acknowledgements](#acknowledgements)
 
@@ -117,6 +134,7 @@ Logos were designed by the developer.
 * [jQuery](https://jquery.com/) to easier DOM manipulation
 * [Google Fonts](https://fonts.google.com/)
 * [Font Awesome](https://fontawesome.com/) for icons
+* [Leaflet](https://leafletjs.com/) for displaying markers on a map
 
 #### Development:
 * [Gitpod](https://www.gitpod.io/) Used for ide
@@ -657,6 +675,20 @@ Bug found during deployment. Image urls were incorrectly coded and did not inclu
 
 ## [Local Development](#local-development)
 [Developer Aims](#developer-aims) | [UX](#ux) | [User Stories and Corresponding Features](#user-stories-and-features) | [UI Structure](#ui-structure) | [Visual Layout](#visual-layout) | [Technologies Used](#technologies-used) | [Information Architecture](#information-architecture) | [Deployment](#deployment) | [Local Development](#local-development) | [Testing](#testing) | [Acknowledgements](#acknowledgements)
+
+### IDE selected:
+- Gitpod installed with Python 3 and pip
+
+- Gmail account with two-factor authentication enabled, and
+- Stripe free account.
+
+### How to replicate the project using Gitpod
+- Navigate to the [project repository](https://github.com/jonburdon/race-hub)
+- Click the green 'Gitpod' button
+-  This will open the project in a new Gitpod IDE.
+-  Open terminal
+- Type `python3 manage.py runserver`
+- This will run a new copy of the project in Gitpod local development environment
 
 ## [Testing](#testing)
 [Developer Aims](#developer-aims) | [UX](#ux) | [User Stories and Corresponding Features](#user-stories-and-features) | [UI Structure](#ui-structure) | [Visual Layout](#visual-layout) | [Technologies Used](#technologies-used) | [Information Architecture](#information-architecture) | [Deployment](#deployment) | [Local Development](#local-development) | [Testing](#testing) | [Acknowledgements](#acknowledgements)
