@@ -65,7 +65,7 @@
                 </a>
 
 
-                <hr>
+            
                 
                
             </div>
@@ -74,35 +74,30 @@
                 <ul>
                 <li>You can edit, delete and download results for all the events for which you are registered organiser.</li>
                 </ul>
-               
                 <a href="" class="action-button skew-style btn btn-lg rounded-0 text-uppercase py-1">
-                View Results for my Events
+                Download All Results
                 </a>
-                <a href="" class="action-button skew-style btn btn-lg rounded-0 text-uppercase py-1">
-                Download Results
-                </a>
+                 <hr>
+                {% for e in eventinstances %}
+                    
+                    <a href="{% url 'single_event_result_list' e.id%}"><p>{{ e.friendlyname }}</p></a>
+                    
+                {% endfor %}
             <hr>
-            <h4>Virtual Challenges</h4>
+            
+            </div>
+            <div class="col-12 col-lg-4">
+                <h4>Virtual Challenges</h4>
                 <ul>
                 <li>All those who enter your virtual challenges submit a hyperlink and or an image with their results. Review and confirm their results for them to show as verified on the results dashboard.</li>
                 </ul>
                
-                <a href="" class="action-button skew-style btn btn-lg rounded-0 text-uppercase py-1">
-                Review Virtual Challenges
-                </a>
-            </div>
-            <div class="col-12 col-lg-4">
-                <h4>Section</h4>
-                
-                
-                <hr>
-                
-                <h5>Section</h5>
-                   
-
-                <hr>
-               
-                <h4>Section</h4>
+                 <hr>
+                {% for e in eventinstances %}
+                    {% if e.isvirtual %}
+                    <a href="{% url 'review_virtual_results' e.id%}"><p>{{ e.friendlyname }}</p></a>
+                    {% endif %}
+                {% endfor %}
                 <p class="text-muted">Paragraph text</p>
                 
                 <br>
@@ -129,9 +124,7 @@
                 </div>
 
                 <hr>
-                <h4>Friends and Family</h4>
-                <p>Paragraph text.</p>
-                <hr>
+                
                 
                 
             </div>

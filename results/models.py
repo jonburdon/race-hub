@@ -57,7 +57,7 @@ class Result(models.Model):
         null=True, blank=True
     )
     club = models.ForeignKey(Club, null=True, blank=True, on_delete=models.SET_NULL)
-    chiptime = models.DurationField(null=True, blank=True)
+    chiptime = models.DurationField(null=True, default='11:59:00')
     guntime = models.DurationField(null=True, blank=True)
     isvirtual = models.BooleanField(null=True, blank=True, default=False)
     hyperlink = models.CharField(max_length=240, null=True, blank=True)

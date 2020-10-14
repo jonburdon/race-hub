@@ -97,6 +97,7 @@
                     
                     </li>
                     <li class="list-group-item column-medium flex-fill d-none d-md-inline-block">Gun Time</li>
+                    <li class="list-group-item column-smallflex-fill d-none d-md-inline-block">Admin</li>
                 </ul>
                 
                 <div class="collapse" id="collapseExample">
@@ -124,8 +125,16 @@
                 </button>
                     </li>
                     <li class="list-group-item column-small {% if forloop.counter|divisibleby:2 %}list-group-item-dark{% endif %} d-none d-md-inline-block">{{ r.guntime }}</li>
+                    <li class="list-group-item column-small {% if forloop.counter|divisibleby:2 %}list-group-item-dark{% endif %} d-none d-md-inline-block"><small class="ml-3">
+                                            <a href="{% url 'edit_full_result' r.id %}">Edit</a>
+                                            <span class="text-danger" data-toggle="collapse" data-target="#deleteconfirm{{ forloop.counter }}" aria-expanded="false" aria-controls="deleteconfirm">
+                         More
+                        </span>
+                                        </small></li>
                 </ul>
                 
+
+
                 <div class="collapse" id="collapseresult{{ forloop.counter }}">
                 <div class="card card-body">
                 Bib: {{ r.bibnumber }}<br>
@@ -133,11 +142,17 @@
                     Gender: {{ r.gender }}<br>
                     Age Category: {{ r.agecat }}<br>
                     Gun Time: {{ r.guntime }}<br>
+                <p><a href="{% url 'edit_full_result' r.id %}">Edit</a></p>
+                </div>
+                </div>
+                <div class="collapse" id="deleteconfirm{{ forloop.counter }}">
+                <div class="card card-body">
+                
+                Delete? This will be deleted forever! <A href="">Yes, DELETE!</a>
                 </div>
                 </div>
                 {% endfor %}
-                
-                
+
             </div>
         </div>
     </div>
@@ -145,6 +160,11 @@
 
 {% block postloadjs %}
     {{ block.super }}
+    <script>
+        $(function () {
+        $('[data-toggle="popover"]').popover()
+        })
+    </script>   
     <script type="text/javascript">
 		$('.btt-link').click(function(e) {
 			window.scrollTo(0,0)

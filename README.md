@@ -702,6 +702,16 @@ Card number for testing with authentication (triggers popup with overlay)
 
 ### Automatic Testing
 
+Automatic testing has not been implemented. Tests were created to test views in the Results app. It was the developers intention to explore this at only a basic level to allow more time for learning the logic of the web application itself. Time did not allow for further tests for models and views, or for other apps.
+
+The following command is used in the command line to run the automatic tests:
+
+`python manage.py test`
+
+This will only one run test, which checks a url in the results app. The test passes.
+
+
+
 ### Manual Testing
 
 Manual testing was performed in a three step approach:
