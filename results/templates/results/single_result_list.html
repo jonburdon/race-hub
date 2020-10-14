@@ -148,7 +148,7 @@
                 <div class="collapse" id="deleteconfirm{{ forloop.counter }}">
                 <div class="card card-body">
                 
-                Delete? This will be deleted forever! <A href="">Yes, DELETE!</a>
+                Delete? This will be deleted forever! <A class="text-danger" href="{% url 'delete_result' r.id %}">Yes, DELETE!</a>
                 </div>
                 </div>
                 {% endfor %}

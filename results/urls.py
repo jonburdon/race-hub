@@ -14,6 +14,7 @@ urlpatterns = [
     path('transfer_result/<int:result_id>/', views.transfer_result, name='transfer_result'),
     path('download_results/', views.download_results, name='download_results'),
     path('verify_result/<int:result_id>/', views.verify_result, name='verify_result'),
-    path('unverify_result/<int:result_id>/', views.unverify_result, name='unverify_result'),           
+    path('unverify_result/<int:result_id>/', views.unverify_result, name='unverify_result'),
+    path('delete/<int:result_id>/', views.delete_result, name='delete_result'),           
 
 ]

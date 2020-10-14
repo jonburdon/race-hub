@@ -459,3 +459,17 @@ def unverify_result(request, result_id):
     result.save()
     messages.success(request, 'Result Unverified!')
     return redirect(reverse('single_result', args=[result.id]))
+
+@login_required
+def delete_result(request, result_id):
+    """ Delete an result from the store """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
+    result = get_object_or_404(Result, pk=result_id)
+    eventinstance = result.eventinstance.id
+    result.delete()
+    messages.success(request, 'Result deleted!')
+    
+    return redirect(reverse('single_event_result_list', args=[eventinstance]))
