@@ -305,14 +305,15 @@ def single_result(request, result_id):
     return render(request, 'results/single_result.html', context)
 
 @login_required
-def add_result(request):
-    """ Add a result to the store """
+def add_result(request, eventinstance_id):
+    """ Add a result to the database """
+    
     if request.method == 'POST':
-        form = ResultForm(request.POST, request.FILES)
+        form = ResultForm(request.POST, request.FILES, instance=newresult)
         if form.is_valid():
             form.save()
             messages.success(request, 'Successfully added result!')
-            return redirect(reverse('add_result'))
+            return redirect(reverse('add_result', args=[eventinstance]))
         else:
             messages.error(request, 'Failed to add result. Please ensure the form is valid.')
     else:
@@ -320,10 +321,11 @@ def add_result(request):
         
     template = 'results/add_result.html'
     context = {
+        'eventinstance': eventinstance_id,
         'form': form,
     }
-
-    return render(request, template, context)
+    return render(request, 'results/add_result.html', context)
+    #return render(request, template, context)
 
 def result_detail(request, result_id):
     """ A view to show individual result details """
@@ -368,6 +370,7 @@ def edit_result_time_only(request, result_id):
     """ Edit a time in the results system - use for virtual events for this athlete """
 
     result = get_object_or_404(Result, pk=result_id)
+    
     if request.method == 'POST':
         form = TimeOnlyResultForm(request.POST, request.FILES, instance=result)
         if form.is_valid():
@@ -396,7 +399,7 @@ def transfer_result(request, result_id):
     if request.method == 'POST':
         form = EntryTransferForm(request.POST, request.FILES, instance=result)
         if form.is_valid():
-            #ensure eventid is saved
+            #need to ensure eventid is changed
             form.save()
             messages.success(request, 'Successfully updated result!')
             return redirect(reverse('single_result', args=[result.id]))

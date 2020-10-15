@@ -80,15 +80,7 @@ class StripeWH_Handler:
                     print ("Found Friend Athlete")
                     selectedathletetoenter = NonRaceHubFriends.objects.get(id=athleteidforthisresult[1])
                     athletetype= NonRacehubFriend
-                
-                    
-                    print('-- This SHOULD create a result for: --')
-                    print(selectedathletetoenter.athletefirstname)
-                    print(selectedathletetoenter.athletesurname)
-                    print(selectedathletetoenter.gender)
-                    print(selectedathletetoenter.dateofbirth)
-                    print(selectedathletetoenter.club)
-                    print(selectedathletetoenter.id)
+
                 newresult = Result.objects.create(
                     eventinstance = order_line_item.event,
                     athletefirstname = selectedathletetoenter.athletefirstname,
@@ -101,34 +93,6 @@ class StripeWH_Handler:
                     isvirtual = virtual,
                 )
                 
-                   
-                if 'Friend' in order_line_item.which_athlete:
-                    print ("Found Friend Athlete")
-
-                print('This is the order data')
-                print(order_line_item)
-                print('Athlete:')
-                print(order_line_item.which_athlete)
-                if 'Myself' in order_line_item.which_athlete:
-                    print ("Found User Athlete")
-                if 'Friend' in order_line_item.which_athlete:
-                    print ("Found Friend Athlete")
-                print('Event:')
-                print(order_line_item.event)
-                print('----')
-                print('----')
-                print(athleteidforthisresult[1])
-                print('----')
-                print('-- This SHOULD create a result for: --')
-                print(selectedathletetoenter.athletefirstname)
-                print(selectedathletetoenter.athletesurname)
-                print(selectedathletetoenter.gender)
-                print(selectedathletetoenter.dateofbirth)
-                print(selectedathletetoenter.club)
-                print(selectedathletetoenter.id)
-                print('-- at this event: --')
-                print(order_line_item.event.friendlyname)
-                print(order_line_item.event.id)
                 
                
 

@@ -1,6 +1,6 @@
 [insert logo image here]
 
-# Rachub
+# Racehub
 
 
 ## [Deployed Project on Heroku](https://race-hub.herokuapp.com/)
@@ -49,13 +49,12 @@ Racehub is race entry and results management system for amateur athletes and eve
 | 3h |  |  |  |  | 
 | 3i |  |  |  |  | 
 | 3j |  | Add results for virtual races I am registered for | Result can be submitted as photo or hyperlink |  | 
-
 |Admin and management  | 
 | 4a | Club or organisation official | Manage teams | my club has it's own private page |  |  |
 | 4b |  | Make my club events private  | they are not on the main listing pages |  |  | 
 | 4c |  |  |  |  | 
 | 4d | Event Organiser | Add events |  |  | 
-| 4e |  | Add results by bulk upload |  |  | 
+| 4e |  | Add results by bulk upload | Add single results | Change add result form to pre populate with specific event id, Add bulk upload by csv | 
 | 4f |  | Download results in bulk | Results can be exported to email account from Organiser Profile | Select one specific result set for download | 
 | 4g |  | Add individual results 'live' at the finish line. | Single results can be added | Quick input form so that results are easier to add | 
 

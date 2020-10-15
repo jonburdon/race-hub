@@ -12,10 +12,10 @@ class ResultForm(forms.ModelForm):
         'eventinstance',
         'athletefirstname',
         'athletesurname',
-        'athlete',
         'gender',
         'dateofbirth',
-        'club'
+        'club',
+        'isvirtual',
     )
 
     def __init__(self, *args, **kwargs):
