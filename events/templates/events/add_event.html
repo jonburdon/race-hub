@@ -16,6 +16,7 @@
                 <hr>
                 <h2 class="logo-font mb-4">Event Management</h2>
                 <h5 class="text-muted">Add an Event</h5>
+                
                 <hr>
             </div>
         </div>
@@ -36,8 +37,21 @@
                         <button class="btn btn-black skew-style rounded-0" type="submit">Add Event</button>
                     </div>
                 </form>
-            </div>            
+            </div>
+            <div class="col-12 col-md-6">
+                <h2><img src='{{ MEDIA_URL }}info-circle-line.svg' width=75px>Info</h2>
+                <hr>
+                <h4>Setting up Map View.</h4>
+                <p>If your event is a 'real life' event, why not add it to the Racehub Map View pages? This is simple to implement. Look up your postcode and add the Latitude and Longitude of Event HQ to the Latitude and Longitude fields in the Add Event form.</p>
+                <p>Tip! If there are several events at the same location, adjust the Lat and Long very lightly so that they appear very close but not overlapping each other on the map view page.</p>
+                <p>To find your lat and long, visit the link below and use the Convert Single Postcode option</p>
+                <a href="https://www.freemaptools.com/convert-uk-postcode-to-lat-lng.htm" target=new class="action-button skew-style btn btn-lg rounded-0 text-uppercase py-1">
+                Find Lat and and Long
+                </a>
+            </div>              
         </div>
+
+        
     </div>
 {% endblock %}
 

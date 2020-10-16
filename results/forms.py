@@ -15,6 +15,10 @@ class ResultForm(forms.ModelForm):
         'gender',
         'dateofbirth',
         'club',
+        'chiptime',
+        'guntime',
+        'linkedathlete',
+        'athlete_type',
         'isvirtual',
     )
 

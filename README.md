@@ -53,10 +53,11 @@ Racehub is race entry and results management system for amateur athletes and eve
 | 4a | Club or organisation official | Manage teams | my club has it's own private page |  |  |
 | 4b |  | Make my club events private  | they are not on the main listing pages |  |  | 
 | 4c |  |  |  |  | 
-| 4d | Event Organiser | Add events |  |  | 
-| 4e |  | Add results by bulk upload | Add single results | Change add result form to pre populate with specific event id, Add bulk upload by csv | 
+| 4d | Event Organiser | Add events |  | Add a lat and long finder tool | 
+| 4e |  | Add results by bulk upload | Add single results | Change add result form to pre populate with specific event id, Add bulk upload by csv. Add a 'Quick Add' feature to simply enter results by finding Bib number and then entering the time only. | 
 | 4f |  | Download results in bulk | Results can be exported to email account from Organiser Profile | Select one specific result set for download | 
 | 4g |  | Add individual results 'live' at the finish line. | Single results can be added | Quick input form so that results are easier to add | 
+
 
 
 ## [UI Structure](#ui-structure)
@@ -721,13 +722,13 @@ Manual testing was performed in a three step approach:
 
 #### Issues Identified during testing:
 
-**Issue #1** List testing issues here.
+**Issue #1** During testing it was found that some database fields were not required. These were changed to required in the model in order to provide a more defensive design approach to the database. Issue resolved.
 
-**Issue #2**
+**Issue #2** Some forms were displaying database field names rather than friendly alternatives.
 
-**Issue #3**
+**Issue #3** Date of Birth can be entered as any date. This should be changed to ensure it is always a date in the past, more than 18 years ago.
 
-**Issue #4**
+**Issue #4** Add Event and Add Results forms require additional helper text in the second column. A useful additional feature here would be to be able to look up a Racehub User using a select field.
 
 ## [Acknowledgements](#acknowledgements)
 [Developer Aims](#developer-aims) | [UX](#ux) | [User Stories and Corresponding Features](#user-stories-and-features) | [UI Structure](#ui-structure) | [Visual Layout](#visual-layout) | [Technologies Used](#technologies-used) | [Information Architecture](#information-architecture) | [Deployment](#deployment) | [Local Development](#local-development) | [Testing](#testing) | [Acknowledgements](#acknowledgements)

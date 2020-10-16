@@ -6,7 +6,8 @@ from django.db.models.functions import Lower
 from .models import Event, Discipline, Distance, Format, EventInstance
 from profiles.models import AthleteProfile, RaceHubFriends, NonRaceHubFriends
 
-from .forms import EventForm, EventInstanceForm, EventAndInstanceConnectForm
+
+from .forms import EventForm, EventInstanceForm, EventAndInstanceConnectForm, PostcodeForm
 # Create your views here.
 
 def all_events(request):
@@ -143,11 +144,13 @@ def add_event(request):
             messages.error(request, 'Failed to add event. Please ensure the form is valid.')
     else:
         form = EventForm()
+    postcodeform = PostcodeForm()
 
 
     template = 'events/add_event.html'
     context = {
         'form': form,
+        'postcodeform': postcodeform,
     }
 
     return render(request, template, context)
@@ -293,4 +296,5 @@ def event_connect(request, event_id):
 
     return render(request, template, context)
 
-
+def check_latlong(request, postcode):
+    return render(request, template, context)

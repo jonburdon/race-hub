@@ -224,7 +224,7 @@ def organiser_dashboard(request):
     """ A view to return the index page """
 
     events = Event.objects.all()
-    eventinstances = EventInstance.objects.all()
+    eventinstances = EventInstance.objects.all().order_by('eventdate')
     athleteprofile = get_object_or_404(AthleteProfile, user=request.user)
 
     context = {

@@ -32,7 +32,15 @@
                         <button class="btn btn-black rounded-0" type="submit">Add Result</button>
                     </div>
                 </form>
-            </div>            
+            </div>
+            <div class="col-12 col-md-6">
+                <h2><img src='{{ MEDIA_URL }}info-circle-line.svg' width=75px>Info</h2>
+                <hr>
+                <h4>Adding Results.</h4>
+                <p>Linked Athlete: Enter the Racehub ID of the Racehub User to link this to their own athlete profile. If this is entered, the result will appear on their My Racehub profile. If this is not entered, the result will still appear in the results list.</p>
+                <p>Tip! Set this to blank (not selected) to link to no athlete.</p>
+                
+            </div>                       
         </div>
     </div>
 {% endblock %}
