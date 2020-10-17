@@ -75,6 +75,24 @@
                 {{ eventinstance.eventdate.month }} | 
                 Friendly Date:{{ eventinstance.eventdate|date:"j F, Y" }} | 
                 Month:{{ eventinstance.eventdate|date:"F" }}<br>
+                <a href="{% url 'organiser_dashboard'  %}" class="btn btn-outline-black rounded-0 mt-5">
+                    <span class="icon">
+                        <i class="fas fa-chevron-left"></i>
+                    </span>
+                    <span class="text-uppercase">DASHBOARD</span>
+                </a>
+                <a href="{% url 'single_event_result_list' eventinstance.id %}" class="btn btn-outline-black rounded-0 mt-5">
+                    <span class="icon">
+                        <i class="fas fa-chevron-left"></i>
+                    </span>
+                    <span class="text-uppercase">STANDARD RESULTS LIST</span>
+                </a>
+                <a href="{% url 'add_result' eventinstance.id%}" class="btn btn-outline-black rounded-0 mt-5">
+                    <span class="icon">
+                        <i class="fas fa-plus"></i>
+                    </span>
+                    <span class="text-uppercase">Add Result</span>
+                </a>
                 <hr>
                 <ul class="list-group list-group-horizontal">
                     <li class="list-group-item column-small">Pos</li>

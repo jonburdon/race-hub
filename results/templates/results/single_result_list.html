@@ -75,6 +75,12 @@
                 Friendly Date:{{ eventinstance.eventdate|date:"j F, Y" }} | 
                 Month:{{ eventinstance.eventdate|date:"F" }}<br>
                 {% if request.user.is_superuser %}
+                <a href="{% url 'organiser_dashboard'  %}" class="btn btn-outline-black rounded-0 mt-5">
+                    <span class="icon">
+                        <i class="fas fa-chevron-left"></i>
+                    </span>
+                    <span class="text-uppercase">DASHBOARD</span>
+                </a>
                 <a href="{% url 'review_virtual_results' eventinstance.id%}" class="btn btn-outline-black rounded-0 mt-5">
                     <span class="icon">
                         <i class="fas fa-chevron-left"></i>
@@ -83,7 +89,7 @@
                 </a>
                 <a href="{% url 'add_result' eventinstance.id%}" class="btn btn-outline-black rounded-0 mt-5">
                     <span class="icon">
-                        <i class="fas fa-chevron-left"></i>
+                        <i class="fas fa-plus"></i>
                     </span>
                     <span class="text-uppercase">Add Result</span>
                 </a>
@@ -103,7 +109,9 @@
                     
                     </li>
                     <li class="list-group-item column-medium flex-fill d-none d-md-inline-block">Gun Time</li>
+                    {% if request.user.is_superuser %}
                     <li class="list-group-item column-smallflex-fill d-none d-md-inline-block">Admin</li>
+                    {% endif %}
                 </ul>
                 
                 <div class="collapse" id="collapseExample">
@@ -131,12 +139,16 @@
                 </button>
                     </li>
                     <li class="list-group-item column-small {% if forloop.counter|divisibleby:2 %}list-group-item-dark{% endif %} d-none d-md-inline-block">{{ r.guntime }}</li>
-                    <li class="list-group-item column-small {% if forloop.counter|divisibleby:2 %}list-group-item-dark{% endif %} d-none d-md-inline-block"><small class="ml-3">
-                                            <a href="{% url 'edit_full_result' r.id %}">Edit</a>
-                                            <span class="text-danger" data-toggle="collapse" data-target="#deleteconfirm{{ forloop.counter }}" aria-expanded="false" aria-controls="deleteconfirm">
+                    {% if request.user.is_superuser %}
+                    <li class="list-group-item column-small {% if forloop.counter|divisibleby:2 %}list-group-item-dark{% endif %} d-none d-md-inline-block">
+                        <small class="ml-3">
+                        <a href="{% url 'edit_full_result' r.id %}">Edit</a>
+                        <span class="text-danger" data-toggle="collapse" data-target="#deleteconfirm{{ forloop.counter }}" aria-expanded="false" aria-controls="deleteconfirm">
                          More
                         </span>
-                                        </small></li>
+                        </small>
+                    </li>
+                    {% endif %}
                 </ul>
                 
 
@@ -152,10 +164,11 @@
                 </div>
                 </div>
                 <div class="collapse" id="deleteconfirm{{ forloop.counter }}">
+                {% if request.user.is_superuser %}
                 <div class="card card-body">
-                
                 Delete? This will be deleted forever! <A class="text-danger" href="{% url 'delete_result' r.id %}">Yes, DELETE!</a>
                 </div>
+                {% endif %}
                 </div>
                 {% endfor %}
 

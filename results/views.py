@@ -307,9 +307,9 @@ def single_result(request, result_id):
 @login_required
 def add_result(request, eventinstance_id):
     """ Add a result to the database """
-    
+    eventinstance = eventinstance_id
     if request.method == 'POST':
-        form = ResultForm(request.POST, request.FILES, instance=newresult)
+        form = ResultForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             messages.success(request, 'Successfully added result!')

@@ -54,7 +54,7 @@ Racehub is race entry and results management system for amateur athletes and eve
 | 4b |  | Make my club events private  | they are not on the main listing pages |  |  | 
 | 4c |  |  |  |  | 
 | 4d | Event Organiser | Add events |  | Add a lat and long finder tool | 
-| 4e |  | Add results by bulk upload | Add single results | Change add result form to pre populate with specific event id, Add bulk upload by csv. Add a 'Quick Add' feature to simply enter results by finding Bib number and then entering the time only. | 
+| 4e |  | Add results by bulk upload | Add single results | Change add result form to pre populate with specific event id, Add bulk upload by csv. Add a 'Quick Add' feature to simply enter results by finding Bib number OR searching my athlete name and then entering the time only. The linked athlete field should be a select field or search field containing athlete names.| 
 | 4f |  | Download results in bulk | Results can be exported to email account from Organiser Profile | Select one specific result set for download | 
 | 4g |  | Add individual results 'live' at the finish line. | Single results can be added | Quick input form so that results are easier to add | 
 
@@ -693,9 +693,11 @@ Bug found during deployment. Image urls were incorrectly coded and did not inclu
 ## [Testing](#testing)
 [Developer Aims](#developer-aims) | [UX](#ux) | [User Stories and Corresponding Features](#user-stories-and-features) | [UI Structure](#ui-structure) | [Visual Layout](#visual-layout) | [Technologies Used](#technologies-used) | [Information Architecture](#information-architecture) | [Deployment](#deployment) | [Local Development](#local-development) | [Testing](#testing) | [Acknowledgements](#acknowledgements)
 
-### Testing
+### Ongoing Testing
 
-Navigation elements from https://codepen.io/skywalkapps/pen/VeNzwG were found to be incompatible with Bootstrap 4.
+As with any project, the developer tested and checked components thoroughly during production. For example, during development, navigation elements from https://codepen.io/skywalkapps/pen/VeNzwG were found to be incompatible with Bootstrap 4. The current navigation was found to not allow any scrolling on mobile in the large dropdowns until a min-height was asigned to the containing div.
+
+### Testing Credentials and Instructions:
 
 Card number for testing with authentication (triggers popup with overlay)
 4000 0025 0000 3155
@@ -710,12 +712,11 @@ The following command is used in the command line to run the automatic tests:
 
 This will only one run test, which checks a url in the results app. The test passes.
 
-
-
 ### Manual Testing
 
 Manual testing was performed in a three step approach:
 
+- Testing as a Race Organiser took place first in the manual testing process. When the project was deployed to Heroku, as it started with a blank database, the developer tested the project by only adding content via the front end interface initially.
 - When Deployed to Production, a blank database was used and the data added as if using the site as a site administrator. This helped identify issues with the front end Organiser Dashboard.
 - Testing of User Stories. Testing of Features and Defensive Design
 - Device testing.
@@ -729,6 +730,12 @@ Manual testing was performed in a three step approach:
 **Issue #3** Date of Birth can be entered as any date. This should be changed to ensure it is always a date in the past, more than 18 years ago.
 
 **Issue #4** Add Event and Add Results forms require additional helper text in the second column. A useful additional feature here would be to be able to look up a Racehub User using a select field.
+
+**Issue 5** No datepicker was found in the Add results form. This was added.
+
+**Issue 6** No back to list button was present on the Add results form page, Review Virtual Results page or Result detail pages. These were added as an additional feature to allow navigation between these pages.
+
+
 
 ## [Acknowledgements](#acknowledgements)
 [Developer Aims](#developer-aims) | [UX](#ux) | [User Stories and Corresponding Features](#user-stories-and-features) | [UI Structure](#ui-structure) | [Visual Layout](#visual-layout) | [Technologies Used](#technologies-used) | [Information Architecture](#information-architecture) | [Deployment](#deployment) | [Local Development](#local-development) | [Testing](#testing) | [Acknowledgements](#acknowledgements)

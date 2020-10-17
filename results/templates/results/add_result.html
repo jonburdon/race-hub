@@ -39,6 +39,12 @@
                 <h4>Adding Results.</h4>
                 <p>Linked Athlete: Enter the Racehub ID of the Racehub User to link this to their own athlete profile. If this is entered, the result will appear on their My Racehub profile. If this is not entered, the result will still appear in the results list.</p>
                 <p>Tip! Set this to blank (not selected) to link to no athlete.</p>
+                <a href="{% url 'single_event_result_list' eventinstance %}" class="btn btn-outline-black rounded-0 mt-5">
+                    <span class="icon">
+                        <i class="fas fa-chevron-left"></i>
+                    </span>
+                    <span class="text-uppercase">BACK TO LIST</span>
+                </a>
                 
             </div>                       
         </div>

@@ -183,6 +183,7 @@ def edit_event(request, event_id):
 
     return render(request, template, context)
 
+
 @login_required
 def delete_event(request, event_id):
     """ Delete an event from the store """
@@ -242,6 +243,37 @@ def add_event_instance(request):
 
     template = 'events/add_event_instance.html'
     context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def edit_event_instance(request, eventinstance_id):
+    """ Edit an event instance in the store """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
+    eventinstance = get_object_or_404(EventInstance, pk=eventinstance_id)
+    
+    if request.method == 'POST':
+        form = EventInstanceForm(request.POST, request.FILES, instance=eventinstance)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Successfully updated event instance!')
+            # return redirect(reverse('organiser_dashboard'))
+            return redirect(reverse('event_instance_profile', args=[eventinstance.id]))
+        else:
+            messages.error(request, 'Failed to update event instance. Please ensure the form is valid.')
+    else:
+        form = EventInstanceForm(instance=eventinstance)
+        messages.info(request, f'You are editing instance {eventinstance.name}')
+
+    template = 'events/edit_event_instance.html'
+    context = {
+        'eventinstance': eventinstance,
         'form': form,
     }
 

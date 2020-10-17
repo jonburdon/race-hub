@@ -26,7 +26,12 @@
                     <li >{% if r.hyperlink %}<A href="{{ r.hyperlink }}" target="new">Review</a>{% else %}No link submitted{% endif %}</li>
                     <li >{% if r.verifiedforvirtualresult %}VERIFIED{% else %}NOT VERIFIED YET{% endif %}</li>
                 
-                
+                <a href="{% url 'single_event_result_list' result.eventinstance.id %}" class="btn btn-outline-black rounded-0 mt-5">
+                    <span class="icon">
+                        <i class="fas fa-chevron-left"></i>
+                    </span>
+                    <span class="text-uppercase">BACK TO LIST</span>
+                </a>
             </div>
         </div>
     </div>

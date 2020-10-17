@@ -31,19 +31,18 @@
                 <div class="row">
             <div class="col-12 col-lg-4">
                 
-                <h4>Event Tools</h4><hr>
+                <h2>Tools</h2><hr>
+                
+            </div>
+            <div class="col-12 col-lg-4">
+                <h2>Parent Events</h2><hr>
+                
+                
+            </div>
+            <div class="col-12 col-lg-4">
+                <h2>Results & Entries</h2>
+                 <hr>
 
-                
-            </div>
-            <div class="col-12 col-lg-4">
-                <h4>Results Tools</h4><hr>
-                
-                
-            </div>
-            <div class="col-12 col-lg-4">
-                <h4>Section</h4>
-            
-                
                 
             </div>
         </div>
@@ -64,12 +63,6 @@
                 Create New Event 
                 </a>
 
-
-            
-                
-               
-            </div>
-            <div class="col-12 col-lg-4">
             <h4>Results</h4>
                 <ul>
                 <li>You can edit, delete and download results for all the events for which you are registered organiser.</li>
@@ -78,57 +71,84 @@
                 Download All Results
                 </a>
                  <hr>
-            <h4>Manage Results</h4>
-                {% for e in eventinstances %}
-                    
-                    <a href="{% url 'single_event_result_list' e.id%}"><p>{{ e.friendlyname }}</p></a>
-                    
-                {% endfor %}
-            <hr>
+
+
             
+            
+                
+               
             </div>
             <div class="col-12 col-lg-4">
-                <h4>Virtual Challenges</h4>
-                <ul>
-                <li>All those who enter your virtual challenges submit a hyperlink and or an image with their results. Review and confirm their results for them to show as verified on the results dashboard.</li>
-                </ul>
-               
-                 <hr>
-                {% for e in eventinstances %}
-                    {% if e.isvirtual %}
-                    <a href="{% url 'review_virtual_results' e.id%}"><p>{{ e.friendlyname }}</p></a>
-                    {% endif %}
-                {% endfor %}
-                <p class="text-muted">Paragraph text</p>
-                
-                <br>
-                 <p class="text-muted">Table Dashboard</p>
-                <div class="order-history table-responsive">
+
+            <div class="order-history table-responsive">
+            
                     <table class="table table-sm table-borderless">
                         <thead>
                             <tr>
-                                <th>Table Column</th>
-                                <th>Table Column</th>
-                                <th>Table Column</th>
-                                <th>Table Column</th>
+                                <th>Event Name</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
+                            
+                            {% for e in events %}
                             <tr>
-                            <td>Col 1</td>
-                            <td>Col 2</td>
-                            <td>Col 3</td>
-                            <td>Col 4</td>
+                            
+                            <td><a href="{% url 'event_profile' e.id%}">{{ e.name }}</a</td>
+                            <td><a href="{% url 'edit_event' e.id%}">Edit</a</td>
+                            
+                            <td><a href="{% url 'single_event_result_list' e.id%}">Entries</a></td>
+                            
                             <tr>
+                            
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>
+            
+            <hr>
 
-                <hr>
-                
-                
-                
+            
             </div>
+            <div class="col-12 col-lg-4">
+
+                    <div class="order-history table-responsive">
+            
+                    <table class="table table-sm table-borderless">
+                        <thead>
+                            <tr>
+                                <th>Event Instance Name</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            {% for e in eventinstances %}
+                            <tr>
+                            
+                            <td><a href="{% url 'event_instance_profile' e.id%}">{{ e.friendlyname }}</a</td>
+                            <td><a href="{% url 'edit_event_instance' e.id%}">Edit</a</td>
+                            
+                            <td><a href="{% url 'single_event_result_list' e.id%}">Results</a></td>
+                            <td>{% if e.isvirtual %}
+                    <a href="{% url 'review_virtual_results' e.id%}"><p>Manage Virtual</p></a>
+                    {% endif %}</td>
+                            <tr>
+                            
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            <hr>
+
+            </div>
+            <section class="col-12">
+            
+            </section>
         </div>
 {% endblock %}
 

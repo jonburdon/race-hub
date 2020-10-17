@@ -12,6 +12,7 @@ class ResultForm(forms.ModelForm):
         'eventinstance',
         'athletefirstname',
         'athletesurname',
+        'bibnumber',
         'gender',
         'dateofbirth',
         'club',
@@ -29,6 +30,11 @@ class ResultForm(forms.ModelForm):
         friendly_names = [(c.id, c.get_friendly_name()) for c in clubs]
         
         self.fields['club'].choices = friendly_names
+        self.fields['dateofbirth'] = forms.DateField(
+        widget=forms.TextInput(
+            attrs={'type': 'date'}
+        )
+        )
        
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'border-black rounded-0'
@@ -47,6 +53,11 @@ class FullResultForm(forms.ModelForm):
         friendly_names = [(c.id, c.get_friendly_name()) for c in clubs]
         
         self.fields['club'].choices = friendly_names
+        self.fields['dateofbirth'] = forms.DateField(
+        widget=forms.TextInput(
+            attrs={'type': 'date'}
+        )
+        )
        
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'border-black rounded-0'
