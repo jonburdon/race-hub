@@ -61,7 +61,6 @@ class AthleteProfileForm(forms.ModelForm):
             
         }
 
-
         for field in self.fields:
             if field != 'dateofbirth':
                 if self.fields[field].required:
@@ -69,7 +68,8 @@ class AthleteProfileForm(forms.ModelForm):
                 else:
                     placeholder = placeholders[field]
                 self.fields[field].widget.attrs['placeholder'] = placeholder
-            self.fields[field].widget.attrs['class'] = 'border-black rounded-0 profile-form-input'
+            self.fields[field].widget.attrs['class'] = 'requiredField border-black rounded-0 profile-form-input'
+            
            
 
 

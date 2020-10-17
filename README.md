@@ -768,6 +768,9 @@ Manual testing was performed in a three step approach:
 
 **Issue 10** The Add Racehub Friend function was found not to be working when testing if athlete id numbers are valid. This error was idenfied - the view was using `RaceHubFriends.objects.all()` and was corrected to `AthleteProfile.objects.all()`. Issue resolved.
 
+**Issue 11** It was found that the connection to Mapbox to longer worked therefore map tiles in 'Map View' no longer rendered. This was found to be the case in the reference code studied on Codepen as well as various similar examples meaning that the interaction between leafletjs and the mapbox api has changed. The js was updated to connect to openmap api rather than mapbox api.
+
+**Issue 12** When creating a new account, it was found that it is possible to create an account and then enter yourself for an event whilst the Athlete Profile contains no information. An if statement was added to render the select field only if the Athlete First Name exists and otherwise add a warning button. This feature should be improved to make the form fields all required when editing the athlete form (whilst they are not actually required in the database, due to the fact that the athlete profile is created automatically during account creation.)
 
 
 
@@ -782,6 +785,8 @@ Navigation:
 - Refactored code, based on: https://codepen.io/JakubHonisek/pen/xXaYqg
 Code for mobile view buttons refactored from Code Institute tutorial
 - Responsive Bootstrap Mega Menu: https://codepen.io/JakubHonisek/pen/xXaYqg
+- Original Leaflet map view reference code when connecting to Mapbox api: https://codepen.io/bbrook154/pen/RRQQyG
+- Map View Reference used for connecting to Open Maps https://harrywood.co.uk/maps/examples/leaflet/geolocate.view.html
 
 #### Media:
 - icons licensed and used from https://uxwing.com/
