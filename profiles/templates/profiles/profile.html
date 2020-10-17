@@ -22,7 +22,8 @@
                 <hr>
                 <h2 class="logo-font mb-4"><img src='/media/running-walk.svg' width=25px>{{ athleteprofile }}'s My Racehub 
                   </h2>
-                
+                <h3 class="logo-font mb-4">Profile ID: {{ athleteprofile.id }} {{ athleteprofile.athletefirstname }}
+                  </h3>
                 <hr>
             </div>
         </div>
@@ -30,15 +31,7 @@
 <h1>You have not created your My Racehub profile yet. Please complete this form to create your profile.</h1>
 {% endif %}
 
-        <div class="row">
-            <div class="col">
-                <hr>
-                <h2 class="logo-font mb-4"><img src='/media/running-walk.svg' width=25px>MyRacehub Profile ID: {{ athleteprofile.id }} {{ athleteprofile.athletefirstname }}
-                  </h2>
-                
-                <hr>
-            </div>
-        </div>
+        
                 <div class="row">
             <div class="col-12 col-lg-4">
                 
@@ -64,7 +57,7 @@
                 <h4>Emergency Contact Info</h4>
                 <h4>Contact Name: {{ athleteprofile.emergencycontactname }}</h4>
                 <h4>Contact Phone: {{ athleteprofile.emergencycontactphone }}</h4>
-                <a href="{% url 'edit_athlete_profile' athleteprofile.id %}" class="btn btn-black rounded-0 mt-5 float-right d-block">
+                <a href="{% url 'edit_athlete_profile' athleteprofile.id %}" class="skew-style btn btn-black rounded-0 mt-5 float-right d-block">
                 <span class="icon">
                     <i class="fas fa-chevron-left"></i>
                 </span>
@@ -89,7 +82,7 @@
                 <form class="mt-3" action="{% url 'my_racehub' %}" method="POST" id="profile-update-form">
                     {% csrf_token %}
                     {{ form|crispy }}
-                    <button class="btn btn-black rounded-0 text-uppercase float-right">Update Information</button>
+                    <button class="skew-style btn btn-black rounded-0 text-uppercase float-right">Update Delivery Info</button>
                 </form>
             </div>
             <div class="col-12 col-lg-4">
@@ -166,15 +159,15 @@
                     
                     {% for r in racehubfriendprofiles %}
                         {% if r.id == f.myfriendsracehubid %}
-                        {{ r.athletefirstname }} {{ r.athletesurname }} | remove
+                        {{ r.athletefirstname }} {{ r.athletesurname }} | <a class="text-danger" href="{% url 'delete_racehub_friend' f.id %}">Delete</a>
                         {% endif %}
                     {% endfor %}
                     
                     <br>
                 {% endfor %}
-                <a href="{% url 'add_racehub_friend' %}" class="btn btn-black rounded-0 mt-5 float-right d-block">
+                <a href="{% url 'add_racehub_friend' %}" class="skew-style btn btn-black rounded-0 mt-5 float-right d-block">
                 <span class="icon">
-                    <i class="fas fa-chevron-left"></i>
+                    <i class="fas fa-plus"></i>
                 </span>
                 <span class="text-uppercase">Add Racehub Friend</span>
                 </a>
@@ -186,12 +179,12 @@
                 <p class="text-muted">These athletes have been saved by you. They are not Racehub customers, but you can enter them for events using this saved data:</p>
                 {% for f in nonracehubfriendsforthisathlete %}
                         {{ f.athletefirstname }} {{ f.athletesurname }} ID #{{f.id}},
-                         is a Racehub friend of {{ f.parentprofile }}, Athlete Profile ID #{{ f.parentprofile_id }}. {% if f.eaverified %}(EA Discount Confirmed){% else%} (No EA Discount) {% endif %}<br>
+                         is a Racehub friend of {{ f.parentprofile }}, Athlete Profile ID #{{ f.parentprofile_id }}. {% if f.eaverified %}(EA Discount Confirmed){% else%} (No EA Discount) {% endif %} | <a class="text-danger" href="{% url 'delete_nonracehub_friend' f.id %}">Delete</a><br>
                 {% endfor %}
                 <br>
-                <a href="{% url 'add_nonracehubfriend' %}" class="btn btn-black rounded-0 mt-5 float-right d-block">
+                <a href="{% url 'add_nonracehubfriend' %}" class="skew-style btn btn-black rounded-0 mt-5 float-right d-block">
                 <span class="icon">
-                    <i class="fas fa-chevron-left"></i>
+                    <i class="fas fa-plus"></i>
                 </span>
                 <span class="text-uppercase">Add Friends and Family</span>
                 </a><hr>

@@ -25,13 +25,19 @@
                 <li >{% if r.imageupload %}<a href="{{ r.imageupload.url }}" target="new"><img src="{{ r.imageupload.url }}" height="60px"><br>Open</a>{% else %}No Image Submitted{% endif %}</li>
                     <li >{% if r.hyperlink %}<A href="{{ r.hyperlink }}" target="new">Review</a>{% else %}No link submitted{% endif %}</li>
                     <li >{% if r.verifiedforvirtualresult %}VERIFIED{% else %}NOT VERIFIED YET{% endif %}</li>
-                
+                <a href="{% url 'my_racehub' %}" class="btn btn-outline-black rounded-0 mt-5">
+                    <span class="icon">
+                        <i class="fas fa-chevron-left"></i>
+                    </span>
+                    <span class="text-uppercase">MY RACEHUB</span>
+                </a>
                 <a href="{% url 'single_event_result_list' result.eventinstance.id %}" class="btn btn-outline-black rounded-0 mt-5">
                     <span class="icon">
                         <i class="fas fa-chevron-left"></i>
                     </span>
-                    <span class="text-uppercase">BACK TO LIST</span>
+                    <span class="text-uppercase">RESULTS FOR THIS EVENT</span>
                 </a>
+                
             </div>
         </div>
     </div>

@@ -93,8 +93,8 @@ class NonRaceHubFriends(models.Model):
     eaverified = models.BooleanField(default=True)
     club = models.ForeignKey(Club, null=True, blank=True, on_delete=models.SET_NULL)
     dateofbirth  = models.DateField( null=True, blank=True )
-    emergencycontactname = models.CharField(max_length=60, null=True, blank=True)
-    emergencycontactphone = models.CharField(max_length=20, null=True, blank=True)
+    emergencycontactname = models.CharField(max_length=60, null=True)
+    emergencycontactphone = models.CharField(max_length=20, null=True)
     M = 'M'
     F = 'F'
     N = 'N'
@@ -106,7 +106,7 @@ class NonRaceHubFriends(models.Model):
     gender = models.CharField(
         max_length=2,
         choices=gender_choices,
-        null=True, blank=True
+        null=True
     )
     Small = 'Small'
     Medium = 'Med'

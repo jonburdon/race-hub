@@ -18,14 +18,16 @@
                 <hr>
                 <h2 class="logo-font mb-4">Entry Management</h2>
                 <h5 class="text-muted">Transfer your entry to another runner</h5>
+                <h5>You may transfer to another Event OR transfer this to another runner.</h5>
                 <h5 >NB: You must add the My Racehub id of the destination athlete under Linkedathlete if this is to appear on their My Racehub profile.</h5>
+                <h5 >NB: Simply removing linkedathlete number will delete this from your profile for ever. ONLY changing the linkedathlete number will transfer this result to another user without changing any other details.</h5>
                 <hr>
             </div>
         </div>
 
         <div class="row">
             <div class="col-12 col-md-6">
-                <form method="POST" action="{% url 'add_result' %}" class="form mb-2" enctype="multipart/form-data">
+                <form method="POST" action="{% url 'transfer_result' result.id%}" class="form mb-2" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form | crispy }}
                     <div class="text-right">

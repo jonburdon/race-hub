@@ -407,9 +407,9 @@ def transfer_result(request, result_id):
             messages.error(request, 'Failed to update result. Please ensure the form is valid.')
     else:
         form = EntryTransferForm(instance=result)
-        messages.info(request, f'You are editing {result.eventinstance.friendlyname}')
+        messages.info(request, f'You are editing your entry for{result.eventinstance.friendlyname}')
 
-    template = 'results/edit_full_result.html'
+    template = 'results/transfer_full_result.html'
     context = {
         'form': form,
         'result': result,

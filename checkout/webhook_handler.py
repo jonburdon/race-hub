@@ -68,6 +68,8 @@ class StripeWH_Handler:
                 print(order_line_item.event.isvirtual)
                 if order_line_item.event.isvirtual == True:
                     virtual = True
+                else:
+                    virtual = False
                 athleteidforthisresult = order_line_item.which_athlete.split("#")
                 selectedathleteid = athleteidforthisresult[1]
                 if 'Myself' in order_line_item.which_athlete:
@@ -80,7 +82,7 @@ class StripeWH_Handler:
                     print ("Found Friend Athlete")
                     selectedathletetoenter = NonRaceHubFriends.objects.get(id=athleteidforthisresult[1])
                     athletetype= NonRacehubFriend
-
+                print('Creating result now')
                 newresult = Result.objects.create(
                     eventinstance = order_line_item.event,
                     athletefirstname = selectedathletetoenter.athletefirstname,

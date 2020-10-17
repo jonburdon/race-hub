@@ -37,7 +37,7 @@ Racehub is race entry and results management system for amateur athletes and eve
 | 2c |  | Recover my password | Authentication added |  | 
 | 2e |  | Receive email confirmation after registering | Email confirmation added |  | 
 | 2f |  | View a personalised user profile |  |  | 
-| 2g |  | Cancel entry |  transfer my entry to another user |  swap my entry to another event from same organiser." | Entry can be transferred to other users by changing ID | Verification that all details have genuinely been changed when a registration is transferred. | 
+| 2g |  | Cancel entry |  transfer my entry to another user |  swap my entry to another event from same organiser." | Entry can be transferred to other users by changing ID | Verification that all details especially the ID have genuinely been changed when a registration is transferred. Only allow transfer to FUTURE, live events. | 
 |  |  | Sorting and Searching |  |  | 
 | 3a |  | Sort the list of events | Easily identify events by date, discipline, distance |  | 
 | 3b |  | Filter to find only events in a specific category | date, disciple |  | 
@@ -45,7 +45,7 @@ Racehub is race entry and results management system for amateur athletes and eve
 | 3d |  | Search for results. | Search for results by athlete name, club or age category |  | 
 | 3e |  | Easily enter an event |  |  | 
 | 3f |  | Easily edit my own Athlete details | Athlete profile can be edited |  | 
-| 3g |  | Enter multiple athletes for one event at the same time |  and pay for their entry all at once. | Self, friends or family can all be added to the same basket |  | 
+| 3g |  | Enter multiple athletes for one event at the same time |  and pay for their entry all at once. | Self, friends or family can all be added to the same basket | In My Racehub, check if friend exists before adding the same Racehub Friend a second time. | 
 | 3h |  |  |  |  | 
 | 3i |  |  |  |  | 
 | 3j |  | Add results for virtual races I am registered for | Result can be submitted as photo or hyperlink |  | 
@@ -57,6 +57,7 @@ Racehub is race entry and results management system for amateur athletes and eve
 | 4e |  | Add results by bulk upload | Add single results | Change add result form to pre populate with specific event id, Add bulk upload by csv. Add a 'Quick Add' feature to simply enter results by finding Bib number OR searching my athlete name and then entering the time only. The linked athlete field should be a select field or search field containing athlete names.| 
 | 4f |  | Download results in bulk | Results can be exported to email account from Organiser Profile | Select one specific result set for download | 
 | 4g |  | Add individual results 'live' at the finish line. | Single results can be added | Quick input form so that results are easier to add | 
+| 4h | Manage England Athletics membership | Verify those eligible for discounts | EA membership can be made verified in the database, status is displayed in front end | Verify / Unverify EA memership in front end. Connect to EA api to verify memership status. Apply a discount in the checkout if EA membership is verified. | 
 
 
 
@@ -699,8 +700,9 @@ As with any project, the developer tested and checked components thoroughly duri
 
 ### Testing Credentials and Instructions:
 
-Card number for testing with authentication (triggers popup with overlay)
-4000 0025 0000 3155
+* Card number for testing 4242 4242 4242 4242
+* My Racehub profile id number for adding a Racehub Friend: User name has a racehub ID of 
+
 
 ### Automatic Testing
 
@@ -721,6 +723,29 @@ Manual testing was performed in a three step approach:
 - Testing of User Stories. Testing of Features and Defensive Design
 - Device testing.
 
+#### Organiser Testing
+- Organiser can create new event instance and then parent event.
+- Organiser can change event instance connected to the parent event.
+- Organiser can view all results
+- Organiser can manage and approve virtual results
+
+#### Registered User Testing
+- User can create a new account
+- User can enter self for an event
+- User can add a new racehub friend
+- User can enter a racehub friend for an event
+- Racehub Friend subsequently appears in results list, and this result appears on their My Racehub profile page
+- User can delete racehub friend
+- User can add a new family or friend
+- User can enter a racehub friend for an event
+- Friend subsequently appears in entry list
+- User can delete family or friend
+- User can transfer an entry to someone else
+
+#### Unregistered User Testing
+- User cannot enter events without logging in
+
+
 #### Issues Identified during testing:
 
 **Issue #1** During testing it was found that some database fields were not required. These were changed to required in the model in order to provide a more defensive design approach to the database. Issue resolved.
@@ -731,9 +756,18 @@ Manual testing was performed in a three step approach:
 
 **Issue #4** Add Event and Add Results forms require additional helper text in the second column. A useful additional feature here would be to be able to look up a Racehub User using a select field.
 
-**Issue 5** No datepicker was found in the Add results form. This was added.
+**Issue 5** No datepicker was found in the Add results form and Entry Transfer forms. This was added.
 
 **Issue 6** No back to list button was present on the Add results form page, Review Virtual Results page or Result detail pages. These were added as an additional feature to allow navigation between these pages.
+
+**Issue 7** When entering a non virtual event as a user, no result is created by the webhook handler. Virtual results are created. This was as a result of the variable virtual not being defined in the webhook handler for non virtual results. `else: virtual = False` Issue resolved.
+
+**Issue 8** Regular users did not have permission to transfer results as this was secured in the view. Issue resolved. This was as a result of an incorrect template link, with the user being directed the the edit result template. Issue resolved.
+
+**Issue 9** No functionality had been added to remove / delete a Racehub Friend using the My Rachub dashboard. The same functionality was missing from add Family and Friends. This functionality was added.
+
+**Issue 10** The Add Racehub Friend function was found not to be working when testing if athlete id numbers are valid. This error was idenfied - the view was using `RaceHubFriends.objects.all()` and was corrected to `AthleteProfile.objects.all()`. Issue resolved.
+
 
 
 

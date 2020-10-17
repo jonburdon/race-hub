@@ -98,6 +98,8 @@ class EntryTransferForm(forms.ModelForm):
         'linkedathlete'
     )
 
+    
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         clubs = Club.objects.all()
@@ -105,6 +107,12 @@ class EntryTransferForm(forms.ModelForm):
         friendly_names = [(c.id, c.get_friendly_name()) for c in clubs]
         
         self.fields['club'].choices = friendly_names
+
+        self.fields['dateofbirth'] = forms.DateField(
+        widget=forms.TextInput(
+            attrs={'type': 'date'}
+        )
+        )
        
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'border-black rounded-0'

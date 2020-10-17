@@ -89,7 +89,7 @@ def add_racehub_friend(request):
     """ Add a racehub friend to Myracehub """
     template = 'profiles/add_racehub_friend.html'
     athleteprofile = get_object_or_404(AthleteProfile, user=request.user)
-    racehubfriends = RaceHubFriends.objects.all()
+    racehubfriends = AthleteProfile.objects.all()
     if request.method == 'POST':
         form = AddRacehubFriendForm(request.POST, request.FILES)
         if form.is_valid():
@@ -234,3 +234,24 @@ def organiser_dashboard(request):
     }
 
     return render(request, 'profiles/organiser_dashboard.html', context)
+
+
+@login_required
+def delete_racehub_friend(request, racehubfriend_id):
+    """ Delete a racehub_friend from the profile """
+
+    racehubfriend = get_object_or_404(RaceHubFriends, pk=racehubfriend_id)
+    racehubfriend.delete()
+    messages.success(request, 'Racehub Friend connection deleted!')
+    
+    return redirect(reverse('my_racehub'))
+
+@login_required
+def delete_nonracehub_friend(request, nonracehubfriend_id):
+    """ Delete a non_racehub_friend from the profile """
+
+    nonracehubfriend = get_object_or_404(NonRaceHubFriends, pk=nonracehubfriend_id)
+    nonracehubfriend.delete()
+    messages.success(request, 'Family and Friends connection deleted!')
+    
+    return redirect(reverse('my_racehub'))

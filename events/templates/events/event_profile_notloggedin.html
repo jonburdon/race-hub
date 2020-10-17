@@ -17,7 +17,6 @@
         <div class="row">
             <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
                 <div class="image-container my-5">
-                <h1>This template is for users who are not logged in</h1>
                     {% if event.image %}
                         
                             <img class="card-img-top img-fluid" src="{{ event.image.url }}" alt="{{ event.name }}">
@@ -73,13 +72,13 @@
                             </div>
 
                             <div class="col-12">
-                                <a href="{% url 'events' %}" class="btn btn-outline-black rounded-0 mt-5">
+                                <a href="{% url 'events' %}" class="skew-stle btn btn-outline-black rounded-0 mt-5">
                                     <span class="icon">
                                         <i class="fas fa-chevron-left"></i>
                                     </span>
                                     <span class="text-uppercase">Find More Events</span>
                                 </a>
-                                <a href="{% url 'account_login' %}" class="btn btn-black rounded-0 text-uppercase mt-5">
+                                <a href="{% url 'account_login' %}" class="skew-style btn btn-black rounded-0 text-uppercase mt-5">
                                 
                                     <span class="text-uppercase">Please Log In to Enter Events</span>
                                 </a>
