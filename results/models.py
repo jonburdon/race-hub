@@ -12,7 +12,7 @@ class Result(models.Model):
     athletefirstname = models.CharField(max_length=40, null=True)
     athletesurname = models.CharField(max_length=40, null=True)
     athlete = models.CharField(max_length=125, null=True, blank=True)
-    dateofbirth = models.DateField(null=True)
+    dateofbirth = models.DateField(null=True, blank=True)
     M = 'M'
     F = 'F'
     N = 'N'

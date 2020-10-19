@@ -792,6 +792,13 @@ Code for mobile view buttons refactored from Code Institute tutorial
 - icons licensed and used from https://uxwing.com/
 - logos created by the author using Boxy SVG for macos
 
+Event Images used under lisence from:
+- South Huddersfield Trail and Road Series (Photographer: Wil Valovin)
+- Pixabay
+- Free Images.com
+- Stocksnap.io
+- Unsplash.com
+
 
 
 
