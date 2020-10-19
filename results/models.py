@@ -30,11 +30,29 @@ class Result(models.Model):
     bibnumber = models.DecimalField(max_digits=6, decimal_places=0, null=True, blank=True)
     Junior = 'Jr'
     Senior = 'Snr'
-    Veteran = 'Vet'
+    V35 = 'V35'
+    V40 = 'V40'
+    V45 = 'V45'
+    V50 = 'V50'
+    V55 = 'V55'
+    V60 = 'V60'
+    V65 = 'V65'
+    V70 = 'V70'
+    V75 = 'V75'
+    V80 = 'V80'
     age_cat_choices = [
         (Junior, 'Junior'),
         (Senior, 'Senior'),
-        (Veteran, 'Vet'),
+        (V35, 'V35'),
+        (V40, 'V40'),
+        (V45, 'V45'),
+        (V50, 'V50'),
+        (V55, 'V55'),
+        (V60, 'V60'),
+        (V65, 'V65'),
+        (V70, 'V70'),
+        (V75, 'V75'),
+        (V80, 'V80'),
     ]
     agecat = models.CharField(
         max_length=6,
