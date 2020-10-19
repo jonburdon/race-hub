@@ -50,7 +50,9 @@ class OrganiserAdmin(admin.ModelAdmin):
     )
 
 class EventInstanceAdmin(admin.ModelAdmin):
+    readonly_fields = ('id',)
     list_display = (
+        'id',
         'friendlyname',
         'name',
         'eventdate',

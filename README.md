@@ -800,12 +800,9 @@ Event Images used under lisence from:
 - Unsplash.com
 
 
+#### Useful Docmentation
 
-
-## Known Issues
-- Remove item from cart removes all entries for this event, not the single athlete.
-
-
+https://simpleisbetterthancomplex.com/packages/2016/08/11/django-import-export.html
 
 
 

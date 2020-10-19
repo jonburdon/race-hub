@@ -1,3 +1,4 @@
+from import_export.admin import ImportExportModelAdmin
 from django.contrib import admin
 
 from .models import Result
@@ -12,7 +13,7 @@ class ResultDownload(resources.ModelResource):
     class Meta:
         model = Result
 
-class ResultsAdmin(admin.ModelAdmin):
+class ResultsAdmin(ImportExportModelAdmin):
     list_display = (
         'eventinstance',
         'athletefirstname',
