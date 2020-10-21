@@ -8,6 +8,7 @@ def cart_contents(request):
     cart_items = []
     total = 0
     entries_count = 0
+    discount = 0
     cart = request.session.get('cart', {})
 
     for item_id, item_data in cart.items():
@@ -23,14 +24,22 @@ def cart_contents(request):
         else:
             event = get_object_or_404(EventInstance, pk=item_id)
             for which_athlete, quantity in item_data['items_by_athlete'].items():
-                total += quantity * event.price
+                if 'EAVerified' in which_athlete:
+                    discount = discount+2
+                    total += quantity * event.price - discount
+                else:
+                    total += quantity * event.price
+                    discount = discount
                 entries_count += quantity
+                
                 cart_items.append({
                     'item_id': item_id,
                     'quantity': quantity,
                     'event': event,
                     'athlete': which_athlete,
                 })
+
+    
 
     if total > settings.FREE_DELIVERY_THRESHOLD:
         delivery = total * Decimal(settings.STANDARD_DELIVERY_PERCENTAGE / 100)
@@ -42,6 +51,7 @@ def cart_contents(request):
     grand_total = total - delivery
     
     context = {
+        'discount': discount,
         'cart_items': cart_items,
         'total': total,
         'entries_count': entries_count,

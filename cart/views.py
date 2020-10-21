@@ -16,7 +16,6 @@ def add_to_cart(request, item_id):
     which_athlete = request.POST.get('which_athlete')
     print(which_athlete)
     cart = request.session.get('cart', {})
-
     
     if item_id in list(cart.keys()):
         if which_athlete in cart[item_id]['items_by_athlete'].keys():

@@ -98,7 +98,9 @@
                                     <span>Select Which Athletes to Enter</span>
                                     <select id="id_which_athlete" name="which_athlete" class="custom-select custom-select-sm rounded-0 border ">
                                     
-                                        <option value="Myself ({{ athleteprofile.athletefirstname }} {{ athleteprofile.athletesurname }}),  Athlete ID#{{ athleteprofile.id }}" selected>Myself ({{ athleteprofile.athletefirstname }} {{ athleteprofile.athletesurname }})</option>
+                                        <option value="Myself ({{ athleteprofile.athletefirstname }} {{ athleteprofile.athletesurname }}
+                                        {% if athleteprofile.eaverified %} EAVerified {% endif %}
+                                        ),  Athlete ID#{{ athleteprofile.id }}" selected>Myself ({{ athleteprofile.athletefirstname }} {{ athleteprofile.athletesurname }})</option>
                                         
 
 
@@ -106,22 +108,23 @@
                     
                                             {% for r in racehubfriendprofiles %}
                                                 {% if r.id == f.myfriendsracehubid %}
-                                                <option value="{{ r.athletefirstname }} {{ r.athletesurname }} Racehub Friend ID#
+                                                <option value="{{ r.athletefirstname }} {{ r.athletesurname }} 
+                                                {% if r.eaverified %} EAVerified {% endif %}
+                                                 Racehub Friend ID#
                                                 {{r.id}}">{{ r.athletefirstname }} {{ r.athletesurname }}
                                                 </option>
                                                 
                                                 {% endif %}
 
-                                            {% endfor %}
-                                            
+                                            {% endfor %}  
                                             
                                          {% endfor %}
-                                        
-
-                                        
 
                                         {% for f in nonracehubfriendsforthisathlete %}
-                                        <option value="{{ f.athletefirstname }} {{ f.athletesurname }}Family and Friend ID #{{ f.id }}">{{ f.athletefirstname }} {{ f.athletesurname }}</option>
+                                        <option value="{{ f.athletefirstname }} {{ f.athletesurname }}
+                                        
+                                         {% if r.eaverified %} EAVerified {% endif %} 
+                                        Family and Friend ID #{{ f.id }}">{{ f.athletefirstname }} {{ f.athletesurname }}</option>
                                         {% endfor %}
                                         
                                     </select>

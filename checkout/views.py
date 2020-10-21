@@ -32,10 +32,10 @@ def cache_checkout_data(request):
 def checkout(request):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
-
+    
     if request.method == 'POST':
         cart = request.session.get('cart', {})
-
+        
         form_data = {
             'full_name': request.POST['full_name'],
             'email': request.POST['email'],
@@ -53,6 +53,9 @@ def checkout(request):
             pid = request.POST.get('client_secret').split('_secret')[0]
             order.stripe_pid = pid
             order.original_cart = json.dumps(cart)
+            current_cart = cart_contents(request)
+            order.discount = current_cart['discount']
+            order.grand_total = order.order_total
             order.save()
             for item_id, item_data in cart.items():
                 try:
@@ -87,6 +90,7 @@ def checkout(request):
             return redirect(reverse('events'))
 
         current_cart = cart_contents(request)
+        discount = current_cart['discount']
         total = current_cart['grand_total']
         stripe_total = round(total * 100)
         stripe.api_key = stripe_secret_key
@@ -120,6 +124,7 @@ def checkout(request):
 
     template = 'checkout/checkout.html'
     context = {
+        
         'order_form': order_form,
         'stripe_public_key': stripe_public_key,
         'client_secret': intent.client_secret,

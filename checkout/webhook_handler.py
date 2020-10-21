@@ -111,10 +111,10 @@ class StripeWH_Handler:
         pid = intent.id
         cart = intent.metadata.cart
         save_info = intent.metadata.save_info
-
         billing_details = intent.charges.data[0].billing_details
         shipping_details = intent.shipping
-        grand_total = round(intent.charges.data[0].amount / 100, 2)
+        
+        grand_total = round(intent.charges.data[0].amount / 100, 2) 
 
         # Clean data in the shipping details
         for field, value in shipping_details.address.items():
@@ -151,6 +151,7 @@ class StripeWH_Handler:
                     street_address1__iexact=shipping_details.address.line1,
                     street_address2__iexact=shipping_details.address.line2,
                     county__iexact=shipping_details.address.state,
+                    
                     grand_total=grand_total,
                     original_cart=cart,
                     stripe_pid=pid,
@@ -180,6 +181,7 @@ class StripeWH_Handler:
                     street_address1=shipping_details.address.line1,
                     street_address2=shipping_details.address.line2,
                     county=shipping_details.address.state,
+                    discount=current_cart['discount'],
                     original_cart=cart,
                     stripe_pid=pid,
                 )
