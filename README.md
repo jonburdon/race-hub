@@ -809,6 +809,8 @@ Event Images used under lisence from:
 
 https://simpleisbetterthancomplex.com/packages/2016/08/11/django-import-export.html
 
+leaflet.js custom icons https://leafletjs.com/examples/custom-icons/
+
 
 
 

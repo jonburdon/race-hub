@@ -9,34 +9,43 @@
        <div class="dropdown-menu megamenu" aria-labelledby="dropdown01">
         <div class="row">
          <div class="col-sm-6 col-lg-3">
-          <h5>View All Events</h5>
+          <h5>Find Events</h5>
                 <a href="{% url 'map_view' %}" class="dropdown-item">Map View</a>
+                <a href="{% url 'events' %}" class="dropdown-item">All Events</a>
                 <a href="{% url 'events' %}?sort=price&direction=asc" class="dropdown-item">By Price</a>
-
-                <a href="{% url 'events' %}?sort=rating&direction=desc" class="dropdown-item ">By Rating</a>
 
                 <a href="{% url 'events' %}?sort=exactdistancekm&direction=asc" class="dropdown-item ">By Distance</a>
 
-                <a href="{% url 'events' %}?sort=name&direction=asc" class="dropdown-item ">By Name</a>
+                
+         </div>
+         <div class="col-sm-6 col-lg-3">
+          <h5>More </h5>
+          <a href="{% url 'events' %}?sort=name&direction=asc" class="dropdown-item ">By Name</a>
 
                 <a href="{% url 'events' %}?sort=event_format&direction=asc" class="dropdown-item ">By Format</a>
 
                 <a href="{% url 'events' %}?sort=entrycutoff&direction=asc" class="dropdown-item ">By Date</a>
-                <a href="{% url 'events' %}" class="dropdown-item">All Events</a>
+                <a href="{% url 'events' %}?sort=rating&direction=desc" class="dropdown-item ">By Rating</a>
+                
          </div>
          <div class="col-sm-6 col-lg-3">
-          <h5>More Links</h5>
-          <a class="dropdown-item" href="#">By Region</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-          <a class="dropdown-item" href="#">Another action</a>
+          <h5>Can't find your event?</h5>
+          <p>Racehub is free to list results and offers very competitive rates for organisers wishing to accept entries. Why not tell your event organiser to try Racehub?</p>
          </div>
          <div class="col-sm-6 col-lg-3">
-          <h5>Paragraph</h5>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus in veritatis, facilis eligendi sunt, culpa autem harum porro earum.</p>
-         </div>
-         <div class="col-sm-6 col-lg-3">
-          <h5>Image</h5>
-          <img src="https://source.unsplash.com/250x150/?sig=4" alt="..." style="width: 100%;">
+          <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+           <div class="carousel-inner">
+            <div class="carousel-item active">
+             <img class="d-block w-100" src='{{ MEDIA_URL }}slider1.png' width='250px' alt="racehub">
+            </div>
+            <div class="carousel-item">
+             <img class="d-block w-100" src='{{ MEDIA_URL }}slider2.png' width='250px' alt="trainer">
+            </div>
+            <div class="carousel-item">
+             <img class="d-block w-100" src='{{ MEDIA_URL }}slider3.png' width='250px' alt="Get your run on">
+            </div>
+           </div>
+          </div>
          </div>
         </div>
        </div>
@@ -59,12 +68,23 @@
           <a class="dropdown-item" href="{% url 'events' %}?discipline=orienteering">Orienteering</a>
          </div>
          <div class="col-sm-6 col-lg-3">
-          <h5>Paragraph</h5>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus in veritatis, facilis eligendi sunt, culpa autem harum porro earum.</p>
+          <h5>Can't find what you're looking for?</h5>
+          <p>Racehub is free to list results and offers very competitive rates for organisers wishing to accept entries. Why not tell your event organiser to try Racehub?</p>
          </div>
          <div class="col-sm-6 col-lg-3">
-          <h5>Image</h5>
-          <img src="https://source.unsplash.com/250x150/?sig=4" alt="..." style="width: 100%;">
+          <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+           <div class="carousel-inner">
+            <div class="carousel-item active">
+             <img class="d-block w-100" src='{{ MEDIA_URL }}slider1.png' width='250px' alt="racehub">
+            </div>
+            <div class="carousel-item">
+             <img class="d-block w-100" src='{{ MEDIA_URL }}slider2.png' width='250px' alt="trainer">
+            </div>
+            <div class="carousel-item">
+             <img class="d-block w-100" src='{{ MEDIA_URL }}slider3.png' width='250px' alt="Get your run on">
+            </div>
+           </div>
+          </div>
          </div>
         </div>
        </div>
@@ -95,25 +115,25 @@
 
          </div>
          <div class="col-sm-6 col-lg-3">
-          <h5>Image Slider</h5>
+          
           <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
            <div class="carousel-inner">
             <div class="carousel-item active">
-             <img class="d-block w-100" src="https://source.unsplash.com/250x150/?sig=1" alt="...">
+             <img class="d-block w-100" src='{{ MEDIA_URL }}slider1.png' width='250px' alt="racehub">
             </div>
             <div class="carousel-item">
-             <img class="d-block w-100" src="https://source.unsplash.com/250x150/?sig=2" alt="...">
+             <img class="d-block w-100" src='{{ MEDIA_URL }}slider2.png' width='250px' alt="trainer">
             </div>
             <div class="carousel-item">
-             <img class="d-block w-100" src="https://source.unsplash.com/250x150/?sig=3" alt="...">
+             <img class="d-block w-100" src='{{ MEDIA_URL }}slider3.png' width='250px' alt="Get your run on">
             </div>
            </div>
           </div>
          </div>
          
          <div class="col-sm-6 col-lg-3">
-          <h5>Paragraph</h5>
-          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam impedit itaque minus distinctio possimus reiciendis et repellat. Voluptate, temporibus veniam et praesentium alias, maxime repudiandae aliquid, natus omnis animi iste!</p>
+          <h5>Can't find what you're looking for?</h5>
+          <p>Racehub is free to list results and offers very competitive rates for organisers wishing to accept entries. Why not tell your event organiser to try Racehub?</p>
          </div>
         </div>
        </div>
@@ -121,35 +141,36 @@
 
       
       <li class="nav-item dropdown megamenu-li">
-       <a class="nav-link dropdown-toggle" href="" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">By Format</a>
+       <a class="nav-link dropdown-toggle" href="" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Go Virtual</a>
        <div class="dropdown-menu megamenu" aria-labelledby="dropdown02">
         <div class="row">
          <div class="col-sm-6 col-lg-4">
-          <h5>Image Slider</h5>
+          
           <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
            <div class="carousel-inner">
             <div class="carousel-item active">
-             <img class="d-block w-100" src="https://source.unsplash.com/250x150/?sig=1" alt="...">
+             <img class="d-block w-100" src='{{ MEDIA_URL }}slider1.png' width='250px' alt="racehub">
             </div>
             <div class="carousel-item">
-             <img class="d-block w-100" src="https://source.unsplash.com/250x150/?sig=2" alt="...">
+             <img class="d-block w-100" src='{{ MEDIA_URL }}slider2.png' width='250px' alt="trainer">
             </div>
             <div class="carousel-item">
-             <img class="d-block w-100" src="https://source.unsplash.com/250x150/?sig=3" alt="...">
+             <img class="d-block w-100" src='{{ MEDIA_URL }}slider3.png' width='250px' alt="Get your run on">
             </div>
            </div>
           </div>
          </div>
          <div class="col-sm-6 col-lg-3">
           <h5>Event Formats</h5>
+          <a href="{% url 'events' %}?event_format=virtual" class="dropdown-item">Virtual Running Events</a>
                 <a href="{% url 'events' %}?event_format=traditional_mass_start" class="dropdown-item">Mass Start</a>
                 <a href="{% url 'events' %}?event_format=separate_waves" class="dropdown-item">Split or Ind Start</a>
-                <a href="{% url 'events' %}?event_format=virtual" class="dropdown-item">Virtual</a>
+                
                 <a href="{% url 'events' %}?event_format=traditional_mass_start,separate_waves,virtual" class="dropdown-item">All Formats</a>
          </div>
          <div class="col-sm-6 col-lg-5">
-          <h5>Paragraph</h5>
-          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam impedit itaque minus distinctio possimus reiciendis et repellat. Voluptate, temporibus veniam et praesentium alias, maxime repudiandae aliquid, natus omnis animi iste!</p>
+          <h5>How it works</h5>
+          <p>Choose your Virtual Event. Order your medal and get running. Submit your results via My Racehub. Results will be listed immediately and your event organiser will be able to verify your result before posting your medal.</p>
          </div>
         </div>
        </div>
@@ -160,11 +181,10 @@
         <div class="row">
          <div class="col-sm-6 col-lg-3">
           <h5>Find Results ...</h5>
-                <a href="" class="dropdown-item">My Results</a>
-                <a href="" class="dropdown-item">All Recent Results</a>
-                <a href="" class="dropdown-item">By Event Organiser</a>
-                <a href="{% url 'results' %}" class="dropdown-item">Full Racehub Leaderboard</a>
+                <a href="{% url 'my_racehub' %}" class="dropdown-item">My Results</a>
                 <a href="{% url 'all_result_lists' %}" class="dropdown-item">All Event Results</a>
+                <a href="{% url 'results' %}" class="dropdown-item">Full Racehub Leaderboard</a>
+                
                 
          </div>
          <div class="col-sm-6 col-lg-3">
@@ -177,12 +197,23 @@
           <a class="dropdown-item" href="#">Orienteering</a>
          </div>
          <div class="col-sm-6 col-lg-3">
-          <h5>Paragraph</h5>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus in veritatis, facilis eligendi sunt, culpa autem harum porro earum.</p>
+          <h5>Searching for more?</h5>
+          <p>Visit any or our results pages to search by athlete name, club or bib number.</p>
          </div>
          <div class="col-sm-6 col-lg-3">
-          <h5>Image</h5>
-          <img src="https://source.unsplash.com/250x150/?sig=4" alt="..." style="width: 100%;">
+          <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+           <div class="carousel-inner">
+            <div class="carousel-item active">
+             <img class="d-block w-100" src='{{ MEDIA_URL }}slider1.png' width='250px' alt="racehub">
+            </div>
+            <div class="carousel-item">
+             <img class="d-block w-100" src='{{ MEDIA_URL }}slider2.png' width='250px' alt="trainer">
+            </div>
+            <div class="carousel-item">
+             <img class="d-block w-100" src='{{ MEDIA_URL }}slider3.png' width='250px' alt="Get your run on">
+            </div>
+           </div>
+          </div>
          </div>
         </div>
        </div>
@@ -192,33 +223,31 @@
        <div class="dropdown-menu megamenu" aria-labelledby="dropdown02">
         <div class="row">
          <div class="col-sm-6 col-lg-4">
-          <h5>Image Slider</h5>
+          
           <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
            <div class="carousel-inner">
             <div class="carousel-item active">
-             <img class="d-block w-100" src="https://source.unsplash.com/250x150/?sig=1" alt="...">
+             <img class="d-block w-100" src='{{ MEDIA_URL }}slider1.png' width='250px' alt="racehub">
             </div>
             <div class="carousel-item">
-             <img class="d-block w-100" src="https://source.unsplash.com/250x150/?sig=2" alt="...">
+             <img class="d-block w-100" src='{{ MEDIA_URL }}slider2.png' width='250px' alt="trainer">
             </div>
             <div class="carousel-item">
-             <img class="d-block w-100" src="https://source.unsplash.com/250x150/?sig=3" alt="...">
+             <img class="d-block w-100" src='{{ MEDIA_URL }}slider3.png' width='250px' alt="Get your run on">
             </div>
            </div>
           </div>
          </div>
          <div class="col-sm-6 col-lg-3">
-          <h5>Links</h5>
-          <a class="dropdown-item" href="#">What we offer</a>
-          <a class="dropdown-item" href="#">How it works</a>
-          <a class="dropdown-item" href="#">Prices</a>
-          <a class="dropdown-item" href="#">My Events</a>
+          <h5>Organisers</h5>
+          <a class="dropdown-item" href="#">Organiser Dashboard</a>
+          
          </div>
          <div class="col-sm-6 col-lg-5">
-          <h5>Paragraph</h5>
-          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam impedit itaque minus distinctio possimus reiciendis et repellat. Voluptate, temporibus veniam et praesentium alias, maxime repudiandae aliquid, natus omnis animi iste!</p>
+          <h5>Why Join Us?</h5>
+          <p>List results for free. List your events for free. Accept race entries from 50p per runner or less.</p>
           <h4>
-                       <a href="" class="shop-now-button skew-style btn btn-lg rounded-0 text-uppercase py-3">
+                       <a href="mailto:hello@racehub.run" class="shop-now-button skew-style btn btn-lg rounded-0 text-uppercase py-3">
                        Become an organiser
                        </a>
           </h4>

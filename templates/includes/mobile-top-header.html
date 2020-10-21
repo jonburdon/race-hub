@@ -31,11 +31,11 @@
     <div class="dropdown-menu border-0 w-100 p-3 rounded-0 my-0" aria-labelledby="mobile-search">
         <form class="form" method="GET" action="">
             <div class="input-group w-100">
-                <input class="form-control border border-black rounded-0" type="text" name="q" placeholder="Search our site">
+                <input class="form-control border border-black rounded-0" type="text" name="q" placeholder="Find Events">
                 <div class="input-group-append">
                     <button class="form-control form-control btn btn-black border border-black rounded-0" type="submit">
                         <span class="icon">
-                            <img src='{{ MEDIA_URL }}magnifying-glass.svg' width=25px>
+                            <img src='{{ MEDIA_URL }}magnifier-white.svg' width=25px>
                         </span>
                     </button>
                 </div>
@@ -53,7 +53,7 @@
     <div class="dropdown-menu border-0" aria-labelledby="user-options">
         {% if request.user.is_authenticated %}
             {% if request.user.is_superuser %}
-                <a href="{% url 'account_logout' %}" class="dropdown-item">Product Management</a>
+                <a href="{% url 'organiser_dashboard' %}" class="dropdown-item">Organiser Dashboard</a>
             {% endif %}
             <a href="#" class="dropdown-item">My Profile</a>
             <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
