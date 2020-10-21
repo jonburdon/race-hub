@@ -772,6 +772,10 @@ Manual testing was performed in a three step approach:
 
 **Issue 12** When creating a new account, it was found that it is possible to create an account and then enter yourself for an event whilst the Athlete Profile contains no information. An if statement was added to render the select field only if the Athlete First Name exists and otherwise add a warning button. This feature should be improved to make the form fields all required when editing the athlete form (whilst they are not actually required in the database, due to the fact that the athlete profile is created automatically during account creation.)
 
+**Issue 13** When adding a new event, as organiser, there was no function to delete Event Instances. This was added.
+
+**Issue 14** Map View - there are identical markers used for user's location and events. This is confusing, as the home marker has no popup. Also, events with an identical location overlap therefore one disappears.
+
 
 
 ## [Acknowledgements](#acknowledgements)

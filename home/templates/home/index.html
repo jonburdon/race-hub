@@ -268,7 +268,7 @@ navigator.geolocation.getCurrentPosition(function(location) {
 var marker = L.marker(latlng).addTo(mymap);
 {% for event in events %}
 var marker = L.marker([{{ event.latitude }}, {{ event.longitude }}]).addTo(mymap); 
-marker.bindPopup(`<b>{{ event.name }}</b><br><img src='/media/walking.svg' width='20px'>{{ event.discipline }} | 
+marker.bindPopup(`<b>{{ event.name }}</b><br><img src='{{ MEDIA_URL }}walking.svg' width='20px'>{{ event.discipline }} | 
 <A href='{% url 'event_profile' event.id %}'>View</a>`).openPopup();  
 
 {% endfor %}  

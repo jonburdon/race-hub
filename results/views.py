@@ -21,6 +21,7 @@ def all_result_lists(request):
     name = None
     agecat = None
     chiptime = None
+    guntime = None
     club = None
     athlete = None
     sort = None
@@ -92,6 +93,7 @@ def single_event_result_list(request, eventinstance_id):
     agecat = None
     gender = None
     chiptime = None
+    guntime = None
     club = None
     athlete = None
     sort = None
@@ -107,8 +109,8 @@ def single_event_result_list(request, eventinstance_id):
                 events = events.annotate(lower_name=Lower('name'))
             if sortkey == 'agecat':
                 sortkey = 'agecat'
-            if sortkey == 'chiptime':
-                sortkey = 'chiptime'
+            if sortkey == 'guntime':
+                sortkey = 'guntime'
             if sortkey == 'club':
                 sortkey = 'club__name'
             if sortkey == 'athletesurname':
@@ -250,8 +252,8 @@ def all_results(request):
                 events = events.annotate(lower_name=Lower('name'))
             if sortkey == 'agecat':
                 sortkey = 'agecat'
-            if sortkey == 'chiptime':
-                sortkey = 'chiptime'
+            if sortkey == 'guntime':
+                sortkey = 'guntime'
             if sortkey == 'club':
                 sortkey = 'club__name'
             if sortkey == 'athlete':

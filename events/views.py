@@ -330,3 +330,16 @@ def event_connect(request, event_id):
 
 def check_latlong(request, postcode):
     return render(request, template, context)
+
+
+@login_required
+def delete_event_instance(request, eventinstance_id):
+    """ Delete an event instance from the store """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
+    eventinstance = get_object_or_404(EventInstance, pk=event_id)
+    eventinstance.delete()
+    messages.success(request, 'Event instance deleted!')
+    return redirect(reverse('organiser_dashboard'))

@@ -20,7 +20,7 @@
         <div class="row">
             <div class="col">
                 <hr>
-                <h2 class="logo-font mb-4"><img src='/media/running-walk.svg' width=25px>{{ athleteprofile }}'s Organiser Dashboard
+                <h2 class="logo-font mb-4"><img src='{{ MEDIA_URL }}running-walk.svg' width=25px>{{ athleteprofile }}'s Organiser Dashboard
                   </h2>
                 
                 <hr>
@@ -132,10 +132,11 @@
                             
                             <td><a href="{% url 'event_instance_profile' e.id%}">{{ e.friendlyname }}</a</td>
                             <td><a href="{% url 'edit_event_instance' e.id%}">Edit</a</td>
+                            <td><a href="{% url 'delete_event_instance' e.id%}">Delete</a</td>
                             
                             <td><a href="{% url 'single_event_result_list' e.id%}">Results</a></td>
                             <td>{% if e.isvirtual %}
-                    <a href="{% url 'review_virtual_results' e.id%}"><p>Manage Virtual</p></a>
+                    <a href="{% url 'review_virtual_results' e.id%}"><p> Virtual</p></a>
                     {% endif %}</td>
                             <tr>
                             

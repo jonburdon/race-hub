@@ -14,5 +14,6 @@ urlpatterns = [
     path('event_link_options/', views.event_link_options, name='event_link_options'),
     path('event_connect/<int:event_id>/', views.event_connect, name='event_connect'),
     path('check_latlong/', views.check_latlong, name='check_latlong'),
+    path('delete_instance/<int:eventinstance_id>/', views.delete_event_instance, name='delete_event_instance'),
     
 ]

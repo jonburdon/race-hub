@@ -28,8 +28,8 @@
                         <div class="sort-select-wrapper w-50">
                             <select id="sort-select" class="custom-select custom-select-sm rounded-0 border border-{% if current_sorting != 'None_None' %}info{% else %}black{% endif %}">
                                 <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
-                                <option value="chiptime_asc" {% if current_sorting == 'chiptime_asc' %}selected{% endif %}>Chiptime (Asc)</option>
-                                <option value="chiptime_desc" {% if current_sorting == 'chiptime_desc' %}selected{% endif %}>Chiptime (Desc)</option>
+                                <option value="guntime_asc" {% if current_sorting == 'guntime_asc' %}selected{% endif %}>Guntime (Asc)</option>
+                                <option value="guntime_desc" {% if current_sorting == 'guntime_desc' %}selected{% endif %}>Guntime (Desc)</option>
                                 <option value="athletesurname_asc" {% if current_sorting == 'athletesurname_asc' %}selected{% endif %}>Athlete (Asc)</option>
                                 <option value="athletesurname_desc" {% if current_sorting == 'athletesurname_desc' %}selected{% endif %}>Athlete (Desc)</option>
                                 <option value="club_asc" {% if current_sorting == 'club_asc' %}selected{% endif %}>Club (Asc)</option>

@@ -85,7 +85,7 @@
                                 <div class="card-img-top">                               
                                 {% if event.image %}
                                 <a href="">
-                                    <img class="card-img-top img-fluid" src="{{ event.image.url }}" alt="{{ product.name }}">
+                                    <img class="card-img-top img-fluid" src="{{ event.image.url }}" alt="{{ event.name }}">
                                 </a>
 
                                 {% else %}
@@ -155,8 +155,8 @@
     </div>
         <div class="btt-button shadow-sm rounded-0 border border-black">
         <a class="btt-link d-flex h-100 mx-auto">
-            <img src='/media/running-walk.svg' width='20px'>
-            <img src='/media/line-angle-up.svg' width='20px'>
+            <img src='{{ MEDIA_URL }}running-walk.svg' width='20px'>
+            <img src='{{ MEDIA_URL }}line-angle-up.svg' width='20px'>
         </a>	
     </div>
 {% endblock %}
