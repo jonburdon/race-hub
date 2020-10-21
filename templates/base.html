@@ -154,6 +154,83 @@
     {% block content %}
     {% endblock %}
 
+
+<!-- Footer -->
+<footer class="page-footer font-small  pt-4">
+
+  <!-- Footer Links -->
+  <div class="container text-center text-md-left">
+
+    <!-- Grid row -->
+    <div class="row">
+
+      <!-- Grid column -->
+      <div class="col-md-6 mt-md-0 mt-3 footer-col1">
+
+        <!-- Content -->
+        
+        <h2 id="logo-font-text" class="logo-font text-black my-0 mx-3"><img src='{{ MEDIA_URL }}Racehub_icon-white.svg' width=85px></h2>
+        <p class="ml-2 mr-2">Racehub is growing fast! Connect with us to stay in touch. Find events. Keep track of results. Build your profile.</p>
+
+      </div>
+      <!-- Grid column -->
+
+      <hr class="clearfix w-100 d-md-none pb-3">
+
+      <!-- Grid column -->
+      <div class="col-md-3 mb-md-0 mb-3">
+
+        <!-- Links -->
+        <h5 class="text-uppercase">Social</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <a href="https://www.facebook.com/" target="new">Racehub on Facebook</a>
+          </li>
+          <li>
+            <a href="https://www.facebook.com/" target="new">Racehub on Facebook</a>
+          </li>
+          
+        </ul>
+
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-3 mb-md-0 mb-3">
+
+        <!-- Links -->
+        <h5 class="text-uppercase">Contact</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <a href="mailto:hello@racehub.run">Email Us</a>
+          </li>
+          <li>
+            <a href="tel:+447876551273">Phone Us</a>
+          </li>
+          
+        </ul>
+
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+  </div>
+  <!-- Footer Links -->
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2020 Copyright:
+    <a href="{% url 'home' %}"> Racehub</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+
+
     {% block postloadjs %}
    <script type="text/javascript">
         $('.toast').toast('show');

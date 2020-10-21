@@ -791,6 +791,7 @@ Code for mobile view buttons refactored from Code Institute tutorial
 - Responsive Bootstrap Mega Menu: https://codepen.io/JakubHonisek/pen/xXaYqg
 - Original Leaflet map view reference code when connecting to Mapbox api: https://codepen.io/bbrook154/pen/RRQQyG
 - Map View Reference used for connecting to Open Maps https://harrywood.co.uk/maps/examples/leaflet/geolocate.view.html
+- Footer: https://mdbootstrap.com/docs/jquery/navigation/footer/
 
 #### Media:
 - icons licensed and used from https://uxwing.com/

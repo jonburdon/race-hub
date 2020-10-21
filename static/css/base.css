@@ -44,6 +44,18 @@ hr { display: block; height: 1px;
     margin-left: 30vw;
 }
 
+/* Footer */
+.page-footer, .page-footer .container {
+    background-color: var(--primary-color-dark);
+    color: white;
+}
+.page-footer .logo-font{
+    float: left;
+}
+.page-footer a {
+    color: black;
+}
+
 /* from Bulma */
 .icon {
     align-items: center;
