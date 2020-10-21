@@ -65,7 +65,7 @@ def checkout(request):
                             quantity=quantity,
                             which_athlete=athlete,
                         )
-                        print('Create a lovely result now')
+                        
                         order_line_item.save()
                 except EventInstance.DoesNotExist:
                     messages.error(request, (

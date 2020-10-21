@@ -62,10 +62,7 @@ class StripeWH_Handler:
                     quantity=quantity,
                     which_athlete=athlete,
                 )
-                print('This Event is:')
-                print(order_line_item.event)
-                print('Virtual?')
-                print(order_line_item.event.isvirtual)
+                
                 if order_line_item.event.isvirtual == True:
                     virtual = True
                 else:
@@ -79,10 +76,10 @@ class StripeWH_Handler:
                     selectedathletetoenter = AthleteProfile.objects.get(id=athleteidforthisresult[1])
                     athletetype= RacehubFriend
                 if 'Family' in order_line_item.which_athlete:
-                    print ("Found Friend Athlete")
+                    
                     selectedathletetoenter = NonRaceHubFriends.objects.get(id=athleteidforthisresult[1])
                     athletetype= NonRacehubFriend
-                print('Creating result now')
+                
                 newresult = Result.objects.create(
                     eventinstance = order_line_item.event,
                     athletefirstname = selectedathletetoenter.athletefirstname,
@@ -165,7 +162,6 @@ class StripeWH_Handler:
                 time.sleep(1)
         if order_exists:
             self._send_confirmation_email(order)
-            print ('ORDER EXISTS SO CREATE A RESULT NOW')
             self._create_result(order, event)
             return HttpResponse(
                 content=f'Webhook received: {event["type"]} | SUCCESS: Verified order already in database',
@@ -214,7 +210,6 @@ class StripeWH_Handler:
                     content=f'Webhook received: {event["type"]} | ERROR: {e}',
                     status=500)
         self._send_confirmation_email(order)
-        print ('I am going to add a row to the Results database for this order now...')
         self._create_result(order, event)
         return HttpResponse(
             content=f'Webhook received: {event["type"]} | SUCCESS: Created order in webhook',
