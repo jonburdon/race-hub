@@ -275,6 +275,10 @@ console.log (mapevents)
 
 navigator.geolocation.getCurrentPosition(function(location) {
   var latlng = new L.LatLng(location.coords.latitude, location.coords.longitude);
+  console.log(latlng)
+  console.log(latlng.lat)
+  console.log(latlng.lng)
+  
   var greenIcon = L.icon({
     iconUrl: '{{ MEDIA_URL }}green-map-marker.png',
     shadowUrl: '{{ MEDIA_URL }}marker-shadow.png',
@@ -301,22 +305,18 @@ var homeIcon = L.icon({
             maxZoom: 18
          }).addTo(mymap);
 
-var marker = L.marker(latlng).addTo(mymap);
+// Home Marker
+// var marker = L.marker(latlng).addTo(mymap);
+var marker = L.marker([latlng.lat, latlng.lng], {icon: homeIcon}).addTo(mymap); 
+
+// Markers for events
 {% for event in events %}
 var marker = L.marker([{{ event.latitude }}, {{ event.longitude }}], {icon: greenIcon}).addTo(mymap); 
 marker.bindPopup(`<b>{{ event.name }}</b><br><img src='{{ MEDIA_URL }}walking.svg' width='20px'>{{ event.discipline }} | 
 <A href='{% url 'event_profile' event.id %}'>View</a>`).openPopup();  
 
 {% endfor %}  
-// var marker = L.marker([51.5, -0.09]).addTo(mymap);  
-  
-// marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();  
-  
-// var marker = L.marker([51.9, -0.12]).addTo(mymap);    
-  
-// marker.bindPopup("<b>Hello world!</b><br>I am another popup.").openPopup(); 
-  
-// var marker = L.marker([53.56588, -1.69692]).addTo(mymap);   
+
 
 });
 </script>
