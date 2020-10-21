@@ -58,13 +58,16 @@ console.log (mapevents)
 
 <div class="container my-5">
     <div class="row">
+
+    
+
         <div class="col-md-12">
             <div class="d-flex justify-content-between align-items-center breaking-news bg-white">
                 <div class="d-flex flex-row flex-grow-1 flex-fill justify-content-center bg-green skew-style py-2 text-white px-1 news"><span class="d-flex align-items-center skew-style">&nbsp;Upcoming Events:</span></div>
                 <marquee class="news-scroll" behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();">
-                <img src='{{ MEDIA_URL }}running-walk.svg' width=15px>
+                <img class="scroll-icon" src='{{ MEDIA_URL }}running-walk.svg' width=15px>
                 {% for event in events %}
-                <a href="{% url 'event_profile' event.id %}">{{ event.name }}</a> <img src='{{ MEDIA_URL }}running-walk.svg' width=15px class="mx-1" ></span> 
+                <a href="{% url 'event_profile' event.id %}">{{ event.name }}</a> <img class="scroll-icon" src='{{ MEDIA_URL }}running-walk.svg' width=15px class="mx-1" ></span> 
                 
                 {% endfor %}
                 </marquee>
@@ -73,26 +76,38 @@ console.log (mapevents)
     </div>
 </div>
 
-<div class="container-fluid ">
+<div class="container ">
     <div class="row my-5">
         
-        <div class="col-sm-6 col-md-6 col-lg-6 px-3 highlight-section">
-        <h2>Racehub for:</h2>
-        <ul>
-        <li>Finding and entering your next event</li>
-        <li>Finding results and build your profile</li>
-        <li>Creating and entering virtual challenges</li>
-        <li>Organising your next running event</li>
-        </ul>
-        </div>
-        <div class="col-sm-6 col-md-6 col-lg-6 px-3 highlight-section">
-        <h2>Virtual Races</h2>
+        <div class="col-sm-12 col-md-12 col-lg-6 px-3 col-xl-6">
+                    <div class="card black-card top-card">
+                        
+                        <div class="card-block">
+                            <h2>Racehub for:</h2>
+                            <ul>
+                            <li>Finding and entering your next event</li>
+                            <li>Finding results and build your profile</li>
+                            <li>Creating and entering virtual challenges</li>
+                            <li>Organising your next running event</li>
+                            </ul>
+                        </div>
+                    </div>
+          </div>
+
+        <div class="col-sm-12 col-md-12 col-lg-6 px-3 col-xl-6">
+                    <div class="card green-card top-card">
+                        
+                        <div class="card-block">
+                            <h2>Virtual Races:</h2>
         <ul>
         <li>Enter</li>
         <li>Upload your own results</li>
         <li>View leaderboards</li>
         </ul>
-        </div>
+                        </div>
+                    </div>
+          </div>
+        
     </div>
 </div>
 
@@ -101,17 +116,17 @@ console.log (mapevents)
 
 </div>
 
-<div class="container">
+<div class="container nav-section">
 <h2 class="display-4 text-black my-5" >
                     Race Types
                 </h2>
-        <div class="row">
+        <div class="row first-row">
             
                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                     <div class="card">
                         <div class="card-img-top">                               
                             <a href="">
-                                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}Windmill_UNGtjKA.jpg" alt="">
+                                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}road-race_8l6PEUR.jpg" alt="">
                             </a>
                         </div>
                         <div class="card-block">
@@ -127,7 +142,7 @@ console.log (mapevents)
                     <div class="card">
                         <div class="card-img-top">                               
                             <a href="">
-                                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}Windmill_UNGtjKA.jpg" alt="">
+                                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}TrailHalf.jpg" alt="">
                             </a>
                         </div>
                         <div class="card-block">
@@ -140,10 +155,10 @@ console.log (mapevents)
                 </div>
 
                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                    <div class="card">
+                    <div class="card green-card">
                         <div class="card-img-top">                               
                             <a href="">
-                                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}Windmill_UNGtjKA.jpg" alt="">
+                                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}Stairway.jpg" alt="">
                             </a>
                         </div>
                         <div class="card-block">
@@ -159,7 +174,7 @@ console.log (mapevents)
                     <div class="card">
                         <div class="card-img-top">                               
                             <a href="">
-                                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}Windmill_UNGtjKA.jpg" alt="">
+                                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}cross-country.jpg" alt="">
                             </a>
                         </div>
                         <div class="card-block">
@@ -173,16 +188,16 @@ console.log (mapevents)
                 
             
         </div>
-<h2 class="display-4 text-black my-5" >
+            <h2 class="display-4 text-black my-5" >
                     Race Distances
                 </h2>
         <div class="row">
                 
                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                    <div class="card">
+                    <div class="card black-card">
                         <div class="card-img-top">                               
                             <a href="">
-                                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}Windmill_UNGtjKA.jpg" alt="">
+                                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}road-race-2.jpg" alt="">
                             </a>
                         </div>
                         <div class="card-block">
@@ -198,7 +213,7 @@ console.log (mapevents)
                     <div class="card">
                         <div class="card-img-top">                               
                             <a href="">
-                                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}Windmill_UNGtjKA.jpg" alt="">
+                                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}running-1254645-639x420.jpg" alt="">
                             </a>
                         </div>
                         <div class="card-block">
@@ -211,10 +226,10 @@ console.log (mapevents)
                 </div>
 
                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                    <div class="card">
+                    <div class="card black-card">
                         <div class="card-img-top">                               
                             <a href="">
-                                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}Windmill_UNGtjKA.jpg" alt="">
+                                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}road-run-group.jpg" alt="">
                             </a>
                         </div>
                         <div class="card-block">
@@ -230,7 +245,7 @@ console.log (mapevents)
                     <div class="card">
                         <div class="card-img-top">                               
                             <a href="">
-                                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}Windmill_UNGtjKA.jpg" alt="">
+                                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}london-marathon-2003-1455005-640x480.jpg" alt="">
                             </a>
                         </div>
                         <div class="card-block">
