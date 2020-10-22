@@ -39,9 +39,10 @@ hr { display: block; height: 1px;
 
 /* logo-overlap */
 .logo-overlap {
-    margin-top: -5.5vw;
-    width: 70vw;
-    margin-left: 30vw;
+    margin-top: -10vw;
+    width: 450px;
+
+    margin-left: 0vw;
 }
 
 /* Search tools in page nav - sticky navbar */
@@ -110,7 +111,7 @@ hr { display: block; height: 1px;
 #hero-logo-text {
     margin-left: 10px;
     color: white !important;
-    font-size: 32pt; 
+    font-size: 24pt; 
 }
 
 .main-logo-link {
@@ -368,8 +369,8 @@ a.category-badge > span.badge:hover {
 }
 
 .map-medium-size { 
-  height: 30vw;
-  width: 98vw;
+  height: 30vh;
+  width: 90vw;
 }
 
 .btt-link,
@@ -684,6 +685,13 @@ width: 50px;
 }
 
 @media (min-width: 992px) {
+
+/* resize logo and position right */
+.logo-overlap {
+    margin-top: -5.5vw;
+    width: 70vw;
+margin-left: 30%;
+}
 
   .top-card {
     min-height: 47vh;
