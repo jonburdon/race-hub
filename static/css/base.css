@@ -30,9 +30,9 @@ hr { display: block; height: 1px;
 .hero-header {
     background: url('/media/main-header-pic.jpg') no-repeat center center fixed;
     background-size: cover;
-    padding: 10vw 0vw;
+    padding-top: 15vw;
     
-    height: 60vh;
+    height: 70vh;
    
 }
 
@@ -691,6 +691,12 @@ width: 50px;
 }
 
 @media (min-width: 992px) {
+
+.hero-header {
+   
+padding-top: 5vw;
+ 
+}
 /* larger map on home page */
 .map-medium-size { 
   height: 50vh;
