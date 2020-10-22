@@ -2,7 +2,7 @@
     
         <div class="text-center d-lg-none">
         <a href="{% url 'home' %}" class="main-logo-link">
-            <img src='{{ MEDIA_URL }}Racehub_icon-green.svg' width=60px>
+            <img src='{{ MEDIA_URL }}Racehub_icon-green.svg' width=60 alt="racehub">
             </a>
         </div>
     
@@ -13,7 +13,7 @@
                 <div class="input-group-append">
                     <button class="form-control form-control btn btn-black border border-black rounded-0" type="submit">
                         <span class="icon">
-                            <img src='{{ MEDIA_URL }}magnifying-glass.svg' width=25px>
+                            <img src='{{ MEDIA_URL }}magnifying-glass.svg' width=25 alt="search">
                         </span>
                     </button>
                 </div>
@@ -35,7 +35,7 @@
                 <div class="input-group-append">
                     <button class="form-control form-control btn btn-black border border-black rounded-0" type="submit">
                         <span class="icon">
-                            <img src='{{ MEDIA_URL }}magnifier-white.svg' width=25px>
+                            <img src='{{ MEDIA_URL }}magnifier-white.svg' width=25 alt="search">
                         </span>
                     </button>
                 </div>
@@ -44,9 +44,9 @@
     </div>
 </li>
 <li class="list-inline-item dropdown">
-    <a class="text-black nav-link d-block d-lg-none" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <a class="text-black nav-link d-block d-lg-none" href="#"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <div class="text-center">
-            <div><img src='{{ MEDIA_URL }}running-walk.svg' width=25px></div>
+            <div><img src='{{ MEDIA_URL }}running-walk.svg' width=25 alt="trainer"></div>
             <p class="my-0">My Racehub</p>
         </div>
     </a>
@@ -66,7 +66,7 @@
 <li class="list-inline-item">
     <a class="{% if grand_total %}text-primary font-weight-bold{% else %}text-black{% endif %} d-block d-lg-none" href="">
         <div class="text-center">
-            <div><img src='{{ MEDIA_URL }}bag.svg' width=25px></div>
+            <div><img src='{{ MEDIA_URL }}bag.svg' width=25 alt="Cart"></div>
             <p class="my-0">
                 {% if grand_total %}
                     £{{ grand_total|floatformat:2 }}

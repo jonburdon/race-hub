@@ -49,7 +49,7 @@
         <div class="row bg-white desktop-bar">
             <div class="bg-white col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
                 <a href="{% url 'home' %}" class="nav-link main-logo-link">
-                    <h2 id="logo-font-text" class="logo-font text-black my-0"><img src='{{ MEDIA_URL }}racehub-logo-text.svg' width=350px></h2>
+                    <h2 id="logo-font-text" class="logo-font text-black my-0"><img src='{{ MEDIA_URL }}racehub-logo-text.svg' width=350 alt="Racehub logo"></h2>
                 </a>
             </div>
             <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 d-none d-lg-block">
@@ -59,7 +59,7 @@
                         <div class="input-group-append">
                             <button class="form-control btn btn-white border border-black rounded-0" type="submit">
                                 <span class="icon">
-                                    <img src='{{ MEDIA_URL }}magnifying-glass.svg' width=25px>
+                                    <img src='{{ MEDIA_URL }}magnifying-glass.svg' width=25 alt="magnifier">
                                 </span>
                             </button>
                         </div>
@@ -71,7 +71,7 @@
                     <li class="list-inline-item dropdown">
                         <a class="text-black nav-link" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <div class="text-center">
-                                <div><img src='{{ MEDIA_URL }}running-walk.svg' width=25px></div>
+                                <div><img src='{{ MEDIA_URL }}running-walk.svg' width=25 alt="trainer"></div>
                                 <p class="my-0">My Racehub</p>
                             </div>
                         </a>
@@ -91,7 +91,7 @@
                     <li class="list-inline-item">
                         <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link" href="{% url 'view_cart' %}">
                             <div class="text-center">
-                                <div><img src='{{ MEDIA_URL }}bag.svg' width=25px></div>
+                                <div><img src='{{ MEDIA_URL }}bag.svg' width=25 alt="Cart"></div>
                                 <p class="my-0">
                                     {% if grand_total %}
                                         £{{ grand_total|floatformat:2 }}
@@ -169,7 +169,7 @@
 
         <!-- Content -->
         
-        <h2 id="logo-font-text" class="logo-font text-black my-0 mx-3"><img src='{{ MEDIA_URL }}Racehub_icon-white.svg' width=85px></h2>
+        <h2 id="logo-font-text" class="logo-font text-black my-0 mx-3"><img src='{{ MEDIA_URL }}Racehub_icon-white.svg' width=85 alt="Racehub"></h2>
         <p class="ml-2 mr-2">Racehub is growing fast! Connect with us to stay in touch. Find events. Keep track of results. Build your profile.</p>
 
       </div>

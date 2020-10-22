@@ -279,6 +279,9 @@ Image Cards
 .event-card {
         min-height: 570px;
 }
+.nav-card {
+    min-height: 380px;
+}
 
 .top-card {
     padding: 5vh 10vw;

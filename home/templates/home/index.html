@@ -51,7 +51,7 @@ console.log (mapevents)
         <section class="container my-auto mt-150">
         <div class="row " >
             <div class="col-12 col-md-6 my-auto ">
-                <img src='{{ MEDIA_URL }}racehub-logo-text-outline.svg' class="logo-overlap">
+                <img src='{{ MEDIA_URL }}racehub-logo-text-outline.svg' class="logo-overlap" alt="Racehub">
             </div>
         </div>
         </section>
@@ -64,9 +64,9 @@ console.log (mapevents)
         <div class="col-md-12">
             <div class="d-flex justify-content-between align-items-center breaking-news bg-white">
                 <marquee class="news-scroll" behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();">
-                <img class="scroll-icon" src='{{ MEDIA_URL }}running-walk.svg' width=15px>
+                <img class="scroll-icon" src='{{ MEDIA_URL }}running-walk.svg' width=15 alt="Running">
                 {% for event in events %}
-                <a href="{% url 'event_profile' event.id %}">{{ event.name }}</a> <img class="scroll-icon" src='{{ MEDIA_URL }}running-walk.svg' width=15px class="mx-1" ></span> 
+                <a href="{% url 'event_profile' event.id %}">{{ event.name }}</a> <img class="scroll-icon" src='{{ MEDIA_URL }}running-walk.svg' width=15 alt="Event">
                 
                 {% endfor %}
                 </marquee>
@@ -122,10 +122,10 @@ console.log (mapevents)
         <div class="row first-row">
             
                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                    <div class="card">
+                    <div class="card nav-card">
                         <div class="card-img-top">                               
                             <a href="{% url 'events' %}?discipline=road">
-                                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}road-race_8l6PEUR.jpg" alt="">
+                                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}road-race_8l6PEUR.jpg" alt="Road">
                             </a>
                         </div>
                         <div class="card-block">
@@ -138,10 +138,10 @@ console.log (mapevents)
                 </div>
 
                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                    <div class="card black-card">
+                    <div class="card nav-card black-card">
                         <div class="card-img-top">                               
                             <a href="{% url 'events' %}?discipline=trail">
-                                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}TrailHalf.jpg" alt="">
+                                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}TrailHalf.jpg" alt="Trail">
                             </a>
                         </div>
                         <div class="card-block">
@@ -154,10 +154,10 @@ console.log (mapevents)
                 </div>
 
                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                    <div class="card green-card">
+                    <div class="card nav-card green-card">
                         <div class="card-img-top">                               
                             <a href="{% url 'events' %}?discipline=fell">
-                                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}Stairway.jpg" alt="">
+                                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}Stairway.jpg" alt="Fell">
                             </a>
                         </div>
                         <div class="card-block">
@@ -170,10 +170,10 @@ console.log (mapevents)
                 </div>
 
                     <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                    <div class="card">
+                    <div class="card nav-card">
                         <div class="card-img-top">                               
                             <a href="{% url 'events' %}?discipline=road,trail,fell,triathlon,adventure_racing,orienteering">
-                                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}cross-country.jpg" alt="">
+                                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}cross-country.jpg" alt="All Race Types">
                             </a>
                         </div>
                         <div class="card-block">
@@ -196,10 +196,10 @@ console.log (mapevents)
         <div class="row">
                 
                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                    <div class="card black-card">
+                    <div class="card nav-card black-card">
                         <div class="card-img-top">                               
                             <a href="{% url 'events' %}?distance=10k">
-                                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}road-race-2.jpg" alt="">
+                                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}road-race-2.jpg" alt="10k">
                             </a>
                         </div>
                         <div class="card-block">
@@ -212,10 +212,10 @@ console.log (mapevents)
                 </div>
 
                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                    <div class="card green-card">
+                    <div class="card nav-card green-card">
                         <div class="card-img-top">                               
                             <a href="{% url 'events' %}?distance=half_marathon">
-                                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}running-1254645-639x420.jpg" alt="">
+                                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}running-1254645-639x420.jpg" alt="Half Marathon">
                             </a>
                         </div>
                         <div class="card-block">
@@ -228,10 +228,10 @@ console.log (mapevents)
                 </div>
 
                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                    <div class="card black-card">
+                    <div class="card nav-card black-card">
                         <div class="card-img-top">                               
                             <a href="{% url 'events' %}?distance=marathon">
-                                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}road-run-group.jpg" alt="">
+                                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}road-run-group.jpg" alt="Marathon">
                             </a>
                         </div>
                         <div class="card-block">
@@ -244,7 +244,7 @@ console.log (mapevents)
                 </div>
 
                     <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                    <div class="card">
+                    <div class="card nav-card">
                         <div class="card-img-top">                               
                             <a href="{% url 'events' %}?distance=5k,10k,6_mile,10_mile,half_marathon,marathon,other_under_10_miles,other_10_to_20_miles,other_over_20_miles,ultra">
                                 <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}london-marathon-2003-1455005-640x480.jpg" alt="">
@@ -314,7 +314,7 @@ var marker = L.marker([latlng.lat, latlng.lng], {icon: homeIcon}).addTo(mymap);
 // Markers for events
 {% for event in events %}
 var marker = L.marker([{{ event.latitude }}, {{ event.longitude }}], {icon: greenIcon}).addTo(mymap); 
-marker.bindPopup(`<b>{{ event.name }}</b><br><img src='{{ MEDIA_URL }}walking.svg' width='20px'>{{ event.discipline }} | 
+marker.bindPopup(`<b>{{ event.name }}</b><br><img src='{{ MEDIA_URL }}walking.svg' width=20 alt='Walking'>{{ event.discipline }} | 
 <A href='{% url 'event_profile' event.id %}'>View</a>`).openPopup();  
 
 {% endfor %}  

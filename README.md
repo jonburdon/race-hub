@@ -59,7 +59,13 @@ Racehub is race entry and results management system for amateur athletes and eve
 | 4g |  | Add individual results 'live' at the finish line. | Single results can be added | Quick input form so that results are easier to add | 
 | 4h | Manage England Athletics membership | Verify those eligible for discounts | EA membership can be made verified in the database, status is displayed in front end | Verify / Unverify EA memership in front end. Connect to EA api to verify memership status. Apply a discount in the checkout if EA membership is verified. | 
 
+## The future of the project
 
+See the table above for possible future enhancements for some user stories.
+Major enhancements were the project to be moved forward towards a live site would be:
+- Admins can upload and download results fully. Currently this can be achieved in the admin dashboard only using a library addon. Even then, the Club and Event Instance ID must be added in the CSV rather than the friendly club name.
+- Admins should only be able to see events for which they are the registered organiser. This would mean organisers from multiple organisations could add and manage their own events.
+- Discount scheme. Currently discounts are automatically applied if you spend over £50, or if your are a verified England Athletics member. Admins should be able to create and manage discount codes.
 
 ## [UI Structure](#ui-structure)
 [Developer Aims](#developer-aims) | [UX](#ux) | [User Stories and Corresponding Features](#user-stories-and-features) | [UI Structure](#ui-structure) | [Visual Layout](#visual-layout) | [Technologies Used](#technologies-used) | [Information Architecture](#information-architecture) | [Deployment](#deployment) | [Local Development](#local-development) | [Testing](#testing) | [Acknowledgements](#acknowledgements)
@@ -84,6 +90,7 @@ Bootstrap components used:
 - [Grid](https://getbootstrap.com/docs/4.0/layout/grid/)
 - [List Group](https://getbootstrap.com/docs/4.0/components/list-group/)
 - [Dropdowns](https://getbootstrap.com/docs/4.0/components/dropdowns/)
+- [Cards](https://getbootstrap.com/docs/4.0/components/card/)
 
 Forms used on the site:
 - Add Event
@@ -776,7 +783,8 @@ Manual testing was performed in a three step approach:
 
 **Issue 14** Map View - there are identical markers used for user's location and events. This is confusing, as the home marker has no popup. Also, events with an identical location overlap therefore one disappears.
 
-
+#### HTML Validation
+Basic vaildation has been carried out on the home page. This identified some small errors in html which have been corrected. Errors were reduced from 81 to 18.
 
 ## [Acknowledgements](#acknowledgements)
 [Developer Aims](#developer-aims) | [UX](#ux) | [User Stories and Corresponding Features](#user-stories-and-features) | [UI Structure](#ui-structure) | [Visual Layout](#visual-layout) | [Technologies Used](#technologies-used) | [Information Architecture](#information-architecture) | [Deployment](#deployment) | [Local Development](#local-development) | [Testing](#testing) | [Acknowledgements](#acknowledgements)
