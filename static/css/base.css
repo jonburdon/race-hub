@@ -44,7 +44,25 @@ hr { display: block; height: 1px;
     margin-left: 30vw;
 }
 
-/* Footer */
+/* Search tools in page nav - sticky navbar */
+
+.stickynav {
+    position: fixed;
+    top: 130;
+    left: 0;
+    width: 100%;
+    z-index: 9;
+}
+
+.main-content {
+    margin-top: 220px;
+}
+
+.main-content-higher {
+    margin-top: 180px;
+}
+
+/* Footer and dark sections */
 .page-footer {
     margin-top: 40px;
 }
@@ -117,6 +135,11 @@ hr { display: block; height: 1px;
     color: white;
 }
 
+.btn-small {
+    padding: 5px;
+    border-radius: 0px;
+}
+
 .btn-outline-black, .btn-outline-green {
     background: white;
     color: black !important; /* use important to override link colors for <a> elements */
@@ -185,6 +208,10 @@ margin-bottom: 120px;
     margin-bottom: 80px;
 }
 
+.custom-select {
+    border: solid 1px black;
+}
+
 /* ---- News ticker ---- */
 
 /* Code snippet from https://bbbootstrap.com/snippets/bootstrap-scrolling-breaking-news-ticker-53214404 */
@@ -239,8 +266,16 @@ Image Cards
     background: #fff;
     text-align: center;
     border: solid 1px var(--primary-color-dark);;
-    min-height: 380px;
+
 }
+.card-action-section {
+        min-height: 380px;
+}
+
+.event-card {
+        min-height: 500px;
+}
+
 .top-card {
     padding: 5vh 10vw;
     margin-bottom: 40px;
@@ -306,8 +341,6 @@ list-style: "→";
 .green-card, .black-card {
     color: white;
 }
-
-
 
 
 .race-icon {
@@ -455,13 +488,60 @@ a.category-badge > span.badge:hover {
 
 
 
-/* Table formatting */
+/* Table formatting (Using Bootstrap List Groups to display data in tables)*/
+
+.list-group-horizontal .list-group-item+.list-group-item {
+
+    padding-left: 2px;
+    padding-right: 2px;
+    
+}
+
+.green-row {
+    background-color: #91b591;
+    
+}
+.green-row a {
+    
+}
+
+.top-row .list-group-item{
+    background-color: black;
+    color: white; 
+}
+
+.column-tiny {
+    flex-basis: 2%;
+    padding-left: 1px;
+    padding-right 0px;
+    max-width: 2vw;
+    min-width: 2vw;
+}
 
 .column-small {
-    flex-basis: 10%;
+    flex-basis: 5%;
+    
+    max-width: 5vw;
+    min-width: 5vw;
 }
-.column-medium {flex-basis: 20%;}
-.column-large {flex-basis: 30%;}
+.column-medium {
+    flex-basis: 15%;
+    
+    max-width: 15vw;
+    min-width: 15vw;
+    }
+.column-large {
+    flex-basis: 20%;
+    
+    max-width: 20vw;
+    min-width: 20vw;
+    }
+.column-extra-large {
+    flex-basis: 25%;
+    
+    max-width: 30vw;
+    min-width: 30vw;
+    }
 
 
 /* Allauth form formatting */
@@ -536,8 +616,13 @@ a.category-badge > span.badge:hover {
         padding-top: 80px;
     }
 
+
 .megamenu-li {
 	position: static;
+}
+
+.list-group {
+    max-width: 95vw;
 }
 
 .megamenu {
@@ -607,6 +692,52 @@ width: 50px;
     .shop-now-button {
 
     min-width: 260px;  
+}
+
+
+/* Results view */
+.column-tiny {
+    flex-basis: 2%;
+    padding-left: 1px;
+    padding-right 0px;
+    max-width: 2vw;
+    min-width: 2vw;
+}
+
+.column-small {
+    flex-basis: 5%;
+    
+    max-width: 5vw;
+    min-width: 5vw;
+}
+.column-medium {
+    flex-basis: 15%;
+    
+    max-width: 10vw;
+    min-width: 10vw;
+    }
+.column-large {
+    flex-basis: 20%;
+    
+    max-width: 10vw;
+    min-width: 10vw;
+    }
+
+.column-extra-large {
+    flex-basis: 25%;
+    
+    max-width: 25vw;
+    min-width: 25vw;
+    }
+
+/* Push main content below sticky page tools (narrower on larger screens) */
+.main-content {
+    margin-top: 140px;
+}
+
+
+.main-content-higher {
+    margin-top: 120px;
 }
 
 .top-card ul {

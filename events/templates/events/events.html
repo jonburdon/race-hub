@@ -81,7 +81,7 @@
                     {% for event in events %}
                         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
 
-                            <div class="card">
+                            <div class="card event-card">
                                 <div class="card-img-top">                               
                                 {% if event.image %}
                                 <a href="">
@@ -153,21 +153,12 @@
             </div>
         </div>
     </div>
-        <div class="btt-button shadow-sm rounded-0 border border-black">
-        <a class="btt-link d-flex h-100 mx-auto">
-            <img src='{{ MEDIA_URL }}running-walk.svg' width='20px'>
-            <img src='{{ MEDIA_URL }}line-angle-up.svg' width='20px'>
-        </a>	
-    </div>
+
 {% endblock %}
 
 {% block postloadjs %}
     {{ block.super }}
-    <script type="text/javascript">
-		$('.btt-link').click(function(e) {
-			window.scrollTo(0,0)
-		})
-	</script>
+
     
     <script type="text/javascript">
         $('#sort-selector').change(function() {

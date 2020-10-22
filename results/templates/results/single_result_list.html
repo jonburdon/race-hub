@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block content %}
-<section class="container-fluid">
+<section class="container-fluid page-nav-bar stickynav">
 
 <div class="page-nav font-small elegant-color">
   <div class="container text-center text-md-left pt-1 pt-md-2">
@@ -98,10 +98,7 @@
 </section>
 
 
-    <div class="container">
-               
-                
-
+    <main class="container main-content">
 
         <div class="row mt-5">
             <div class="col">
@@ -137,22 +134,22 @@
                 </a>
                 {% endif %}
                 <hr>
-                <ul class="list-group list-group-horizontal">
-                    <li class="list-group-item column-small">Pos</li>
-                    <li class="list-group-item column-medium">First Name</li>
-                    <li class="list-group-item  column-medium">Surname</li>
+                <ul class="list-group list-group-horizontal top-row">
+                    <li class="list-group-item column-tiny">#</li>
+                    <li class="list-group-item column-large">First Name</li>
+                    <li class="list-group-item  column-large">Surname</li>
                     <li class="list-group-item column-small d-none d-md-inline-block">Bib</li>
                     <li class="list-group-item column-small d-none d-md-inline-block">Gender</li>
                     <li class="list-group-item column-small  d-none d-md-inline-block">Cat</li>
                     <li class="list-group-item  
                      d-none d-md-inline-block column-large">Club</li>
                     <li class="list-group-item column-medium">Chip Time</li>
-                    <li class="list-group-item column-medium d-md-none">
+                    <li class="list-group-item column-large d-md-none">
                     
                     </li>
-                    <li class="list-group-item column-medium flex-fill d-none d-md-inline-block">Gun Time</li>
+                    <li class="list-group-item column-small flex-fill d-none d-md-inline-block">Gun Time</li>
                     {% if request.user.is_superuser %}
-                    <li class="list-group-item column-smallflex-fill d-none d-md-inline-block">Admin</li>
+                    <li class="list-group-item column-large flex-fill d-none d-md-inline-block">Admin</li>
                     {% endif %}
                 </ul>
                 
@@ -167,22 +164,22 @@
                 {% for r in resultsforthisevent %}
                 
                 <ul class="list-group list-group-horizontal ">
-                    <li class="list-group-item column-small {% if forloop.counter|divisibleby:2 %}list-group-item-dark{% endif %}">{{ forloop.counter }}</li>
-                    <li class="list-group-item column-medium {% if forloop.counter|divisibleby:2 %}list-group-item-dark{% endif %}">{{ r.athletefirstname }}</li>
-                    <li class="list-group-item  column-medium {% if forloop.counter|divisibleby:2 %}list-group-item-dark{% endif %}">{{ r.athletesurname }}</li>
-                    <li class="list-group-item column-small {% if forloop.counter|divisibleby:2 %}list-group-item-dark{% endif %} d-none d-md-inline-block">{{ r.bibnumber }}</li>
-                    <li class="list-group-item column-small {% if forloop.counter|divisibleby:2 %}list-group-item-dark{% endif %} d-none d-md-inline-block">{{ r.gender }}</li>
-                    <li class="list-group-item column-small {% if forloop.counter|divisibleby:2 %}list-group-item-dark{% endif %} d-none d-md-inline-block">{{ r.agecat }}</li>
-                    <li class="list-group-item column-large {% if forloop.counter|divisibleby:2 %}list-group-item-dark{% endif %} d-none d-md-inline-block">{{ r.club.friendly_name }}</li>
-                    <li class="list-group-item column-medium {% if forloop.counter|divisibleby:2 %}list-group-item-dark{% endif %}">{{ r.chiptime }}</li>
-                    <li class="list-group-item column-medium {% if forloop.counter|divisibleby:2 %}list-group-item-dark{% endif %} d-md-none">
-                    <button class="btn btn-primary d-md-none" type="button" data-toggle="collapse" data-target="#collapseresult{{ forloop.counter }}" aria-expanded="false" aria-controls="collapseresult">
+                    <li class="list-group-item column-tiny {% if forloop.counter|divisibleby:2 %}list-group-item-dark green-row {% endif %}">{{ forloop.counter }}</li>
+                    <li class="list-group-item column-large {% if forloop.counter|divisibleby:2 %}list-group-item-dark green-row{% endif %}">{{ r.athletefirstname }}</li>
+                    <li class="list-group-item  column-large {% if forloop.counter|divisibleby:2 %}list-group-item-dark green-row{% endif %}">{{ r.athletesurname }}</li>
+                    <li class="list-group-item column-small {% if forloop.counter|divisibleby:2 %}list-group-item-dark green-row{% endif %} d-none d-md-inline-block">{{ r.bibnumber }}</li>
+                    <li class="list-group-item column-small {% if forloop.counter|divisibleby:2 %}list-group-item-dark green-row{% endif %} d-none d-md-inline-block">{{ r.gender }}</li>
+                    <li class="list-group-item column-small {% if forloop.counter|divisibleby:2 %}list-group-item-dark green-row{% endif %} d-none d-md-inline-block">{{ r.agecat }}</li>
+                    <li class="list-group-item column-large {% if forloop.counter|divisibleby:2 %}list-group-item-dark green-row{% endif %} d-none d-md-inline-block">{{ r.club.friendly_name }}</li>
+                    <li class="list-group-item column-medium {% if forloop.counter|divisibleby:2 %}list-group-item-dark green-row{% endif %}">{{ r.chiptime }}</li>
+                    <li class="list-group-item column-large {% if forloop.counter|divisibleby:2 %}list-group-item-dark green-row{% endif %} d-md-none">
+                    <button class="btn btn-black btn-small skew-style d-md-none" type="button" data-toggle="collapse" data-target="#collapseresult{{ forloop.counter }}" aria-expanded="false" aria-controls="collapseresult">
                     More
                 </button>
                     </li>
-                    <li class="list-group-item column-small {% if forloop.counter|divisibleby:2 %}list-group-item-dark{% endif %} d-none d-md-inline-block">{{ r.guntime }}</li>
+                    <li class="list-group-item column-small {% if forloop.counter|divisibleby:2 %}list-group-item-dark green-row{% endif %} d-none d-md-inline-block">{{ r.guntime }}</li>
                     {% if request.user.is_superuser %}
-                    <li class="list-group-item column-small {% if forloop.counter|divisibleby:2 %}list-group-item-dark{% endif %} d-none d-md-inline-block">
+                    <li class="list-group-item column-large {% if forloop.counter|divisibleby:2 %}list-group-item-dark green-row{% endif %} d-none d-md-inline-block">
                         <small class="ml-3">
                         <a href="{% url 'edit_full_result' r.id %}">Edit</a>
                         <span class="text-danger" data-toggle="collapse" data-target="#deleteconfirm{{ forloop.counter }}" aria-expanded="false" aria-controls="deleteconfirm">
@@ -216,7 +213,7 @@
 
             </div>
         </div>
-    </div>
+    </main>
 {% endblock %}
 
 {% block postloadjs %}
@@ -254,4 +251,7 @@
             }
         })
     </script>
+
+ 
+
 {% endblock %}

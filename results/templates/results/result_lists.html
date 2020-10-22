@@ -10,49 +10,78 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container">
-                <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 d-none d-lg-block">
-                
-                <form method="GET" action="{% url 'all_result_lists' %}">
-                    <div class="input-group w-100 skew-style ">
-                        <input class="form-control border border-black rounded-0" type="text" name="q" placeholder="Find Results">
-                        <div class="input-group-append">
-                            <button class="form-control btn btn-white border border-black rounded-0" type="submit">
-                                <span class="icon">
-                                    <img src='/media/magnifying-glass.svg' width=25px>
-                                </span>
-                            </button>
-                        </div>
-                    </div>
-                </form>
-                <hr>
+
+<section class="container-fluid page-nav-bar stickynav">
+
+<div class="page-nav font-small elegant-color">
+  <div class="container text-center text-md-left pt-1 pt-md-2">
+
+    <div class="row my-2 mb-2">
+      <div class="col-md-6 mx-auto mt-1 pt-1 mt-md-0 pt-md-0 mb-1 pb-1 mb-3 pb-md-0">
+        <form method="GET" action="{% url 'all_result_lists' %}">
+            <div class="input-group w-100 skew-style ">
+                <input class="form-control border border-black rounded-0" type="text" name="q" placeholder="Find Results">
+                <div class="input-group-append">
+                    <button class="form-control btn btn-white border border-black rounded-0" type="submit">
+                        <span class="icon">
+                            <img src='/media/magnifying-glass.svg' width=25px>
+                        </span>
+                    </button>
+                </div>
             </div>
+        </form>
+      </div>
+
+      <div class="col-md-6 mx-auto mt-1 pt-1 mt-md-0 pt-md-0 mb-3">
+
+        <div class="sort-select-wrapper w-100 skew-style ">
+        <select id="sort-select" class="custom-select rounded-0 border-black ">
+            <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
+            <option value="eventdate_asc" {% if current_sorting == 'date_asc' %}selected{% endif %}>Date (Asc)</option>
+            <option value="eventdate_desc" {% if current_sorting == 'date_desc' %}selected{% endif %}>Date (Desc)</option>
+            <option value="friendlyname_asc" {% if current_sorting == 'name_asc' %}selected{% endif %}>Name (Asc)</option>
+            <option value="friendlyname_desc" {% if current_sorting == 'name_desc' %}selected{% endif %}>Name (Desc)</option>
+            
+        </select>
+         </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+</div>
+
+</section>
+
+
+
+    <div class="container main-content-higher">
+         
         <div class="row">
             <div class="col">
                 <h1>Results</h1>
-                <hr>
-                
 
-                <div class="sort-select-wrapper w-50">
-                    <select id="sort-select" class="custom-select custom-select-sm rounded-0 border border-{% if current_sorting != 'None_None' %}info{% else %}black{% endif %}">
-                        <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
-                        <option value="eventdate_asc" {% if current_sorting == 'date_asc' %}selected{% endif %}>Date (Asc)</option>
-                        <option value="eventdate_desc" {% if current_sorting == 'date_desc' %}selected{% endif %}>Date (Desc)</option>
-                        <option value="friendlyname_asc" {% if current_sorting == 'name_asc' %}selected{% endif %}>Name (Asc)</option>
-                        <option value="friendlyname_desc" {% if current_sorting == 'name_desc' %}selected{% endif %}>Name (Desc)</option>
-                        
-                    </select>
-                </div>
                 
                 <hr>
+                <ul class="list-group list-group-horizontal top-row">
+                    <li class="list-group-item column-extra-large">Event</li>
+                    <li class="list-group-item column-extra-large">Date</li>
+                    <li class="list-group-item  column-extra-large"></li>
+                </ul>
+
+                 
                 {% for r in resultlists %}
-                    <p>
-                        <span>{{ r.friendlyname }} | 
-                        <span>{{ r.eventdate }} | {{ r.eventdate.year }} | EventID:{{ r.id}}
-                        <A href="{% url 'single_event_result_list' r.id %}">Full Results </a>
-                    </p>
+                <ul class="list-group list-group-horizontal">
+                    <li class="list-group-item column-extra-large {% if forloop.counter|divisibleby:2 %}list-group-item-dark green-row {% endif %}">{{ r.friendlyname }}</li>
+                    <li class="list-group-item column-extra-large {% if forloop.counter|divisibleby:2 %}list-group-item-dark green-row {% endif %}">{{ r.eventdate }}</li>
+                    <li class="list-group-item column-extra-large {% if forloop.counter|divisibleby:2 %}list-group-item-dark green-row {% endif %}"><A href="{% url 'single_event_result_list' r.id %}">Full Results </a></li>
+                </ul>
                 {% endfor %}
-                
+
+
             </div>
         </div>
     </div>
