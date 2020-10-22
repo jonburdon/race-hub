@@ -10,8 +10,14 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container">
-            <form method="GET" action="{% url 'single_event_result_list' eventinstance.id  %}">
+<section class="container-fluid">
+
+<div class="page-nav font-small elegant-color">
+  <div class="container text-center text-md-left pt-1 pt-md-2">
+
+    <div class="row my-1 ">
+      <div class="col-md-6 mx-auto mt-1 pt-1 mt-md-0 pt-md-0 mb-1 pb-1 mb-md-1 pb-md-0">
+        <form method="GET" action="{% url 'single_event_result_list' eventinstance.id  %}">
                     <div class="input-group w-100 skew-style ">
                         <input class="form-control border border-black rounded-0" type="text" name="q" placeholder="Search Athlete, Club or Age Category">
                         <div class="input-group-append">
@@ -23,9 +29,11 @@
                         </div>
                     </div>
                 </form>
-                <hr><div class="row mt-1 mb-2">
-                     <div class="col-12 col-md-6 my-auto order-md-last d-flex justify-content-center justify-content-md-end">
-                        <div class="sort-select-wrapper w-50">
+      </div>
+
+      <div class="col-md-6 mx-auto mt-1 pt-1 mt-md-0 pt-md-0 mb-1">
+
+        <div class="sort-select-wrapper  w-100 skew-style ">
                             <select id="sort-select" class="custom-select custom-select-sm rounded-0 border border-{% if current_sorting != 'None_None' %}info{% else %}black{% endif %}">
                                 <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
                                 <option value="guntime_asc" {% if current_sorting == 'guntime_asc' %}selected{% endif %}>Guntime (Asc)</option>
@@ -38,30 +46,64 @@
                                 <option value="bibnumber_desc" {% if current_sorting == 'bibnumber_desc' %}selected{% endif %}>Bib (Desc)</option>
                             </select>
                         </div>
-                    </div>
-                    <div class="col-12 col-md-6 order-md-first">
-                        <p class="text-muted mt-3 text-center text-md-left">
-                            {% if search_term or current_sorting or current_agecat or current_gender != 'None_None' %}
-                                <span class="small"><a href="{% url 'single_event_result_list' eventinstance.id %}">All Results</a> | </span>
-                            {% endif %}
-                            
-                            {{ resultsforthisevent|length }} Results{% if search_term %} found for <strong>"{{ search_term }}"</strong>{% endif %}
-                        </p>
-                    </div>               
-                
-                </div>
-                <span>Filter: Age Categories:</span>
-                <A href="{% url 'single_event_result_list' eventinstance.id %}?agecat=Snr">Senior</a> | 
-                <A href="{% url 'single_event_result_list' eventinstance.id %}?agecat=Vet">Veteran</a> | 
-                <br>
-                <span>Filter: Gender:</span>
-                <A href="{% url 'single_event_result_list' eventinstance.id %}?gender=M">M</a> | 
-                <A href="{% url 'single_event_result_list' eventinstance.id %}?gender=F">F</a> | 
-                <br>
-                <hr>
 
-                <hr>
-        <div class="row">
+      </div>
+
+    </div>
+
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-md-6 mt-1" >
+      <span>Filter: Age Categories:</span>
+                <A href="{% url 'single_event_result_list' eventinstance.id %}">All</a> | 
+                <A href="{% url 'single_event_result_list' eventinstance.id %}?agecat=Jr">Junior</a> | 
+                <A href="{% url 'single_event_result_list' eventinstance.id %}?agecat=Snr">Senior</a> | 
+                <A href="{% url 'single_event_result_list' eventinstance.id %}?agecat=V35">V35</a> | 
+                <A href="{% url 'single_event_result_list' eventinstance.id %}?agecat=V40">V40</a> | 
+                <A href="{% url 'single_event_result_list' eventinstance.id %}?agecat=V45">V45</a> | 
+                <A href="{% url 'single_event_result_list' eventinstance.id %}?agecat=V50">V50</a> | 
+                <A href="{% url 'single_event_result_list' eventinstance.id %}?agecat=V66">V55</a> | 
+                <A href="{% url 'single_event_result_list' eventinstance.id %}?agecat=V60">V60</a> | 
+                <A href="{% url 'single_event_result_list' eventinstance.id %}?agecat=V65">V65</a> | 
+                <A href="{% url 'single_event_result_list' eventinstance.id %}?agecat=V70">V70</a> | 
+                <A href="{% url 'single_event_result_list' eventinstance.id %}?agecat=V75">V75</a> | 
+                <A href="{% url 'single_event_result_list' eventinstance.id %}?agecat=V80">V80</a>
+    </div>
+    <div class="col-6 col-md-4 mt-1" >
+      <span>Filter: Gender:</span>
+                <A href="{% url 'single_event_result_list' eventinstance.id %}?gender=M">M</a> | 
+                <A href="{% url 'single_event_result_list' eventinstance.id %}?gender=F">F</a>
+    </div>
+    <div class="col-6 col-md-2 mt-1" >
+      <p class=" text-center text-md-left">
+            {% if search_term or current_sorting or current_agecat or current_gender != 'None_None' %}
+                <span ><a href="{% url 'single_event_result_list' eventinstance.id %}">All Results</a> | </span>
+            {% endif %}
+            
+            {{ resultsforthisevent|length }} Results{% if search_term %} found for <strong>"{{ search_term }}"</strong>{% endif %}
+        </p>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+</div>
+
+</section>
+
+
+    <div class="container">
+               
+                
+
+
+        <div class="row mt-5">
             <div class="col">
                 <h1>Results for {{ eventinstance.friendlyname }} </h1>
                 {{ eventinstance.friendlyname }} | 

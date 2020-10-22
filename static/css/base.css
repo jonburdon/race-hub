@@ -49,15 +49,18 @@ hr { display: block; height: 1px;
     margin-top: 40px;
 }
 
-.page-footer, .page-footer .container {
+.page-footer, .page-footer .container, .page-nav, .page-nav .container {
     background-color: var(--primary-color-dark);
     color: white;
 }
 .page-footer .logo-font{
     float: left;
 }
-.page-footer a {
+.page-footer a, .page-nav a {
     color: black;
+}
+.page-nav span {
+    color: white;
 }
 
 /* from Bulma */
@@ -245,7 +248,6 @@ Image Cards
 
 .top-card ul {
 list-style: "→";
-list-style-image: url('https://race-hub.s3.eu-west-2.amazonaws.com/running-walk.png');
 }
 .top-card li {
     font-size: 18pt;
@@ -304,6 +306,9 @@ list-style-image: url('https://race-hub.s3.eu-west-2.amazonaws.com/running-walk.
 .green-card, .black-card {
     color: white;
 }
+
+
+
 
 .race-icon {
     display: inline-block;
@@ -589,7 +594,7 @@ width: 50px;
 @media (min-width: 992px) {
 
   .top-card {
-    min-height: 45vh;
+    min-height: 47vh;
     padding: 3vw ;
 }
 }
@@ -603,4 +608,10 @@ width: 50px;
 
     min-width: 260px;  
 }
+
+.top-card ul {
+
+list-style-image: url('https://race-hub.s3.eu-west-2.amazonaws.com/running-walk.png');
+}
+
 }

@@ -63,7 +63,6 @@ console.log (mapevents)
 
         <div class="col-md-12">
             <div class="d-flex justify-content-between align-items-center breaking-news bg-white">
-                <div class="d-flex flex-row flex-grow-1 flex-fill justify-content-center bg-green skew-style py-2 text-white px-1 news"><span class="d-flex align-items-center skew-style">&nbsp;Upcoming Events:</span></div>
                 <marquee class="news-scroll" behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();">
                 <img class="scroll-icon" src='{{ MEDIA_URL }}running-walk.svg' width=15px>
                 {% for event in events %}
@@ -139,7 +138,7 @@ console.log (mapevents)
                 </div>
 
                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                    <div class="card">
+                    <div class="card black-card">
                         <div class="card-img-top">                               
                             <a href="">
                                 <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}TrailHalf.jpg" alt="">
@@ -188,6 +187,9 @@ console.log (mapevents)
                 
             
         </div>
+
+
+
             <h2 class="display-4 text-black my-5" >
                     Race Distances
                 </h2>
@@ -210,7 +212,7 @@ console.log (mapevents)
                 </div>
 
                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                    <div class="card">
+                    <div class="card green-card">
                         <div class="card-img-top">                               
                             <a href="">
                                 <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}running-1254645-639x420.jpg" alt="">
