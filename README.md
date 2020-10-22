@@ -1,4 +1,7 @@
-[insert logo image here]
+
+<img src="https://race-hub.s3.eu-west-2.amazonaws.com/media/racehub-logo-text.svg" alt="drawing" width="200"/>
+
+https://race-hub.s3.eu-west-2.amazonaws.com/media/racehub-logo-text.svg
 
 # Racehub
 
@@ -709,6 +712,11 @@ As with any project, the developer tested and checked components thoroughly duri
 
 * Card number for testing 4242 4242 4242 4242
 * My Racehub profile id number for adding a Racehub Friend: User name has a racehub ID of 
+
+Test Admin Account:
+* Admin Username: testadmin
+* Admin Password: Reset1234*
+
 
 
 ### Automatic Testing

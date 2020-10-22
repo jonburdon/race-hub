@@ -49,6 +49,13 @@ class AthleteProfileForm(forms.ModelForm):
         labels and set autofocus on first field
         """
         super().__init__(*args, **kwargs)
+
+        self.fields['dateofbirth'] = forms.DateField(
+        widget=forms.TextInput(
+            attrs={'type': 'date'}
+        )
+        )
+
         placeholders = {
             'club': 'Club',
             'athletefirstname': 'First Name',
