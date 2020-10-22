@@ -124,13 +124,13 @@ console.log (mapevents)
                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                     <div class="card">
                         <div class="card-img-top">                               
-                            <a href="">
+                            <a href="{% url 'events' %}?discipline=road">
                                 <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}road-race_8l6PEUR.jpg" alt="">
                             </a>
                         </div>
                         <div class="card-block">
                             <h4 class="card-title">ROAD RACES</h4>   
-                            <a href="" class="action-button skew-style btn btn-lg rounded-0 text-uppercase py-1">
+                            <a href="{% url 'events' %}?discipline=road" class="action-button skew-style btn btn-lg rounded-0 text-uppercase py-1">
                             Find
                             </a>
                         </div>
@@ -140,13 +140,13 @@ console.log (mapevents)
                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                     <div class="card black-card">
                         <div class="card-img-top">                               
-                            <a href="">
+                            <a href="{% url 'events' %}?discipline=trail">
                                 <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}TrailHalf.jpg" alt="">
                             </a>
                         </div>
                         <div class="card-block">
                             <h4 class="card-title">TRAIL RACES</h4>   
-                            <a href="" class="action-button skew-style btn btn-lg rounded-0 text-uppercase py-1">
+                            <a href="{% url 'events' %}?discipline=trail" class="action-button skew-style btn btn-lg rounded-0 text-uppercase py-1">
                             Find
                             </a>
                         </div>
@@ -156,13 +156,13 @@ console.log (mapevents)
                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                     <div class="card green-card">
                         <div class="card-img-top">                               
-                            <a href="">
+                            <a href="{% url 'events' %}?discipline=fell">
                                 <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}Stairway.jpg" alt="">
                             </a>
                         </div>
                         <div class="card-block">
                             <h4 class="card-title">FELL RACES</h4>   
-                            <a href="" class="action-button skew-style btn btn-lg rounded-0 text-uppercase py-1">
+                            <a href="{% url 'events' %}?discipline=fell" class="action-button skew-style btn btn-lg rounded-0 text-uppercase py-1">
                             Find
                             </a>
                         </div>
@@ -172,13 +172,13 @@ console.log (mapevents)
                     <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                     <div class="card">
                         <div class="card-img-top">                               
-                            <a href="">
+                            <a href="{% url 'events' %}?discipline=road,trail,fell,triathlon,adventure_racing,orienteering">
                                 <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}cross-country.jpg" alt="">
                             </a>
                         </div>
                         <div class="card-block">
                             <h4 class="card-title">ALL RACE TYPES</h4>   
-                            <a href="" class="action-button skew-style btn btn-lg rounded-0 text-uppercase py-1">
+                            <a href="{% url 'events' %}?discipline=road,trail,fell,triathlon,adventure_racing,orienteering" class="action-button skew-style btn btn-lg rounded-0 text-uppercase py-1">
                             Find
                             </a>
                         </div>
@@ -198,13 +198,13 @@ console.log (mapevents)
                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                     <div class="card black-card">
                         <div class="card-img-top">                               
-                            <a href="">
+                            <a href="{% url 'events' %}?distance=10k">
                                 <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}road-race-2.jpg" alt="">
                             </a>
                         </div>
                         <div class="card-block">
                             <h4 class="card-title">10k Races</h4>   
-                            <a href="" class="action-button skew-style btn btn-lg rounded-0 text-uppercase py-1">
+                            <a href="{% url 'events' %}?distance=10k" class="action-button skew-style btn btn-lg rounded-0 text-uppercase py-1">
                             Find
                             </a>
                         </div>
@@ -214,13 +214,13 @@ console.log (mapevents)
                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                     <div class="card green-card">
                         <div class="card-img-top">                               
-                            <a href="">
+                            <a href="{% url 'events' %}?distance=half_marathon">
                                 <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}running-1254645-639x420.jpg" alt="">
                             </a>
                         </div>
                         <div class="card-block">
                             <h4 class="card-title">Half Marathon Races</h4>   
-                            <a href="" class="action-button skew-style btn btn-lg rounded-0 text-uppercase py-1">
+                            <a href="{% url 'events' %}?distance=half_marathon" class="action-button skew-style btn btn-lg rounded-0 text-uppercase py-1">
                             Find
                             </a>
                         </div>
@@ -230,13 +230,13 @@ console.log (mapevents)
                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                     <div class="card black-card">
                         <div class="card-img-top">                               
-                            <a href="">
+                            <a href="{% url 'events' %}?distance=marathon">
                                 <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}road-run-group.jpg" alt="">
                             </a>
                         </div>
                         <div class="card-block">
                             <h4 class="card-title">Marathon Races</h4>   
-                            <a href="" class="action-button skew-style btn btn-lg rounded-0 text-uppercase py-1">
+                            <a href="{% url 'events' %}?distance=marathon" class="action-button skew-style btn btn-lg rounded-0 text-uppercase py-1">
                             Find
                             </a>
                         </div>
@@ -246,13 +246,13 @@ console.log (mapevents)
                     <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                     <div class="card">
                         <div class="card-img-top">                               
-                            <a href="">
+                            <a href="{% url 'events' %}?distance=5k,10k,6_mile,10_mile,half_marathon,marathon,other_under_10_miles,other_10_to_20_miles,other_over_20_miles,ultra">
                                 <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}london-marathon-2003-1455005-640x480.jpg" alt="">
                             </a>
                         </div>
                         <div class="card-block">
                             <h4 class="card-title">All Distances</h4>   
-                            <a href="" class="action-button skew-style btn btn-lg rounded-0 text-uppercase py-1">
+                            <a href="{% url 'events' %}?distance=5k,10k,6_mile,10_mile,half_marathon,marathon,other_under_10_miles,other_10_to_20_miles,other_over_20_miles,ultra" class="action-button skew-style btn btn-lg rounded-0 text-uppercase py-1">
                             Find
                             </a>
                         </div>

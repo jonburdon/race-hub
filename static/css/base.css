@@ -370,7 +370,7 @@ a.category-badge > span.badge:hover {
 
 .map-medium-size { 
   height: 30vh;
-  width: 90vw;
+  width: 100%;
 }
 
 .btt-link,
@@ -685,6 +685,11 @@ width: 50px;
 }
 
 @media (min-width: 992px) {
+/* larger map on home page */
+.map-medium-size { 
+  height: 50vh;
+
+}
 
 /* resize logo and position right */
 .logo-overlap {
