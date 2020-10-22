@@ -273,7 +273,7 @@ Image Cards
 }
 
 .event-card {
-        min-height: 500px;
+        min-height: 570px;
 }
 
 .top-card {
@@ -341,7 +341,14 @@ list-style: "→";
 .green-card, .black-card {
     color: white;
 }
+/* override bootstrap color code only for special card colors - therefore important used */
+.green-card a {
+    color: white !important;
+}
 
+.black-card a {
+    color: white !important;
+}
 
 .race-icon {
     display: inline-block;

@@ -14,12 +14,60 @@
 {% block content %}
 
 
+<section class="container-fluid page-nav-bar stickynav">
 
+<div class="page-nav font-small elegant-color">
+  <div class="container text-center text-md-left pt-1 pt-md-2">
+
+    <div class="row my-2 mb-2">
+      <div class="col-md-6 mx-auto mt-3 pt-3 mt-md-0 pt-md-0 mb-1 pb-1 mb-3 pb-md-0">
+        
+    <select id="sort-selector" class="custom-select skew-style custom-select-sm rounded-0 border border-{% if current_sorting != 'None_None' %}info{% else %}black{% endif %}">
+        <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
+        <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>Price (low to high)</option>
+        <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>Price (high to low)</option>
+        <option value="rating_asc" {% if current_sorting == 'rating_asc' %}selected{% endif %}>Rating (low to high)</option>
+        <option value="rating_desc" {% if current_sorting == 'rating_desc' %}selected{% endif %}>Rating (high to low)</option>
+        <option value="name_asc" {% if current_sorting == 'name_asc' %}selected{% endif %}>Name (A-Z)</option>
+        <option value="name_desc" {% if current_sorting == 'name_desc' %}selected{% endif %}>Name (Z-A)</option>
+
+        <option value="discipline_asc" {% if current_sorting == 'discipline_asc' %}selected{% endif %}>Discipline (A-Z)</option>
+        <option value="discipline_desc" {% if current_sorting == 'discipline_desc' %}selected{% endif %}>Discipline (Z-A)</option>
+
+        <option value="exactdistancekm_asc" {% if current_sorting == 'exactdistancekm_asc' %}selected{% endif %}>Distance (shortest first)</option>
+        <option value="exactdistancekm_desc" {% if current_sorting == 'exactdistance_km_desc' %}selected{% endif %}>Distance (longest first)</option>
+        <option value="entrycutoff_asc" {% if current_sorting == 'entrycutoff_asc' %}selected{% endif %}>Date (Soonest first)</option>
+        <option value="entrycutoff_desc" {% if current_sorting == 'entrycutoff_desc' %}selected{% endif %}>Date (Soonest last)</option>
+    </select>
+                        
+      </div>
+
+      <div class="col-md-6 mx-auto mt-0 mt-md-0 pt-md-0 mb-3">
+
+        <div class="sort-select-wrapper w-100 skew-style ">
+        <p class="mt-0 text-center text-md-left">
+            {% if search_term or current_disciplines or current_distances or current_format or current_sorting != 'None_None' %}
+                <span ><a href="{% url 'events' %}">Events Home</a> | </span>
+            {% endif %}
+            {{ events|length }} Events{% if search_term %} found for <strong>"{{ search_term }}"</strong>{% endif %}
+        </p>
+         </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+</div>
+
+</section>
     
-    <div class="container-fluid">
+    <div class="container-fluid main-content-higher">
         <div class="row">
             <div class="col text-center mt-3">
-                <h2 class="logo-font">Events</h2>
+                <h1 class="logo-font">Events</h1>
                 
                 {% for d in current_disciplines %}
                     <a class="category-badge text-decoration-none" href="{% url 'events' %}?discipline={{ d.name }}">
@@ -45,43 +93,17 @@
 
         <div class="row">
             <div class="product-container col-10 offset-1">
-                <div class="row mt-1 mb-2">
-                     <div class="col-12 col-md-6 my-auto order-md-last d-flex justify-content-center justify-content-md-end">
-                        <div class="sort-select-wrapper w-50">
-                            <select id="sort-selector" class="custom-select custom-select-sm rounded-0 border border-{% if current_sorting != 'None_None' %}info{% else %}black{% endif %}">
-                                <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
-                                <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>Price (low to high)</option>
-                                <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>Price (high to low)</option>
-                                <option value="rating_asc" {% if current_sorting == 'rating_asc' %}selected{% endif %}>Rating (low to high)</option>
-                                <option value="rating_desc" {% if current_sorting == 'rating_desc' %}selected{% endif %}>Rating (high to low)</option>
-                                <option value="name_asc" {% if current_sorting == 'name_asc' %}selected{% endif %}>Name (A-Z)</option>
-                                <option value="name_desc" {% if current_sorting == 'name_desc' %}selected{% endif %}>Name (Z-A)</option>
-
-                                <option value="discipline_asc" {% if current_sorting == 'discipline_asc' %}selected{% endif %}>Discipline (A-Z)</option>
-                                <option value="discipline_desc" {% if current_sorting == 'discipline_desc' %}selected{% endif %}>Discipline (Z-A)</option>
-
-                                <option value="exactdistancekm_asc" {% if current_sorting == 'exactdistancekm_asc' %}selected{% endif %}>Distance (shortest first)</option>
-                                <option value="exactdistancekm_desc" {% if current_sorting == 'exactdistance_km_desc' %}selected{% endif %}>Distance (longest first)</option>
-                                <option value="entrycutoff_asc" {% if current_sorting == 'entrycutoff_asc' %}selected{% endif %}>Date (Soonest first)</option>
-                                <option value="entrycutoff_desc" {% if current_sorting == 'entrycutoff_desc' %}selected{% endif %}>Date (Soonest last)</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 order-md-first">
-                        <p class="text-muted mt-3 text-center text-md-left">
-                            {% if search_term or current_disciplines or current_distances or current_format or current_sorting != 'None_None' %}
-                                <span class="small"><a href="{% url 'events' %}">Events Home</a> | </span>
-                            {% endif %}
-                            {{ events|length }} Events{% if search_term %} found for <strong>"{{ search_term }}"</strong>{% endif %}
-                        </p>
-                    </div>               
                 
-                </div>
                 <div class="row">
                     {% for event in events %}
                         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
 
-                            <div class="card event-card">
+                            <div class="card event-card
+                            {% if forloop.counter|divisibleby:3 %} green-card {% endif %}
+                            {% if forloop.counter|divisibleby:7 %} black-card {% endif %}
+                            
+                            
+                            ">
                                 <div class="card-img-top">                               
                                 {% if event.image %}
                                 <a href="">
@@ -102,7 +124,13 @@
                                     <p class="small mt-1 mb-0">
                                         
                                         <a class="text-muted" href="{% url 'events' %}?discipline={{ events.discipline.name }}">
-                                            <img class="race-icon" src='/media/walking.png'>{{ event.discipline.friendly_name }}
+                                        {% if forloop.counter|divisibleby:7 %}
+                                        <img class="race-icon" src='/media/walking-white.png'>
+                                        {% else %}
+                                        <img class="race-icon" src='/media/walking.png'>
+                                        {% endif %}
+
+                                            {{ event.discipline.friendly_name }}
                                         </a>
                                     </p>
                                     {% endif %}
