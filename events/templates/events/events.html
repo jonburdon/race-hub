@@ -124,11 +124,16 @@
                                     <p class="small mt-1 mb-0">
                                         
                                         <a class="text-muted" href="{% url 'events' %}?discipline={{ events.discipline.name }}">
-                                        {% if forloop.counter|divisibleby:7 %}
-                                        <img class="race-icon" src='/media/walking-white.png'>
+                                        {% if forloop.counter|divisibleby:3 %}
+                                        <img class="race-icon" src='{{ MEDIA_URL }}walking-white.png'>
                                         {% else %}
-                                        <img class="race-icon" src='/media/walking.png'>
+                                        {% if forloop.counter|divisibleby:7 %}
+                                        <img class="race-icon" src='{{ MEDIA_URL }}walking-white.png'>
+                                        {% else %}
+                                        <img class="race-icon" src='{{ MEDIA_URL }}walking.png'>
                                         {% endif %}
+                                        {% endif %}
+                                        
 
                                             {{ event.discipline.friendly_name }}
                                         </a>

@@ -35,12 +35,15 @@ hr { display: block; height: 1px;
     height: 70vh;
    
 }
-
+/*  */
+.navbar-container {
+    border-bottom: solid 1px var(--primary-color-dark);
+}
 
 /* logo-overlap */
 .logo-overlap {
     margin-top: -10vw;
-    width: 450px;
+    width: 90vw;
 
     margin-left: 0vw;
 }
@@ -281,6 +284,7 @@ Image Cards
 }
 .nav-card {
     min-height: 380px;
+    margin-bottom: 40px;
 }
 
 .top-card {
@@ -693,7 +697,7 @@ width: 50px;
 @media (min-width: 992px) {
 
 .hero-header {
-   
+   height: 60vh;
 padding-top: 5vw;
  
 }
@@ -706,8 +710,8 @@ padding-top: 5vw;
 /* resize logo and position right */
 .logo-overlap {
     margin-top: -5.5vw;
-    width: 70vw;
-margin-left: 30%;
+    width: 50vw;
+margin-left: 25%;
 }
 
   .top-card {
