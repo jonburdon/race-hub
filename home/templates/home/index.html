@@ -277,9 +277,6 @@ console.log (mapevents)
 
 navigator.geolocation.getCurrentPosition(function(location) {
   var latlng = new L.LatLng(location.coords.latitude, location.coords.longitude);
-  console.log(latlng)
-  console.log(latlng.lat)
-  console.log(latlng.lng)
   
   var greenIcon = L.icon({
     iconUrl: '{{ MEDIA_URL }}green-map-marker.png',
@@ -301,7 +298,7 @@ var homeIcon = L.icon({
     popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
 });
 
-  var mymap = L.map('mapid').setView(latlng, 8)
+  var mymap = L.map('mapid').setView(latlng, 8);
   L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
             maxZoom: 18

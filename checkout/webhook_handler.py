@@ -29,13 +29,13 @@ class StripeWH_Handler:
         body = render_to_string(
             'checkout/confirmation_emails/confirmation_email_body.txt',
             {'order': order, 'contact_email': settings.DEFAULT_FROM_EMAIL})
-        
+
         send_mail(
             subject,
             body,
             settings.DEFAULT_FROM_EMAIL,
             [cust_email]
-        )        
+        )
 
 
     def _create_result(self, order, event):
@@ -62,7 +62,7 @@ class StripeWH_Handler:
                     quantity=quantity,
                     which_athlete=athlete,
                 )
-                
+
                 if order_line_item.event.isvirtual == True:
                     virtual = True
                 else:
@@ -76,24 +76,21 @@ class StripeWH_Handler:
                     selectedathletetoenter = AthleteProfile.objects.get(id=athleteidforthisresult[1])
                     athletetype= RacehubFriend
                 if 'Family' in order_line_item.which_athlete:
-                    
+
                     selectedathletetoenter = NonRaceHubFriends.objects.get(id=athleteidforthisresult[1])
                     athletetype= NonRacehubFriend
-                
-                newresult = Result.objects.create(
-                    eventinstance = order_line_item.event,
-                    athletefirstname = selectedathletetoenter.athletefirstname,
-                    athletesurname = selectedathletetoenter.athletesurname,
-                    dateofbirth = selectedathletetoenter.dateofbirth,
-                    gender = selectedathletetoenter.gender,
-                    club = selectedathletetoenter.club,
-                    linkedathlete = selectedathleteid,
-                    athlete_type = athletetype,
-                    isvirtual = virtual,
+
+                newresult=Result.objects.create(
+                    eventinstance=order_line_item.event,
+                    athletefirstname=selectedathletetoenter.athletefirstname,
+                    athletesurname=selectedathletetoenter.athletesurname,
+                    dateofbirth=selectedathletetoenter.dateofbirth,
+                    gender=selectedathletetoenter.gender,
+                    club=selectedathletetoenter.club,
+                    linkedathlete=selectedathleteid,
+                    athlete_type=athletetype,
+                    isvirtual=virtual,
                 )
-                
-                
-               
 
     def handle_event(self, event):
         """
@@ -114,7 +111,7 @@ class StripeWH_Handler:
         billing_details = intent.charges.data[0].billing_details
         shipping_details = intent.shipping
         
-        grand_total = round(intent.charges.data[0].amount / 100, 2) 
+        grand_total = round(intent.charges.data[0].amount / 100, 2)
 
         # Clean data in the shipping details
         for field, value in shipping_details.address.items():
@@ -193,7 +190,7 @@ class StripeWH_Handler:
                             eventpurchased=eventpurchased,
                             quantity=item_data,
                         )
-                        
+
                         order_line_item.save()
                     else:
                         for athlete, quantity in item_data['items_by_athlete'].items():
@@ -203,7 +200,7 @@ class StripeWH_Handler:
                                 quantity=quantity,
                                 which_athlete=athlete,
                             )
-                            
+
                             order_line_item.save()
             except Exception as e:
                 if order:

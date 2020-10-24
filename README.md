@@ -1,5 +1,5 @@
 
-<img src="https://race-hub.s3.eu-west-2.amazonaws.com/media/racehub-logo-text.svg" alt="drawing" width="200"/>
+
 
 ![Racehub](https://race-hub.s3.eu-west-2.amazonaws.com/media/racehub-logo-textfor-readme.png)
 
@@ -794,6 +794,11 @@ Manual testing was performed in a three step approach:
 
 #### HTML Validation
 Basic vaildation has been carried out on the home page. This identified some small errors in html which have been corrected. Errors were reduced from 81 to 18.
+
+#### CSS Validation
+
+#### Python Validation
+Python code was checked in a validator. There is still some cleaning to do - errors relate to white space in the code.
 
 ## [Acknowledgements](#acknowledgements)
 [Developer Aims](#developer-aims) | [UX](#ux) | [User Stories and Corresponding Features](#user-stories-and-features) | [UI Structure](#ui-structure) | [Visual Layout](#visual-layout) | [Technologies Used](#technologies-used) | [Information Architecture](#information-architecture) | [Deployment](#deployment) | [Local Development](#local-development) | [Testing](#testing) | [Acknowledgements](#acknowledgements)
