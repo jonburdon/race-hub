@@ -35,7 +35,7 @@ class AthleteProfile(models.Model):
     eanumber = models.CharField(max_length=80, null=True, blank=True)
     eaverified = models.BooleanField(default=True)
     club = models.ForeignKey(Club, null=True, blank=True, on_delete=models.SET_NULL)
-    dateofbirth  = models.DateField( null=True, blank=True )
+    dateofbirth = models.DateField(null=True, blank=True)
     emergencycontactname = models.CharField(max_length=60, null=True, blank=True)
     emergencycontactphone = models.CharField(max_length=20, null=True, blank=True)
     M = 'M'
@@ -92,7 +92,7 @@ class NonRaceHubFriends(models.Model):
     eanumber = models.CharField(max_length=80, null=True, blank=True)
     eaverified = models.BooleanField(default=True)
     club = models.ForeignKey(Club, null=True, blank=True, on_delete=models.SET_NULL)
-    dateofbirth  = models.DateField( null=True, blank=True )
+    dateofbirth = models.DateField(null=True, blank=True)
     emergencycontactname = models.CharField(max_length=60, null=True)
     emergencycontactphone = models.CharField(max_length=20, null=True)
     M = 'M'
