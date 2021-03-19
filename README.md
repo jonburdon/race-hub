@@ -7,7 +7,7 @@
 # Racehub
 
 
-## [Deployed Project on Heroku](https://race-hub.herokuapp.com/)
+## [Deployed Project on Heroku](https://race-hub-events.herokuapp.com/)
 
 [Developer Aims](#developer-aims) | [UX](#ux) | [User Stories and Corresponding Features](#user-stories-and-features) | [UI Structure](#ui-structure) | [Visual Layout](#visual-layout) | [Technologies Used](#technologies-used) | [Information Architecture](#information-architecture) | [Deployment](#deployment) | [Local Development](#local-development) | [Testing](#testing) | [Acknowledgements](#acknowledgements)
 
@@ -20,6 +20,15 @@ Racehub is race entry and results management system for amateur athletes and eve
 * Use the django framework for writing a fully functioning web application
 * Provide sufficient user interaction features to demonstrate that this project could be further developed into a viable commercial application
 * Provide sufficient documentation in order that the project can be maintained and further developed in the future
+
+## Latest Release Notes - 19th March 2021
+
+* Redeployed project with cleaned database (previous database exceeded the 10,000 row limit and therefore Write Permissions were revoked by Postgress and Heroku)
+* Changed link colours in footer to improve contrast - white on green
+* Fix broken image path on Events Profile page
+* Updated Map View sections to provide a notice to user and background image if Location Permissions are turned off in the browser for improved UX
+* CSS Validation passed with no errors
+
 
 ## [UX](#ux)
 [Developer Aims](#developer-aims) | [UX](#ux) | [User Stories and Corresponding Features](#user-stories-and-features) | [UI Structure](#ui-structure) | [Visual Layout](#visual-layout) | [Technologies Used](#technologies-used) | [Information Architecture](#information-architecture) | [Deployment](#deployment) | [Local Development](#local-development) | [Testing](#testing) | [Acknowledgements](#acknowledgements)
