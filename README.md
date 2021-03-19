@@ -20,6 +20,8 @@ As an organiser with an Admin level account, the Site Owner can add new events. 
 
 It is written in python using the django framework and is the final project in the Code Institute Diploma in Software Development (Full Stack Web Development.)
 
+## Table of Contents
+
 * [[Developer Aims](#developer-aims)](#-developer-aims---developer-aims-)
   * [Latest Release Notes - 19th March 2021](#latest-release-notes---19th-march-2021)
   * [[UX](#ux)](#-ux---ux-)
@@ -79,11 +81,14 @@ It is written in python using the django framework and is the final project in t
 
 ## Latest Release Notes - 19th March 2021
 
+* Updated Readme with TOC
 * Redeployed project with cleaned database (previous database exceeded the 10,000 row limit and therefore Write Permissions were revoked by Postgress and Heroku)
 * Changed link colours in footer to improve contrast - white on green
 * Fix broken image path on Events Profile page
 * Updated Map View sections to provide a notice to user and background image if Location Permissions are turned off in the browser for improved UX
 * CSS Validation passed with no errors
+* Addressed server 500 error when connecting to postgres database
+* altered footer for improved responsive styles
 
 
 ## [UX](#ux)
@@ -861,6 +866,7 @@ Manual testing was performed in a three step approach:
 Basic vaildation has been carried out on the home page. This identified some small errors in html which have been corrected. Errors were reduced from 81 to 18.
 
 #### CSS Validation
+base.css passes with no errors.
 
 #### Python Validation
 Python code was checked in a validator. There is still some cleaning to do - errors relate to white space in the code.
