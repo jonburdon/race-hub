@@ -11,7 +11,63 @@
 
 [Developer Aims](#developer-aims) | [UX](#ux) | [User Stories and Corresponding Features](#user-stories-and-features) | [UI Structure](#ui-structure) | [Visual Layout](#visual-layout) | [Technologies Used](#technologies-used) | [Information Architecture](#information-architecture) | [Deployment](#deployment) | [Local Development](#local-development) | [Testing](#testing) | [Acknowledgements](#acknowledgements)
 
-Racehub is race entry and results management system for amateur athletes and event organisers. It is written in python using the django framework and is the final project in the Code Institute Diploma in Software Development (Full Stack Web Development.)
+### Project Purpose & Introduction
+Racehub is race entry and results management system for amateur athletes and event organisers.
+
+As an athlete, the user can find events to suit their taste, selecting my location, distance (eg marathon), discipline (eg Road or Cross Country running) or event type (Eg Virtual Running or Traditional Mass Start). Users create an Athlete Profile when they log in and this core data about them is then used to enter event. They can also add other Racehub users to their profile as Racehub Friends. Race Entries can be purchased for the Athlete themselves, their Racehub Friends or Friends and Family (who are not racehub users). Users can submit results for virtual events which they have entered, and these are then added to the results list for that event. When looking for Results, the user can look at their OWN results and also all results for an event, filtering and sorting by age category, running club etc.
+
+As an organiser with an Admin level account, the Site Owner can add new events. As the same event is run over many years, results can be added to the Event Instance (ie this particular year in which the event was held.) This means previous results from the SAME event are stored and can easily be managed by the Event Owner. The site owner can manage events and results in the front end.
+
+It is written in python using the django framework and is the final project in the Code Institute Diploma in Software Development (Full Stack Web Development.)
+
+* [[Developer Aims](#developer-aims)](#-developer-aims---developer-aims-)
+  * [Latest Release Notes - 19th March 2021](#latest-release-notes---19th-march-2021)
+  * [[UX](#ux)](#-ux---ux-)
+  * [[User Stories and Corresponding Features](#user-stories-and-features)](#-user-stories-and-corresponding-features---user-stories-and-features-)
+  * [The future of the project](#the-future-of-the-project)
+  * [[UI Structure](#ui-structure)](#-ui-structure---ui-structure-)
+  * [[Visual Layout](#visual-layout)](#-visual-layout---visual-layout-)
+  * [[Technologies Used](#technologies-used)](#-technologies-used---technologies-used-)
+      - [Languages:](#languages-)
+      - [Framework:](#framework-)
+      - [Libraries:](#libraries-)
+      - [Development:](#development-)
+      - [Code Validation Tools:](#code-validation-tools-)
+      - [Deployment:](#deployment-)
+      - [External (third party) services:](#external--third-party--services-)
+      - [Utilities:](#utilities-)
+  * [[Information Architecture](#information-architecture)](#-information-architecture---information-architecture-)
+  * [Data Models](#data-models)
+      - [The User Model](#the-user-model)
+    + [Cart app](#cart-app)
+    + [Checkout app](#checkout-app)
+    + [Clubs app](#clubs-app)
+    + [Events app](#events-app)
+    + [Home app](#home-app)
+    + [Profiles app](#profiles-app)
+      - [Results app](#results-app)
+  * [[Deployment](#deployment)](#-deployment---deployment-)
+    + [Creating an AWS Account](#creating-an-aws-account)
+    + [Email setup.](#email-setup)
+      - [Further notes on deployment process](#further-notes-on-deployment-process)
+  * [[Local Development](#local-development)](#-local-development---local-development-)
+    + [IDE selected:](#ide-selected-)
+    + [How to replicate the project using Gitpod](#how-to-replicate-the-project-using-gitpod)
+  * [[Testing](#testing)](#-testing---testing-)
+    + [Ongoing Testing](#ongoing-testing)
+    + [Testing Credentials and Instructions:](#testing-credentials-and-instructions-)
+    + [Automatic Testing](#automatic-testing)
+    + [Manual Testing](#manual-testing)
+      - [Organiser Testing](#organiser-testing)
+      - [Registered User Testing](#registered-user-testing)
+      - [Unregistered User Testing](#unregistered-user-testing)
+      - [Issues Identified during testing:](#issues-identified-during-testing-)
+      - [HTML Validation](#html-validation)
+      - [CSS Validation](#css-validation)
+      - [Python Validation](#python-validation)
+  * [[Acknowledgements](#acknowledgements)](#-acknowledgements---acknowledgements-)
+      - [Media:](#media-)
+      - [Useful Docmentation](#useful-docmentation)
 
 
 ## [Developer Aims](#developer-aims)
