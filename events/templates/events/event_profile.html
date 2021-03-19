@@ -30,7 +30,7 @@
                         
                         {% else %}
                         
-                            <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ event.name }}">
+                            <img class="card-img-top img-fluid" src="{{ MEDIA_URL}}noimage.png" alt="{{ event.name }}">
                         
                     {% endif %}
                     <h4>Athlete Check:</h4>
@@ -53,7 +53,8 @@
                                     <p class=" mt-3 mb-3">
                                         
                                         <a class="text-muted" href="{% url 'events' %}?discipline={{ events.discipline.name }}">
-                                            <img class="race-icon" src='{{ MEDIA_URL }}walking.png'>{{ event.discipline.friendly_name }}
+                                            <img class="race-icon" src="{{ MEDIA_URL}}walking.png">{{ event.discipline.friendly_name }}
+
                                         </a>
                                     </p>
                                     {% endif %}
