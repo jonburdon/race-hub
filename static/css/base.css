@@ -75,12 +75,20 @@ hr { display: block; height: 1px;
     background-color: var(--primary-color-dark);
     color: white;
 }
+
+
 .page-footer .logo-font{
     float: left;
 }
-.page-footer a, .page-nav a {
+.page-nav a {
     color: black;
 }
+
+.page-footer a {
+    color: white;
+    text-decoration: underline;
+}
+
 .page-nav span {
     color: white;
 }
@@ -382,6 +390,14 @@ a.category-badge > span.badge:hover {
   height: 30vh;
   width: 100%;
 }
+.map-medium-size:before, .map-large-size:before {
+    content: "Please Allow Location Access in your browser so Race Hub can find events near you...";
+    font-size: 24px;
+    font-weight: 100;
+    padding: 80px;
+    margin-left: 10%;
+}
+
 
 .btt-link,
 .remove-item {
