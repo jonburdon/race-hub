@@ -89,6 +89,9 @@ It is written in python using the django framework and is the final project in t
 * CSS Validation passed with no errors
 * Addressed server 500 error when connecting to postgres database
 * altered footer for improved responsive styles
+* Improve Cart to force Athlete to create athlete profile before purchasing
+* Fix broken image link on Results listing page
+* Fix type on Athlete Profile for improved ux
 
 
 ## [UX](#ux)

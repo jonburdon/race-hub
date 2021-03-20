@@ -154,7 +154,7 @@
                 <hr>
                 {% for f in nonracehubfriendsforthisathlete %}
                         {{ f.athletefirstname }} {{ f.athletesurname }} ID #{{f.id}},
-                         is a Racehub friend of {{ f.parentprofile }}, Athlete Profile ID #{{ f.parentprofile_id }}. {% if f.eaverified %}(EA Discount Confirmed){% else%} (No EA Discount) {% endif %} | <a class="text-danger" href="{% url 'delete_nonracehub_friend' f.id %}">Delete</a><br>
+                         is a Family or Friend of {{ f.parentprofile }}, Athlete Profile ID #{{ f.parentprofile_id }}. {% if f.eaverified %}(EA Discount Confirmed){% else%} (No EA Discount) {% endif %} | <a class="text-danger" href="{% url 'delete_nonracehub_friend' f.id %}">Delete</a><br>
                 {% endfor %}
                 <br>
                 <a href="{% url 'add_nonracehubfriend' %}" class="skew-style btn btn-black rounded-0 mt-5 float-right d-block">
