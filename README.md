@@ -6,6 +6,10 @@
 
 # Racehub
 
+## Walkthrough Video
+
+[![Video Walkthrough](https://drive.google.com/file/d/1Wqm511hzl4l10nd0SETdNJgHAT_GHml3/view?usp=sharing)](https://www.youtube.com/watch?v=3xJFPj8DyAM "Walkthrough Video")
+
 
 ## [Deployed Project on Heroku](https://race-hub-events.herokuapp.com/)
 
@@ -81,6 +85,8 @@ It is written in python using the django framework and is the final project in t
 
 ## Latest Release Notes - 19th March 2021
 
+* Walkthrough Video added to Readme
+* BUG Identified but not fixed: You may enter an event as Yourself and a Racehub Friend at the same time, OR yourself and a Family / Friend at the same time but not ALL THREE types of runner in the same shopping cart. A note was added to the cart page to notify the user of this.
 * Updated Readme with TOC
 * Redeployed project with cleaned database (previous database exceeded the 10,000 row limit and therefore Write Permissions were revoked by Postgress and Heroku)
 * Changed link colours in footer to improve contrast - white on green
