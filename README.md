@@ -8,7 +8,7 @@
 
 ## Walkthrough Video
 
-[![Video Walkthrough](https://drive.google.com/file/d/1Wqm511hzl4l10nd0SETdNJgHAT_GHml3/view?usp=sharing)](https://www.youtube.com/watch?v=3xJFPj8DyAM "Walkthrough Video")
+[![Video Walkthrough](https://raw.githubusercontent.com/jonburdon/race-hub/master/media/VideoScreenshot.png)](https://www.youtube.com/watch?v=3xJFPj8DyAM "Walkthrough Video")
 
 
 ## [Deployed Project on Heroku](https://race-hub-events.herokuapp.com/)
