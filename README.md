@@ -797,6 +797,8 @@ Test Admin Account:
 * Admin Username: testadmin
 * Admin Password: Reset1234*
 
+Test MyRacehub User ID:
+To test the 'Add Racehub Friends' functionality, use Test ID 8. This will allow you to add another racehub user to your Racehub Friends list.
 
 
 ### Automatic Testing

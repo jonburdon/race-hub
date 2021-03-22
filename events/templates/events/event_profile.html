@@ -58,7 +58,10 @@
                                         </a>
                                     </p>
                                     {% endif %}
-                    <p class="mt-3 mb-1">Event Date: {{ event.event_instance.eventdate }}</p>
+                    
+                    <p class="lead mb-0 text-left font-weight-bold">{% if event.event_instance.isvirtual %}
+                    This event is virtual, you need to submit your result by
+                    {% endif %} Event Date: {{ event.event_instance.eventdate }}</p>
                     <p class="lead mb-0 text-left font-weight-bold">£{{ event.price }}</p>
                     {% if event.rating %}
                         <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ event.rating }} / 5</small>
