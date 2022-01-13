@@ -19,7 +19,7 @@ MarkupPy==1.14
 oauthlib==3.1.0
 odfpy==1.4.1
 openpyxl==3.0.5
-Pillow==7.2.0
+Pillow==9.0.0
 postcode.io==0.1.1
 psycopg2-binary==2.8.6
 python3-openid==3.2.0
